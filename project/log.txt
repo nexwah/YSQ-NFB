@@ -1,0 +1,15 @@
+NFB-E2BAT
+- HT parameter (6 parameters) are exported for user customize.
+- EEPROM is added
+- BatteryChargingLevel() is added.
+
+NFB-E2BAT2
+- TCR parameters (3 parameter) are exported for user customize.
+- short press the button will trigger the BatteryLevelChecking() for 1 second. 
+
+NFB-E2BAT2-SLEEP
+- add Sleep()
+- can wake up via button. Short press the button will trigger the BatteryLevelChecking() for 1 second. Around 10 seconds will enter back to Sleep(). During 10 seconds, power led will blink every 0.2 second.
+- Long press the button (1.5 seconds) will trigger the heating process. After heating process, it will enter the smoking process. After smoking process, it will enter back to Sleep().
+- If long press agian the button during heating or smoking process, it will enter back to Sleep().
+- can wake up via USB plug-in. Charging will start. When charging end, it will enter back to Sleep().

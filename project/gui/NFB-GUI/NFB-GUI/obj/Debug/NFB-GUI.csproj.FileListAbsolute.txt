@@ -1,0 +1,15 @@
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\bin\Debug\NFB-GUI.exe.config
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\bin\Debug\NFB-GUI.exe
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\bin\Debug\NFB-GUI.pdb
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.csproj.AssemblyReference.cache
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB_GUI.Properties.Resources.resources
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.csproj.GenerateResource.cache
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.csproj.CoreCompileInputs.cache
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.exe
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.pdb
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB_GUI.FormNFB.resources
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\bin\Debug\NFB-GUI.exe.manifest
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\bin\Debug\NFB-GUI.application
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.exe.manifest
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB-GUI.application
+C:\Embeded Project\FT64F0A5-TRB\YSQ-NFB\project\gui\NFB-GUI\NFB-GUI\obj\Debug\NFB_GUI.Form2.resources

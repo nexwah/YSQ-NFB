@@ -1,0 +1,269 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"43 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v _CRC16_CCITT CRC16_CCITT `(v  1 e 1 0 ]
+[v i1_CRC16_CCITT CRC16_CCITT `(v  1 e 1 0 ]
+"59
+[v _All_Page_Read_CRC All_Page_Read_CRC `(v  1 e 1 0 ]
+[v i1_All_Page_Read_CRC All_Page_Read_CRC `(v  1 e 1 0 ]
+"73
+[v _Eeprom_Write_Crc Eeprom_Write_Crc `(v  1 e 1 0 ]
+"88
+[v _Power_On_App_Check Power_On_App_Check `(v  1 e 1 0 ]
+"107
+[v _data_check_erase_or_not data_check_erase_or_not `(uc  1 e 1 0 ]
+"141
+[v _ISR ISR `II(v  1 e 1 0 ]
+"168
+[v _user_isr user_isr `(v  1 e 1 0 ]
+"348
+[v _main main `(v  1 e 1 0 ]
+"3 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\MEM_DRV.C
+[v _Unlock_Flash Unlock_Flash `(v  1 e 1 0 ]
+"18
+[v _iap_mem_erase iap_mem_erase `(v  1 e 1 0 ]
+"26
+[v _iap_mem_prog iap_mem_prog `(v  1 e 1 0 ]
+"33
+[v _iap_mem_rd iap_mem_rd `(v  1 e 1 0 ]
+[v i1_iap_mem_rd iap_mem_rd `(v  1 e 1 0 ]
+"47
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+"4 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\USART_DRV.C
+[v _iap_usart_init iap_usart_init `(v  1 e 1 0 ]
+"32
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"40
+[v _iap_usart_send iap_usart_send `(v  1 e 1 0 ]
+"45
+[v _iap_usart_rec iap_usart_rec `(uc  1 e 1 0 ]
+"67
+[v _iap_wait_tx_idle iap_wait_tx_idle `(v  1 e 1 0 ]
+"59 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\include\FT61F14X.h
+[v _BSREG BSREG `VEuc  1 e 1 @8 ]
+"105
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"106
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"506
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"881
+[v _EEADRL EEADRL `VEuc  1 e 1 @401 ]
+"885
+[v _EEADRH EEADRH `VEuc  1 e 1 @402 ]
+"906
+[v _EEDATL EEDATL `VEuc  1 e 1 @403 ]
+"909
+[v _EEDATH EEDATH `VEuc  1 e 1 @404 ]
+"928
+[v _EECON1 EECON1 `VEuc  1 e 1 @405 ]
+"930
+[v _RD RD `VEb  1 e 0 @3240 ]
+"935
+[v _CFGS CFGS `VEb  1 e 0 @3246 ]
+"936
+[v _EEPGD EEPGD `VEb  1 e 0 @3247 ]
+"1036
+[v _AFP1 AFP1 `VEuc  1 e 1 @415 ]
+"2227
+[v _URDATAL URDATAL `VEuc  1 e 1 @1164 ]
+"2248
+[v _URRXNE URRXNE `VEb  1 e 0 @9328 ]
+"2268
+[v _URLCR URLCR `VEuc  1 e 1 @1167 ]
+"2306
+[v _URMCR URMCR `VEuc  1 e 1 @1169 ]
+"2329
+[v _URLSR URLSR `VEuc  1 e 1 @1170 ]
+"2331
+[v _RXNEF RXNEF `VEb  1 e 0 @9360 ]
+"2334
+[v _FEF FEF `VEb  1 e 0 @9363 ]
+"2379
+[v _URDLL URDLL `VEuc  1 e 1 @1172 ]
+"2531
+[v _TCF TCF `VEb  1 e 0 @9440 ]
+"15 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v _W_TMP W_TMP `VEuc  1 e 1 @112 ]
+"16
+[v _BSR_TMP BSR_TMP `VEuc  1 e 1 @113 ]
+"19
+[v _flag flag `uc  1 e 1 @32 ]
+"20
+[v _read_flag read_flag `b  1 e 0 @256 ]
+"21
+[v _iap_err_flag iap_err_flag `b  1 e 0 @257 ]
+"22
+[v _iap_ok_flag iap_ok_flag `b  1 e 0 @258 ]
+"23
+[v _uart_rxnef uart_rxnef `b  1 e 0 @259 ]
+"25
+[v _count count `uc  1 e 1 @33 ]
+"26
+[v _iap_recdata iap_recdata `uc  1 e 1 @34 ]
+"27
+[v _CRC_16 CRC_16 `ui  1 e 2 @35 ]
+"28
+[v _CRC_L CRC_L `uc  1 e 1 @35 ]
+"29
+[v _CRC_H CRC_H `uc  1 e 1 @36 ]
+"30
+[v _iap_databuf iap_databuf `[69]uc  1 e 69 0 ]
+"348
+[v _main main `(v  1 e 1 0 ]
+{
+"364
+} 0
+"4 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\USART_DRV.C
+[v _iap_usart_init iap_usart_init `(v  1 e 1 0 ]
+{
+"27
+} 0
+"88 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v _Power_On_App_Check Power_On_App_Check `(v  1 e 1 0 ]
+{
+"90
+[v Power_On_App_Check@CRC_Eeprom CRC_Eeprom `ui  1 a 2 8 ]
+"105
+} 0
+"47 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\MEM_DRV.C
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+{
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"49
+[v EEPROMread@ReEEPROMread ReEEPROMread `uc  1 a 1 1 ]
+"47
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"51
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 0 ]
+"63
+} 0
+"59 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v _All_Page_Read_CRC All_Page_Read_CRC `(v  1 e 1 0 ]
+{
+"61
+[v All_Page_Read_CRC@iap_addr iap_addr `ui  1 a 2 6 ]
+"72
+} 0
+"33 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\MEM_DRV.C
+[v _iap_mem_rd iap_mem_rd `(v  1 e 1 0 ]
+{
+"39
+} 0
+"43 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v _CRC16_CCITT CRC16_CCITT `(v  1 e 1 0 ]
+{
+[v CRC16_CCITT@data data `uc  1 a 1 wreg ]
+"46
+[v CRC16_CCITT@i i `uc  1 a 1 5 ]
+"43
+[v CRC16_CCITT@data data `uc  1 a 1 wreg ]
+"48
+[v CRC16_CCITT@data data `uc  1 a 1 4 ]
+"58
+} 0
+"141
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"167
+} 0
+"168
+[v _user_isr user_isr `(v  1 e 1 0 ]
+{
+"222
+[v user_isr@iap_addr iap_addr `ui  1 a 2 9 ]
+"221
+[v user_isr@i i `uc  1 a 1 11 ]
+"341
+} 0
+"67 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\USART_DRV.C
+[v _iap_wait_tx_idle iap_wait_tx_idle `(v  1 e 1 0 ]
+{
+"70
+} 0
+"40
+[v _iap_usart_send iap_usart_send `(v  1 e 1 0 ]
+{
+[v iap_usart_send@data data `uc  1 a 1 wreg ]
+[v iap_usart_send@data data `uc  1 a 1 wreg ]
+[v iap_usart_send@data data `uc  1 a 1 0 ]
+"44
+} 0
+"45
+[v _iap_usart_rec iap_usart_rec `(uc  1 e 1 0 ]
+{
+"47
+[v iap_usart_rec@a a `ui  1 a 2 1 ]
+"65
+} 0
+"32
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+"34
+[v DelayUs@a a `uc  1 a 1 0 ]
+"39
+} 0
+"18 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\MEM_DRV.C
+[v _iap_mem_erase iap_mem_erase `(v  1 e 1 0 ]
+{
+"24
+} 0
+"107 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v _data_check_erase_or_not data_check_erase_or_not `(uc  1 e 1 0 ]
+{
+"109
+[v data_check_erase_or_not@i i `uc  1 a 1 6 ]
+[v data_check_erase_or_not@k k `uc  1 a 1 5 ]
+[v data_check_erase_or_not@j j `uc  1 a 1 4 ]
+"107
+[v data_check_erase_or_not@addr addr `ui  1 p 2 0 ]
+[v data_check_erase_or_not@mode mode `uc  1 p 1 2 ]
+"134
+} 0
+"73
+[v _Eeprom_Write_Crc Eeprom_Write_Crc `(v  1 e 1 0 ]
+{
+"86
+} 0
+"59
+[v i1_All_Page_Read_CRC All_Page_Read_CRC `(v  1 e 1 0 ]
+{
+[v i1All_Page_Read_CRC@iap_addr All_Page_Read_CRC `ui  1 a 2 6 ]
+"72
+} 0
+"33 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\MEM_DRV.C
+[v i1_iap_mem_rd iap_mem_rd `(v  1 e 1 0 ]
+{
+"39
+} 0
+"43 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\IAP_FW.C
+[v i1_CRC16_CCITT CRC16_CCITT `(v  1 e 1 0 ]
+{
+[v i1CRC16_CCITT@data data `uc  1 a 1 wreg ]
+[v i1CRC16_CCITT@i CRC16_CCITT `uc  1 a 1 5 ]
+[v i1CRC16_CCITT@data data `uc  1 a 1 wreg ]
+"48
+[v i1CRC16_CCITT@data data `uc  1 a 1 4 ]
+"58
+} 0
+"26 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\IAP_FT61F14x\IAP_FW\MEM_DRV.C
+[v _iap_mem_prog iap_mem_prog `(v  1 e 1 0 ]
+{
+"32
+} 0
+"3
+[v _Unlock_Flash Unlock_Flash `(v  1 e 1 0 ]
+{
+"16
+} 0

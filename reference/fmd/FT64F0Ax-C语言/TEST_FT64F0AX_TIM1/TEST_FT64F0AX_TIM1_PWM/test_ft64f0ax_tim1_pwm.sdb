@@ -1,0 +1,132 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT64F0AX ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"31 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT64F0Ax\TEST_FT64F0AX_TIM1_PWM\TEST_FT64F0AX_TIM1_PWM.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"69
+[v _TIM1_INITIAL TIM1_INITIAL `(v  1 e 1 0 ]
+"123
+[v _main main `(v  1 e 1 0 ]
+"99 d:\ide3.0.3_6c03\data\include\FT64F0AX.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"125
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"170
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"215
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"408
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"435
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"462
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"500
+[v _CKOCON CKOCON `VEuc  1 e 1 @149 ]
+"622
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"653
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"972
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"977
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"982
+[v _PSRC2 PSRC2 `VEuc  1 e 1 @284 ]
+"1021
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1025
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1029
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1136
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1174
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1178
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1181
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1217
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1244
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1270
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1288
+[v _TIM1CR1 TIM1CR1 `VEuc  1 e 1 @529 ]
+"1318
+[v _TIM1CR2 TIM1CR2 `VEuc  1 e 1 @530 ]
+"1339
+[v _TIM1SMCR TIM1SMCR `VEuc  1 e 1 @531 ]
+"1367
+[v _TIM1ETR TIM1ETR `VEuc  1 e 1 @532 ]
+"1397
+[v _TIM1IER TIM1IER `VEuc  1 e 1 @533 ]
+"1423
+[v _TIM1SR1 TIM1SR1 `VEuc  1 e 1 @534 ]
+"1449
+[v _TIM1SR2 TIM1SR2 `VEuc  1 e 1 @535 ]
+"1468
+[v _TIM1EGR TIM1EGR `VEuc  1 e 1 @536 ]
+"1493
+[v _TIM1CCMR1 TIM1CCMR1 `VEuc  1 e 1 @537 ]
+"1546
+[v _TIM1CCMR2 TIM1CCMR2 `VEuc  1 e 1 @538 ]
+"1600
+[v _TIM1CCMR3 TIM1CCMR3 `VEuc  1 e 1 @539 ]
+"1654
+[v _TIM1CCMR4 TIM1CCMR4 `VEuc  1 e 1 @540 ]
+"1708
+[v _TIM1CCER1 TIM1CCER1 `VEuc  1 e 1 @541 ]
+"1734
+[v _TIM1CCER2 TIM1CCER2 `VEuc  1 e 1 @542 ]
+"1781
+[v _TIM1CNTRH TIM1CNTRH `VEuc  1 e 1 @652 ]
+"1785
+[v _TIM1CNTRL TIM1CNTRL `VEuc  1 e 1 @653 ]
+"1789
+[v _TIM1PSCRH TIM1PSCRH `VEuc  1 e 1 @654 ]
+"1793
+[v _TIM1PSCRL TIM1PSCRL `VEuc  1 e 1 @655 ]
+"1797
+[v _TIM1ARRH TIM1ARRH `VEuc  1 e 1 @656 ]
+"1801
+[v _TIM1ARRL TIM1ARRL `VEuc  1 e 1 @657 ]
+"1805
+[v _TIM1RCR TIM1RCR `VEuc  1 e 1 @658 ]
+"1809
+[v _TIM1CCR1H TIM1CCR1H `VEuc  1 e 1 @659 ]
+"1813
+[v _TIM1CCR1L TIM1CCR1L `VEuc  1 e 1 @660 ]
+"1841
+[v _TIM1BKR TIM1BKR `VEuc  1 e 1 @667 ]
+"1867
+[v _TIM1DTR TIM1DTR `VEuc  1 e 1 @668 ]
+"1896
+[v _TIM1OISR TIM1OISR `VEuc  1 e 1 @669 ]
+"2268
+[v _TCKSRC TCKSRC `VEuc  1 e 1 @799 ]
+"2626
+[v _LEBCON LEBCON `VEuc  1 e 1 @1052 ]
+"123 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT64F0Ax\TEST_FT64F0AX_TIM1_PWM\TEST_FT64F0AX_TIM1_PWM.C
+[v _main main `(v  1 e 1 0 ]
+{
+"132
+} 0
+"69
+[v _TIM1_INITIAL TIM1_INITIAL `(v  1 e 1 0 ]
+{
+"116
+} 0
+"31
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"62
+} 0

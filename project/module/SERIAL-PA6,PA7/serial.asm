@@ -1,0 +1,287 @@
+//Deviec:FT64F0AX
+//-----------------------Variable---------------------------------
+		_receivedata		EQU		7BH
+		_toSend		EQU		20H
+//		send@tbuf		EQU		78H
+//		send@i		EQU		79H
+//		send@tbuf		EQU		78H
+//		send@len		EQU		75H
+//		send@tbuf		EQU		78H
+//		DelayMs@Time		EQU		72H
+//		DelayMs@b		EQU		74H
+//		DelayMs@a		EQU		73H
+//		DelayMs@Time		EQU		72H
+//		DelayMs@Time		EQU		72H
+//		DelayUs@Time		EQU		70H
+//		DelayUs@a		EQU		71H
+//		DelayUs@Time		EQU		70H
+//		DelayUs@Time		EQU		70H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		ORG		0000H
+		MOVLP 	0H 			//0000 	0180
+		LJUMP 	FH 			//0001 	380F
+		ORG		0004H
+		BSR 	7EH, 0H 			//0004 	247E
+		MOVLP 	0H 			//0005 	0180
+
+		//;SERIAL.C: 40: if(UR1RXNE&&UR1RXNEF)
+		MOVLB 	9H 			//0006 	1029
+		BTSC 	EH, 0H 			//0007 	280E
+		BTSS 	12H, 0H 		//0008 	2C12
+		LJUMP 	DH 			//0009 	380D
+
+		//;SERIAL.C: 41: {
+		//;SERIAL.C: 42: receivedata = UR1DATAL;
+		LDR 	CH, 0H 			//000A 	180C
+		STR 	7BH 			//000B 	10FB
+
+		//;SERIAL.C: 43: UR1DATAL = receivedata;
+		STR 	CH 			//000C 	108C
+		BCR 	7EH, 0H 			//000D 	207E
+		RETI 					//000E 	1009
+		MOVLP 	0H 			//000F 	0180
+		LJUMP 	11H 			//0010 	3811
+		LDWI 	68H 			//0011 	0068
+		STR 	20H 			//0012 	10A0
+		LDWI 	65H 			//0013 	0065
+		STR 	21H 			//0014 	10A1
+		LDWI 	6CH 			//0015 	006C
+		STR 	22H 			//0016 	10A2
+		STR 	23H 			//0017 	10A3
+		LDWI 	6FH 			//0018 	006F
+		STR 	24H 			//0019 	10A4
+		LDWI 	20H 			//001A 	0020
+		STR 	25H 			//001B 	10A5
+		LDWI 	77H 			//001C 	0077
+		STR 	26H 			//001D 	10A6
+		LDWI 	6FH 			//001E 	006F
+		STR 	27H 			//001F 	10A7
+		LDWI 	72H 			//0020 	0072
+		STR 	28H 			//0021 	10A8
+		LDWI 	6CH 			//0022 	006C
+		STR 	29H 			//0023 	10A9
+		LDWI 	64H 			//0024 	0064
+		STR 	2AH 			//0025 	10AA
+		LDWI 	DH 			//0026 	000D
+		STR 	2BH 			//0027 	10AB
+		LDWI 	AH 			//0028 	000A
+		STR 	2CH 			//0029 	10AC
+		CLRF 	2DH 			//002A 	11AD
+		CLRF 	7BH 			//002B 	11FB
+		BCR 	7EH, 0H 			//002C 	207E
+		MOVLB 	0H 			//002D 	1020
+		LJUMP 	2FH 			//002E 	382F
+
+		//;SERIAL.C: 154: POWER_INITIAL();
+		LCALL 	3BH 			//002F 	303B
+		MOVLP 	0H 			//0030 	0180
+
+		//;SERIAL.C: 155: UART_INITIAL();
+		LCALL 	61H 			//0031 	3061
+		MOVLP 	0H 			//0032 	0180
+
+		//;SERIAL.C: 156: send(toSend,13);
+		LDWI 	DH 			//0033 	000D
+		STR 	75H 			//0034 	10F5
+		LDWI 	20H 			//0035 	0020
+		CLRF 	76H 			//0036 	11F6
+		LCALL 	71H 			//0037 	3071
+		MOVLP 	0H 			//0038 	0180
+
+		//;SERIAL.C: 158: {
+		//;SERIAL.C: 159: __nop();
+		NOP 					//0039 	1000
+		LJUMP 	39H 			//003A 	3839
+
+		//;SERIAL.C: 54: OSCCON=0B01110001;
+		LDWI 	71H 			//003B 	0071
+		MOVLB 	1H 			//003C 	1021
+		STR 	19H 			//003D 	1099
+
+		//;SERIAL.C: 55: INTCON=0;
+		CLRF 	BH 			//003E 	118B
+
+		//;SERIAL.C: 57: PORTA=0B00000000;
+		MOVLB 	0H 			//003F 	1020
+		CLRF 	CH 			//0040 	118C
+
+		//;SERIAL.C: 58: PORTB=0B00000000;
+		CLRF 	DH 			//0041 	118D
+
+		//;SERIAL.C: 59: PORTC=0B00000000;
+		CLRF 	EH 			//0042 	118E
+
+		//;SERIAL.C: 61: TRISA=0B10111111;
+		LDWI 	BFH 			//0043 	00BF
+		MOVLB 	1H 			//0044 	1021
+		STR 	CH 			//0045 	108C
+
+		//;SERIAL.C: 62: TRISB=0B11111111;
+		LDWI 	FFH 			//0046 	00FF
+		STR 	DH 			//0047 	108D
+
+		//;SERIAL.C: 63: TRISC=0B00000011;
+		LDWI 	3H 			//0048 	0003
+		STR 	EH 			//0049 	108E
+
+		//;SERIAL.C: 65: WPUA=0B00000000;
+		MOVLB 	3H 			//004A 	1023
+		CLRF 	CH 			//004B 	118C
+
+		//;SERIAL.C: 66: WPUB=0B00010000;
+		LDWI 	10H 			//004C 	0010
+		STR 	DH 			//004D 	108D
+
+		//;SERIAL.C: 67: WPUC=0B00000000;
+		CLRF 	EH 			//004E 	118E
+
+		//;SERIAL.C: 69: WPDA=0B00000000;
+		MOVLB 	4H 			//004F 	1024
+		CLRF 	CH 			//0050 	118C
+
+		//;SERIAL.C: 70: WPDB=0B00000000;
+		CLRF 	DH 			//0051 	118D
+
+		//;SERIAL.C: 71: WPDC=0B00000000;
+		CLRF 	EH 			//0052 	118E
+
+		//;SERIAL.C: 73: PSRC0=0B11111111;
+		LDWI 	FFH 			//0053 	00FF
+		MOVLB 	2H 			//0054 	1022
+		STR 	1AH 			//0055 	109A
+
+		//;SERIAL.C: 74: PSRC1=0B11111111;
+		STR 	1BH 			//0056 	109B
+
+		//;SERIAL.C: 75: PSRC2=0B00001111;
+		LDWI 	FH 			//0057 	000F
+		STR 	1CH 			//0058 	109C
+
+		//;SERIAL.C: 77: PSINK0=0B11111111;
+		LDWI 	FFH 			//0059 	00FF
+		MOVLB 	3H 			//005A 	1023
+		STR 	1AH 			//005B 	109A
+
+		//;SERIAL.C: 78: PSINK1=0B11111111;
+		STR 	1BH 			//005C 	109B
+
+		//;SERIAL.C: 79: PSINK2=0B00000011;
+		LDWI 	3H 			//005D 	0003
+		STR 	1CH 			//005E 	109C
+
+		//;SERIAL.C: 81: ANSELA=0B00000000;
+		CLRF 	17H 			//005F 	1197
+		RET 					//0060 	1008
+
+		//;SERIAL.C: 122: PCKEN|=0B00100000;
+		MOVLB 	1H 			//0061 	1021
+		BSR 	1AH, 5H 			//0062 	269A
+
+		//;SERIAL.C: 123: UR1IER=0B00100001;
+		LDWI 	21H 			//0063 	0021
+		MOVLB 	9H 			//0064 	1029
+		STR 	EH 			//0065 	108E
+
+		//;SERIAL.C: 124: UR1LCR=0B00000001;
+		LDWI 	1H 			//0066 	0001
+		STR 	FH 			//0067 	108F
+
+		//;SERIAL.C: 125: UR1MCR=0B00011000;
+		LDWI 	18H 			//0068 	0018
+		STR 	11H 			//0069 	1091
+
+		//;SERIAL.C: 127: UR1DLL=104;
+		LDWI 	68H 			//006A 	0068
+		STR 	14H 			//006B 	1094
+
+		//;SERIAL.C: 128: UR1DLH=0;
+		CLRF 	15H 			//006C 	1195
+
+		//;SERIAL.C: 129: UR1TCF=1;
+		BSR 	1CH, 0H 			//006D 	241C
+
+		//;SERIAL.C: 130: INTCON=0B11000000;
+		LDWI 	C0H 			//006E 	00C0
+		STR 	BH 			//006F 	108B
+		RET 					//0070 	1008
+		STR 	78H 			//0071 	10F8
+
+		//;SERIAL.C: 136: for(int i=0;i<len;i++)
+		CLRF 	79H 			//0072 	11F9
+		CLRF 	7AH 			//0073 	11FA
+		LDR 	7AH, 0H 			//0074 	187A
+		XORWI 	80H 			//0075 	0A80
+		STR 	77H 			//0076 	10F7
+		LDR 	76H, 0H 			//0077 	1876
+		XORWI 	80H 			//0078 	0A80
+		SUBWR 	77H, 0H 		//0079 	1277
+		BTSS 	3H, 2H 			//007A 	2D03
+		LJUMP 	7EH 			//007B 	387E
+		LDR 	75H, 0H 			//007C 	1875
+		SUBWR 	79H, 0H 		//007D 	1279
+		BTSC 	3H, 0H 			//007E 	2803
+		RET 					//007F 	1008
+
+		//;SERIAL.C: 137: {
+		//;SERIAL.C: 138: UR1DATAL=tbuf[i];
+		LDR 	79H, 0H 			//0080 	1879
+		ADDWR 	78H, 0H 		//0081 	1778
+		STR 	77H 			//0082 	10F7
+		STR 	6H 			//0083 	1086
+		CLRF 	7H 			//0084 	1187
+		LDR 	1H, 0H 			//0085 	1801
+		MOVLB 	9H 			//0086 	1029
+		STR 	CH 			//0087 	108C
+
+		//;SERIAL.C: 139: DelayMs(1);
+		LDWI 	1H 			//0088 	0001
+		LCALL 	8FH 			//0089 	308F
+		MOVLP 	0H 			//008A 	0180
+		INCR 	79H, 1H 		//008B 	1AF9
+		BTSC 	3H, 2H 			//008C 	2903
+		INCR 	7AH, 1H 		//008D 	1AFA
+		LJUMP 	74H 			//008E 	3874
+		STR 	72H 			//008F 	10F2
+
+		//;SERIAL.C: 105: unsigned char a,b;
+		//;SERIAL.C: 106: for(a=0;a<Time;a++)
+		CLRF 	73H 			//0090 	11F3
+		LDR 	72H, 0H 			//0091 	1872
+		SUBWR 	73H, 0H 		//0092 	1273
+		BTSC 	3H, 0H 			//0093 	2803
+		RET 					//0094 	1008
+
+		//;SERIAL.C: 107: {
+		//;SERIAL.C: 108: for(b=0;b<5;b++)
+		CLRF 	74H 			//0095 	11F4
+
+		//;SERIAL.C: 109: {
+		//;SERIAL.C: 110: DelayUs(197);
+		LDWI 	C5H 			//0096 	00C5
+		LCALL 	A0H 			//0097 	30A0
+		MOVLP 	0H 			//0098 	0180
+		LDWI 	5H 			//0099 	0005
+		INCR 	74H, 1H 		//009A 	1AF4
+		SUBWR 	74H, 0H 		//009B 	1274
+		BTSS 	3H, 0H 			//009C 	2C03
+		LJUMP 	96H 			//009D 	3896
+		INCR 	73H, 1H 		//009E 	1AF3
+		LJUMP 	91H 			//009F 	3891
+		STR 	70H 			//00A0 	10F0
+
+		//;SERIAL.C: 91: unsigned char a;
+		//;SERIAL.C: 92: for(a=0;a<Time;a++)
+		CLRF 	71H 			//00A1 	11F1
+		LDR 	70H, 0H 			//00A2 	1870
+		SUBWR 	71H, 0H 		//00A3 	1271
+		ORG		00A4H
+		BTSC 	3H, 0H 			//00A4 	2803
+		RET 					//00A5 	1008
+
+		//;SERIAL.C: 93: {
+		//;SERIAL.C: 94: __nop();
+		NOP 					//00A6 	1000
+		INCR 	71H, 1H 		//00A7 	1AF1
+		LJUMP 	A2H 			//00A8 	38A2
+			END

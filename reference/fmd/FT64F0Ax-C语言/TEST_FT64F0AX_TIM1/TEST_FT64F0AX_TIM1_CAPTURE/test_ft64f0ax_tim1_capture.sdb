@@ -1,0 +1,166 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT64F0AX ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"45 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT64F0Ax\TEST_FT64F0AX_TIM1_CAPTURE\TEST_FT64F0AX_TIM1_CAPTURE.C
+[v _ISR ISR `II(v  1 e 1 0 ]
+"81
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"117
+[v _TIM4_INITIAL TIM4_INITIAL `(v  1 e 1 0 ]
+"135
+[v _TIM1_INITIAL TIM1_INITIAL `(v  1 e 1 0 ]
+"173
+[v _main main `(v  1 e 1 0 ]
+"99 d:\ide3.0.3_6c03\data\include\FT64F0AX.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"125
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"170
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"184
+[v _PB3 PB3 `VEb  1 e 0 @107 ]
+"185
+[v _PB4 PB4 `VEb  1 e 0 @108 ]
+"215
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"408
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"435
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"462
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"500
+[v _CKOCON CKOCON `VEuc  1 e 1 @149 ]
+"622
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"653
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"869
+[v _TIM4CR1 TIM4CR1 `VEuc  1 e 1 @273 ]
+"894
+[v _TIM4IER TIM4IER `VEuc  1 e 1 @274 ]
+"896
+[v _T4UIE T4UIE `VEb  1 e 0 @2192 ]
+"906
+[v _TIM4SR TIM4SR `VEuc  1 e 1 @275 ]
+"908
+[v _T4UIF T4UIF `VEb  1 e 0 @2200 ]
+"919
+[v _TIM4EGR TIM4EGR `VEuc  1 e 1 @276 ]
+"932
+[v _TIM4CNTR TIM4CNTR `VEuc  1 e 1 @277 ]
+"937
+[v _TIM4PSCR TIM4PSCR `VEuc  1 e 1 @278 ]
+"957
+[v _TIM4ARR TIM4ARR `VEuc  1 e 1 @279 ]
+"972
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"977
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"982
+[v _PSRC2 PSRC2 `VEuc  1 e 1 @284 ]
+"1021
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1025
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1029
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1136
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1174
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1178
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1181
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1217
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1244
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1270
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1288
+[v _TIM1CR1 TIM1CR1 `VEuc  1 e 1 @529 ]
+"1290
+[v _T1CEN T1CEN `VEb  1 e 0 @4232 ]
+"1318
+[v _TIM1CR2 TIM1CR2 `VEuc  1 e 1 @530 ]
+"1339
+[v _TIM1SMCR TIM1SMCR `VEuc  1 e 1 @531 ]
+"1367
+[v _TIM1ETR TIM1ETR `VEuc  1 e 1 @532 ]
+"1397
+[v _TIM1IER TIM1IER `VEuc  1 e 1 @533 ]
+"1400
+[v _T1CC1IE T1CC1IE `VEb  1 e 0 @4265 ]
+"1423
+[v _TIM1SR1 TIM1SR1 `VEuc  1 e 1 @534 ]
+"1426
+[v _T1CC1IF T1CC1IF `VEb  1 e 0 @4273 ]
+"1449
+[v _TIM1SR2 TIM1SR2 `VEuc  1 e 1 @535 ]
+"1451
+[v _T1CC1OF T1CC1OF `VEb  1 e 0 @4281 ]
+"1468
+[v _TIM1EGR TIM1EGR `VEuc  1 e 1 @536 ]
+"1493
+[v _TIM1CCMR1 TIM1CCMR1 `VEuc  1 e 1 @537 ]
+"1708
+[v _TIM1CCER1 TIM1CCER1 `VEuc  1 e 1 @541 ]
+"1734
+[v _TIM1CCER2 TIM1CCER2 `VEuc  1 e 1 @542 ]
+"1781
+[v _TIM1CNTRH TIM1CNTRH `VEuc  1 e 1 @652 ]
+"1785
+[v _TIM1CNTRL TIM1CNTRL `VEuc  1 e 1 @653 ]
+"1789
+[v _TIM1PSCRH TIM1PSCRH `VEuc  1 e 1 @654 ]
+"1793
+[v _TIM1PSCRL TIM1PSCRL `VEuc  1 e 1 @655 ]
+"1809
+[v _TIM1CCR1H TIM1CCR1H `VEuc  1 e 1 @659 ]
+"1813
+[v _TIM1CCR1L TIM1CCR1L `VEuc  1 e 1 @660 ]
+"2268
+[v _TCKSRC TCKSRC `VEuc  1 e 1 @799 ]
+"34 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT64F0Ax\TEST_FT64F0AX_TIM1_CAPTURE\TEST_FT64F0AX_TIM1_CAPTURE.C
+[v _testdata testdata `VE[20]ui  1 e 40 0 ]
+"35
+[v _y y `VEuc  1 e 1 0 ]
+"36
+[v _dataH dataH `VEuc  1 e 1 0 ]
+"37
+[v _dataL dataL `VEuc  1 e 1 0 ]
+"38
+[v _period period `VEui  1 e 2 0 ]
+"173
+[v _main main `(v  1 e 1 0 ]
+{
+"183
+} 0
+"117
+[v _TIM4_INITIAL TIM4_INITIAL `(v  1 e 1 0 ]
+{
+"128
+} 0
+"135
+[v _TIM1_INITIAL TIM1_INITIAL `(v  1 e 1 0 ]
+{
+"166
+} 0
+"81
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"111
+} 0
+"45
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"74
+} 0

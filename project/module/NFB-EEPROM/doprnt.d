@@ -1,0 +1,1 @@
+ doprnt.d  doprnt.p1:  C:/Embeded\ Project/FT64F0A5-TRB/YSQ-NFB/reference/fmd/FMD-MCU-IDE/FMDIDEV3.0.6/data/sources/common/doprnt.c

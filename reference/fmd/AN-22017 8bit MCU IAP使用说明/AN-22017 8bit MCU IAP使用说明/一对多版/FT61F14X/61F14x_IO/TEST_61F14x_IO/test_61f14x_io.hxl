@@ -1,0 +1,29 @@
+### HEX     logfile and output summary ###
+### Memory Usage ###
+ Unused memory ranges:
+  0h - 7FFh
+  806h - 807h
+  918h - 93Fh
+  
+ test_61f14x_io.hex ranges:
+  800h - 805h
+  808h - 917h
+  
+### Hex Memory Map ###
+ Legend:
+  - = Unused memory
+  F = Filled ROM
+  S = Stored serial code
+  A = Stored ASCII string
+  R = Reserved for checksum
+  C = Stored checksum result
+  T = Trailing code
+  & = Find & replace opcode
+  X = Find & delete opcode
+  1 = test_61f14x_io.hex
+00000000: ----------------------------------------------------------------
+00000800: 111111--11111111111111111111111111111111111111111111111111111111
+00000840: 1111111111111111111111111111111111111111111111111111111111111111
+00000880: 1111111111111111111111111111111111111111111111111111111111111111
+000008C0: 1111111111111111111111111111111111111111111111111111111111111111
+00000900: 111111111111111111111111----------------------------------------

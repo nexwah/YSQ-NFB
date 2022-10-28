@@ -1,0 +1,130 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT64F0AX ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"39 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\一对多版\FT64F0AX\TEST_FT64F0AX_IO\TEST_FT64F0AX_IO\TEST_FT64F0AX_IO.C
+[v _ISR ISR `II(v  1 e 1 0 ]
+"66
+[v _user_isr user_isr `(v  1 e 1 0 ]
+"75
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"113
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"127
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"161
+[v _main main `(v  1 e 1 0 ]
+"125 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\include\FT64F0AX.h
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"170
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"177
+[v _RB5 RB5 `VEb  1 e 0 @109 ]
+"215
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"408
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"435
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"462
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"622
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"972
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"977
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"982
+[v _PSRC2 PSRC2 `VEuc  1 e 1 @284 ]
+"1021
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1025
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1029
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1136
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1174
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1178
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1181
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1217
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1244
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1270
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"19 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\一对多版\FT64F0AX\TEST_FT64F0AX_IO\TEST_FT64F0AX_IO\TEST_FT64F0AX_IO.C
+[v _W_TMP W_TMP `VEuc  1 e 1 @112 ]
+"20
+[v _BSR_TMP BSR_TMP `VEuc  1 e 1 @113 ]
+"21
+[v _flag flag `uc  1 e 1 @32 ]
+"22
+[v _read_flag read_flag `b  1 e 0 @256 ]
+"23
+[v _iap_err_flag iap_err_flag `b  1 e 0 @257 ]
+"24
+[v _iap_ok_flag iap_ok_flag `b  1 e 0 @258 ]
+"26
+[v _count count `uc  1 e 1 @33 ]
+"27
+[v _iap_recdata iap_recdata `uc  1 e 1 @34 ]
+"28
+[v _CRC_16 CRC_16 `ui  1 e 2 @35 ]
+"29
+[v _CRC_L CRC_L `uc  1 e 1 @35 ]
+"30
+[v _CRC_H CRC_H `uc  1 e 1 @36 ]
+"161
+[v _main main `(v  1 e 1 0 ]
+{
+"177
+} 0
+"75
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"106
+} 0
+"127
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"129
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"127
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"130
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"137
+} 0
+"113
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"115
+[v DelayUs@a a `uc  1 a 1 1 ]
+"113
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"116
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"120
+} 0
+"39
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"65
+} 0
+"66
+[v _user_isr user_isr `(v  1 e 1 0 ]
+{
+"68
+} 0

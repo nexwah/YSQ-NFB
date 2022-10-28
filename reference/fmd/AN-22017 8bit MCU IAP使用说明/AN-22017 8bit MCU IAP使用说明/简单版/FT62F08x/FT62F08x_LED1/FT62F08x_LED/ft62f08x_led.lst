@@ -1,0 +1,1100 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Tue Nov 16 11:07:46 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT62F08X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	_ad3nop_text,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	intentry,global,class=CODE,delta=2
+     8                           	psect	text5,local,class=CODE,merge=1,delta=2
+     9                           	psect	pa_nodes0,global,class=CODE,delta=2
+    10                           	dabs	1,0x24,1,_CRC_H
+    11                           	dabs	1,0x23,1,_CRC_L
+    12                           	dabs	1,0x103,0,_uart_rxnef
+    13                           	dabs	1,0x20,1
+    14                           	dabs	1,0x102,0,_iap_ok_flag
+    15                           	dabs	1,0x20,1
+    16                           	dabs	1,0x101,0,_iap_err_flag
+    17                           	dabs	1,0x20,1
+    18                           	dabs	1,0x100,0,_read_flag
+    19                           	dabs	1,0x20,1
+    20                           	dabs	1,0x71,1,_BSR_TMP
+    21                           	dabs	1,0x70,1,_W_TMP
+    22                           	dabs	1,0x23,2,_CRC_16
+    23                           	dabs	1,0x22,1,_iap_recdata
+    24                           	dabs	1,0x21,1,_count
+    25                           	dabs	1,0x20,1,_flag
+    26                           	dabs	1,0x7E,2
+    27  0000                     
+    28                           ; Version 1.45
+    29                           ; Generated 16/11/2017 
+    30                           ; 
+    31                           ; SFR Addresses
+    32  0003                     _ad3nop_absaddr	set	3
+    33  0003                     _ad3nop_absaddr	set	3
+    34                           
+    35                           	psect	_ad3nop_text
+    36  0003                     __p_ad3nop_text:	
+    37  0003                     _ad3nop:	
+    38  0003  3400               	retlw	0
+    39  0004                     __end_of_ad3nop:		;_read_flag
+    40  000E                     _PORTC	set	14
+    41  000D                     _PORTB	set	13
+    42  000C                     _PORTA	set	12
+    43  0076                     _RC6	set	118
+    44  0075                     _RC5	set	117
+    45  0074                     _RC4	set	116
+    46  0073                     _RC3	set	115
+    47  0067                     _RA7	set	103
+    48  0066                     _RA6	set	102
+    49  0064                     _RA4	set	100
+    50  0099                     _OSCCON	set	153
+    51  008E                     _TRISC	set	142
+    52  008D                     _TRISB	set	141
+    53  008C                     _TRISA	set	140
+    54  011B                     _PSRC1	set	283
+    55  011A                     _PSRC0	set	282
+    56  019C                     _PSINK2	set	412
+    57  019B                     _PSINK1	set	411
+    58  019A                     _PSINK0	set	410
+    59  0197                     _ANSELA	set	407
+    60  018E                     _WPUC	set	398
+    61  018D                     _WPUB	set	397
+    62  018C                     _WPUA	set	396
+    63  020E                     _WPDC	set	526
+    64  020D                     _WPDB	set	525
+    65  020C                     _WPDA	set	524
+    66                           
+    67                           	psect	cinit
+    68  0221                     start_initialization:	
+    69                           ; #config settings
+    70                           
+    71  0221                     __initialization:	
+    72  0221                     end_of_initialization:	
+    73                           ;End of C runtime variable initialization code
+    74                           
+    75  0221                     __end_of__initialization:	
+    76  0221  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+    77  0222  0020               	movlb	0
+    78  0223  2A24               	ljmp	_main	;jump to C main() function
+    79  0224                     __pmaintext:	
+    80                           ; 1 bytes @ 0x5
+    81 ;;
+    82 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    83 ;;
+    84 ;; *************** function _main *****************
+    85 ;; Defined at:
+    86 ;;		line 166 in file "FT62F08x_LED.C"
+    87 ;; Parameters:    Size  Location     Type
+    88 ;;		None
+    89 ;; Auto vars:     Size  Location     Type
+    90 ;;		None
+    91 ;; Return value:  Size  Location     Type
+    92 ;;                  1    wreg      void 
+    93 ;; Registers used:
+    94 ;;		wreg, status,2, status,0, pclath, cstack
+    95 ;; Tracked objects:
+    96 ;;		On entry : B1F/0
+    97 ;;		On exit  : 0/0
+    98 ;;		Unchanged: 0/0
+    99 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   100 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   101 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   102 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   103 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   104 ;;Total ram usage:        0 bytes
+   105 ;; Hardware stack levels required when called:    4
+   106 ;; This function calls:
+   107 ;;		_DelayMs
+   108 ;;		_POWER_INITIAL
+   109 ;; This function is called by:
+   110 ;;		Startup code after reset
+   111 ;; This function uses a non-reentrant model
+   112 ;;
+   113                           
+   114                           
+   115                           ;psect for function _main
+   116  0224                     _main:	
+   117                           
+   118                           ;FT62F08x_LED.C: 169: POWER_INITIAL();
+   119                           
+   120                           ;incstack = 0
+   121                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   122  0224  22C7  3182         	fcall	_POWER_INITIAL
+   123                           
+   124                           ;FT62F08x_LED.C: 171: DelayMs(5);
+   125  0226  3005               	movlw	5
+   126  0227                     L1:	
+   127  0227  22AD  3182         	fcall	_DelayMs
+   128                           
+   129                           ;FT62F08x_LED.C: 175: {
+   130                           ;FT62F08x_LED.C: 176: RC3=0;
+   131  0229  0020               	movlb	0	; select bank0
+   132  022A  118E               	bcf	14,3	;volatile
+   133                           
+   134                           ;FT62F08x_LED.C: 177: DelayMs(200);
+   135  022B  30C8               	movlw	200
+   136  022C  22AD  3182         	fcall	_DelayMs
+   137                           
+   138                           ;FT62F08x_LED.C: 178: DelayMs(200);
+   139  022E  30C8               	movlw	200
+   140  022F  22AD  3182         	fcall	_DelayMs
+   141                           
+   142                           ;FT62F08x_LED.C: 179: DelayMs(200);
+   143  0231  30C8               	movlw	200
+   144  0232  22AD  3182         	fcall	_DelayMs
+   145                           
+   146                           ;FT62F08x_LED.C: 180: DelayMs(200);
+   147  0234  30C8               	movlw	200
+   148  0235  22AD  3182         	fcall	_DelayMs
+   149                           
+   150                           ;FT62F08x_LED.C: 181: RC3=1;
+   151  0237  0020               	movlb	0	; select bank0
+   152  0238  158E               	bsf	14,3	;volatile
+   153                           
+   154                           ;FT62F08x_LED.C: 182: DelayMs(200);
+   155  0239  30C8               	movlw	200
+   156  023A  22AD  3182         	fcall	_DelayMs
+   157                           
+   158                           ;FT62F08x_LED.C: 184: RC4=0;
+   159  023C  0020               	movlb	0	; select bank0
+   160  023D  120E               	bcf	14,4	;volatile
+   161                           
+   162                           ;FT62F08x_LED.C: 185: DelayMs(200);
+   163  023E  30C8               	movlw	200
+   164  023F  22AD  3182         	fcall	_DelayMs
+   165                           
+   166                           ;FT62F08x_LED.C: 186: DelayMs(200);
+   167  0241  30C8               	movlw	200
+   168  0242  22AD  3182         	fcall	_DelayMs
+   169                           
+   170                           ;FT62F08x_LED.C: 187: DelayMs(200);
+   171  0244  30C8               	movlw	200
+   172  0245  22AD  3182         	fcall	_DelayMs
+   173                           
+   174                           ;FT62F08x_LED.C: 188: DelayMs(200);
+   175  0247  30C8               	movlw	200
+   176  0248  22AD  3182         	fcall	_DelayMs
+   177                           
+   178                           ;FT62F08x_LED.C: 189: RC4=1;
+   179  024A  0020               	movlb	0	; select bank0
+   180  024B  160E               	bsf	14,4	;volatile
+   181                           
+   182                           ;FT62F08x_LED.C: 190: DelayMs(200);
+   183  024C  30C8               	movlw	200
+   184  024D  22AD  3182         	fcall	_DelayMs
+   185                           
+   186                           ;FT62F08x_LED.C: 193: RC5=0;
+   187  024F  0020               	movlb	0	; select bank0
+   188  0250  128E               	bcf	14,5	;volatile
+   189                           
+   190                           ;FT62F08x_LED.C: 194: DelayMs(200);
+   191  0251  30C8               	movlw	200
+   192  0252  22AD  3182         	fcall	_DelayMs
+   193                           
+   194                           ;FT62F08x_LED.C: 195: DelayMs(200);
+   195  0254  30C8               	movlw	200
+   196  0255  22AD  3182         	fcall	_DelayMs
+   197                           
+   198                           ;FT62F08x_LED.C: 196: DelayMs(200);
+   199  0257  30C8               	movlw	200
+   200  0258  22AD  3182         	fcall	_DelayMs
+   201                           
+   202                           ;FT62F08x_LED.C: 197: DelayMs(200);
+   203  025A  30C8               	movlw	200
+   204  025B  22AD  3182         	fcall	_DelayMs
+   205                           
+   206                           ;FT62F08x_LED.C: 198: RC5=1;
+   207  025D  0020               	movlb	0	; select bank0
+   208  025E  168E               	bsf	14,5	;volatile
+   209                           
+   210                           ;FT62F08x_LED.C: 199: DelayMs(200);
+   211  025F  30C8               	movlw	200
+   212  0260  22AD  3182         	fcall	_DelayMs
+   213                           
+   214                           ;FT62F08x_LED.C: 202: RC6=0;
+   215  0262  0020               	movlb	0	; select bank0
+   216  0263  130E               	bcf	14,6	;volatile
+   217                           
+   218                           ;FT62F08x_LED.C: 203: DelayMs(200);
+   219  0264  30C8               	movlw	200
+   220  0265  22AD  3182         	fcall	_DelayMs
+   221                           
+   222                           ;FT62F08x_LED.C: 204: DelayMs(200);
+   223  0267  30C8               	movlw	200
+   224  0268  22AD  3182         	fcall	_DelayMs
+   225                           
+   226                           ;FT62F08x_LED.C: 205: DelayMs(200);
+   227  026A  30C8               	movlw	200
+   228  026B  22AD  3182         	fcall	_DelayMs
+   229                           
+   230                           ;FT62F08x_LED.C: 206: DelayMs(200);
+   231  026D  30C8               	movlw	200
+   232  026E  22AD  3182         	fcall	_DelayMs
+   233                           
+   234                           ;FT62F08x_LED.C: 207: RC6=1;
+   235  0270  0020               	movlb	0	; select bank0
+   236  0271  170E               	bsf	14,6	;volatile
+   237                           
+   238                           ;FT62F08x_LED.C: 208: DelayMs(200);
+   239  0272  30C8               	movlw	200
+   240  0273  22AD  3182         	fcall	_DelayMs
+   241                           
+   242                           ;FT62F08x_LED.C: 211: RA4=0;
+   243  0275  0020               	movlb	0	; select bank0
+   244  0276  120C               	bcf	12,4	;volatile
+   245                           
+   246                           ;FT62F08x_LED.C: 212: DelayMs(200);
+   247  0277  30C8               	movlw	200
+   248  0278  22AD  3182         	fcall	_DelayMs
+   249                           
+   250                           ;FT62F08x_LED.C: 213: DelayMs(200);
+   251  027A  30C8               	movlw	200
+   252  027B  22AD  3182         	fcall	_DelayMs
+   253                           
+   254                           ;FT62F08x_LED.C: 214: DelayMs(200);
+   255  027D  30C8               	movlw	200
+   256  027E  22AD  3182         	fcall	_DelayMs
+   257                           
+   258                           ;FT62F08x_LED.C: 215: DelayMs(200);
+   259  0280  30C8               	movlw	200
+   260  0281  22AD  3182         	fcall	_DelayMs
+   261                           
+   262                           ;FT62F08x_LED.C: 216: RA4=1;
+   263  0283  0020               	movlb	0	; select bank0
+   264  0284  160C               	bsf	12,4	;volatile
+   265                           
+   266                           ;FT62F08x_LED.C: 217: DelayMs(200);
+   267  0285  30C8               	movlw	200
+   268  0286  22AD  3182         	fcall	_DelayMs
+   269                           
+   270                           ;FT62F08x_LED.C: 221: RA6=0;
+   271  0288  0020               	movlb	0	; select bank0
+   272  0289  130C               	bcf	12,6	;volatile
+   273                           
+   274                           ;FT62F08x_LED.C: 222: DelayMs(200);
+   275  028A  30C8               	movlw	200
+   276  028B  22AD  3182         	fcall	_DelayMs
+   277                           
+   278                           ;FT62F08x_LED.C: 223: DelayMs(200);
+   279  028D  30C8               	movlw	200
+   280  028E  22AD  3182         	fcall	_DelayMs
+   281                           
+   282                           ;FT62F08x_LED.C: 224: DelayMs(200);
+   283  0290  30C8               	movlw	200
+   284  0291  22AD  3182         	fcall	_DelayMs
+   285                           
+   286                           ;FT62F08x_LED.C: 225: DelayMs(200);
+   287  0293  30C8               	movlw	200
+   288  0294  22AD  3182         	fcall	_DelayMs
+   289                           
+   290                           ;FT62F08x_LED.C: 226: RA6=1;
+   291  0296  0020               	movlb	0	; select bank0
+   292  0297  170C               	bsf	12,6	;volatile
+   293                           
+   294                           ;FT62F08x_LED.C: 227: DelayMs(200);
+   295  0298  30C8               	movlw	200
+   296  0299  22AD  3182         	fcall	_DelayMs
+   297                           
+   298                           ;FT62F08x_LED.C: 229: RA7=0;
+   299  029B  0020               	movlb	0	; select bank0
+   300  029C  138C               	bcf	12,7	;volatile
+   301                           
+   302                           ;FT62F08x_LED.C: 230: DelayMs(200);
+   303  029D  30C8               	movlw	200
+   304  029E  22AD  3182         	fcall	_DelayMs
+   305                           
+   306                           ;FT62F08x_LED.C: 231: DelayMs(200);
+   307  02A0  30C8               	movlw	200
+   308  02A1  22AD  3182         	fcall	_DelayMs
+   309                           
+   310                           ;FT62F08x_LED.C: 232: DelayMs(200);
+   311  02A3  30C8               	movlw	200
+   312  02A4  22AD  3182         	fcall	_DelayMs
+   313                           
+   314                           ;FT62F08x_LED.C: 233: DelayMs(200);
+   315  02A6  30C8               	movlw	200
+   316  02A7  22AD  3182         	fcall	_DelayMs
+   317                           
+   318                           ;FT62F08x_LED.C: 234: RA7=1;
+   319  02A9  0020               	movlb	0	; select bank0
+   320  02AA  178C               	bsf	12,7	;volatile
+   321                           
+   322                           ;FT62F08x_LED.C: 235: DelayMs(200);
+   323  02AB  30C8               	movlw	200
+   324  02AC  2A27               	goto	L1
+   325  02AD                     __end_of_main:	
+   326  02AD                     __ptext2:	
+   327 ;; *************** function _DelayMs *****************
+   328 ;; Defined at:
+   329 ;;		line 147 in file "FT62F08x_LED.C"
+   330 ;; Parameters:    Size  Location     Type
+   331 ;;  Time            1    wreg     unsigned char 
+   332 ;; Auto vars:     Size  Location     Type
+   333 ;;  Time            1    2[COMMON] unsigned char 
+   334 ;;  b               1    4[COMMON] unsigned char 
+   335 ;;  a               1    3[COMMON] unsigned char 
+   336 ;; Return value:  Size  Location     Type
+   337 ;;                  1    wreg      void 
+   338 ;; Registers used:
+   339 ;;		wreg, status,2, status,0, pclath, cstack
+   340 ;; Tracked objects:
+   341 ;;		On entry : 0/3
+   342 ;;		On exit  : 0/0
+   343 ;;		Unchanged: 0/0
+   344 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   345 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   346 ;;      Locals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   347 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   348 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   349 ;;Total ram usage:        3 bytes
+   350 ;; Hardware stack levels used:    1
+   351 ;; Hardware stack levels required when called:    3
+   352 ;; This function calls:
+   353 ;;		_DelayUs
+   354 ;; This function is called by:
+   355 ;;		_main
+   356 ;; This function uses a non-reentrant model
+   357 ;;
+   358                           
+   359                           
+   360                           ;psect for function _DelayMs
+   361  02AD                     _DelayMs:	
+   362                           
+   363                           ;incstack = 0
+   364                           ; Regs used in _DelayMs: [wreg+status,2+status,0+pclath+cstack]
+   365                           ;DelayMs@Time stored from wreg
+   366  02AD  00F4               	movwf	DelayMs@Time
+   367                           
+   368                           ;FT62F08x_LED.C: 149: unsigned char a,b;
+   369                           ;FT62F08x_LED.C: 150: for(a=0;a<Time;a++)
+   370  02AE  01F5               	clrf	DelayMs@a
+   371  02AF                     l2836:	
+   372  02AF  0874               	movf	DelayMs@Time,w
+   373  02B0  0275               	subwf	DelayMs@a,w
+   374  02B1  1803               	btfsc	3,0
+   375  02B2  0008               	return
+   376                           
+   377                           ;FT62F08x_LED.C: 151: {
+   378                           ;FT62F08x_LED.C: 152: for(b=0;b<5;b++)
+   379  02B3  01F6               	clrf	DelayMs@b
+   380  02B4                     l2828:	
+   381                           
+   382                           ;FT62F08x_LED.C: 153: {
+   383                           ;FT62F08x_LED.C: 154: DelayUs(197);
+   384  02B4  30C5               	movlw	197
+   385  02B5  22BE  3182         	fcall	_DelayUs
+   386  02B7  3005               	movlw	5
+   387  02B8  0AF6               	incf	DelayMs@b,f
+   388  02B9  0276               	subwf	DelayMs@b,w
+   389  02BA  1C03               	skipc
+   390  02BB  2AB4               	goto	l2828
+   391  02BC  0AF5               	incf	DelayMs@a,f
+   392  02BD  2AAF               	goto	l2836
+   393  02BE                     __end_of_DelayMs:	
+   394  02BE                     __ptext3:	
+   395 ;; *************** function _DelayUs *****************
+   396 ;; Defined at:
+   397 ;;		line 133 in file "FT62F08x_LED.C"
+   398 ;; Parameters:    Size  Location     Type
+   399 ;;  Time            1    wreg     unsigned char 
+   400 ;; Auto vars:     Size  Location     Type
+   401 ;;  Time            1    0[COMMON] unsigned char 
+   402 ;;  a               1    1[COMMON] unsigned char 
+   403 ;; Return value:  Size  Location     Type
+   404 ;;                  1    wreg      void 
+   405 ;; Registers used:
+   406 ;;		wreg, status,2, status,0
+   407 ;; Tracked objects:
+   408 ;;		On entry : 0/3
+   409 ;;		On exit  : 0/0
+   410 ;;		Unchanged: 0/0
+   411 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   412 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   413 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   414 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   415 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   416 ;;Total ram usage:        2 bytes
+   417 ;; Hardware stack levels used:    1
+   418 ;; Hardware stack levels required when called:    2
+   419 ;; This function calls:
+   420 ;;		Nothing
+   421 ;; This function is called by:
+   422 ;;		_DelayMs
+   423 ;; This function uses a non-reentrant model
+   424 ;;
+   425                           
+   426                           
+   427                           ;psect for function _DelayUs
+   428  02BE                     _DelayUs:	
+   429                           
+   430                           ;incstack = 0
+   431                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+   432                           ;DelayUs@Time stored from wreg
+   433  02BE  00F2               	movwf	DelayUs@Time
+   434                           
+   435                           ;FT62F08x_LED.C: 135: unsigned char a;
+   436                           ;FT62F08x_LED.C: 136: for(a=0;a<Time;a++)
+   437  02BF  01F3               	clrf	DelayUs@a
+   438  02C0                     l2794:	
+   439  02C0  0872               	movf	DelayUs@Time,w
+   440  02C1  0273               	subwf	DelayUs@a,w
+   441  02C2  1803               	btfsc	3,0
+   442  02C3  0008               	return
+   443                           
+   444                           ;FT62F08x_LED.C: 137: {
+   445                           ;FT62F08x_LED.C: 138: __nop();
+   446  02C4  0000               	nop
+   447  02C5  0AF3               	incf	DelayUs@a,f
+   448  02C6  2AC0               	goto	l2794
+   449  02C7                     __end_of_DelayUs:	
+   450  02C7                     __ptext1:	
+   451 ;; *************** function _POWER_INITIAL *****************
+   452 ;; Defined at:
+   453 ;;		line 82 in file "FT62F08x_LED.C"
+   454 ;; Parameters:    Size  Location     Type
+   455 ;;		None
+   456 ;; Auto vars:     Size  Location     Type
+   457 ;;		None
+   458 ;; Return value:  Size  Location     Type
+   459 ;;                  1    wreg      void 
+   460 ;; Registers used:
+   461 ;;		wreg, status,2
+   462 ;; Tracked objects:
+   463 ;;		On entry : B1F/0
+   464 ;;		On exit  : B1F/3
+   465 ;;		Unchanged: B00/0
+   466 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   467 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   468 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   469 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   470 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   471 ;;Total ram usage:        0 bytes
+   472 ;; Hardware stack levels used:    1
+   473 ;; Hardware stack levels required when called:    2
+   474 ;; This function calls:
+   475 ;;		Nothing
+   476 ;; This function is called by:
+   477 ;;		_main
+   478 ;; This function uses a non-reentrant model
+   479 ;;
+   480                           
+   481                           
+   482                           ;psect for function _POWER_INITIAL
+   483  02C7                     _POWER_INITIAL:	
+   484                           
+   485                           ;FT62F08x_LED.C: 84: OSCCON = 0B01110001;
+   486                           
+   487                           ;incstack = 0
+   488                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   489  02C7  3071               	movlw	113
+   490  02C8  0021               	movlb	1	; select bank1
+   491  02C9  0099               	movwf	25	;volatile
+   492                           
+   493                           ;FT62F08x_LED.C: 93: PORTA = 0B11111111;
+   494  02CA  30FF               	movlw	255
+   495  02CB  0020               	movlb	0	; select bank0
+   496  02CC  008C               	movwf	12	;volatile
+   497                           
+   498                           ;FT62F08x_LED.C: 94: TRISA = 0B00000100;
+   499  02CD  3004               	movlw	4
+   500  02CE  0021               	movlb	1	; select bank1
+   501  02CF  008C               	movwf	12	;volatile
+   502                           
+   503                           ;FT62F08x_LED.C: 95: PORTB = 0B10111111;
+   504  02D0  30BF               	movlw	191
+   505  02D1  0020               	movlb	0	; select bank0
+   506  02D2  008D               	movwf	13	;volatile
+   507                           
+   508                           ;FT62F08x_LED.C: 96: TRISB = 0B00000000;
+   509  02D3  0021               	movlb	1	; select bank1
+   510  02D4  018D               	clrf	13	;volatile
+   511                           
+   512                           ;FT62F08x_LED.C: 97: PORTC = 0B11111111;
+   513  02D5  30FF               	movlw	255
+   514  02D6  0020               	movlb	0	; select bank0
+   515  02D7  008E               	movwf	14	;volatile
+   516                           
+   517                           ;FT62F08x_LED.C: 98: TRISC = 0B00000000;
+   518  02D8  0021               	movlb	1	; select bank1
+   519  02D9  018E               	clrf	14	;volatile
+   520                           
+   521                           ;FT62F08x_LED.C: 101: WPUA = 0B00000000;
+   522  02DA  0023               	movlb	3	; select bank3
+   523  02DB  018C               	clrf	12	;volatile
+   524                           
+   525                           ;FT62F08x_LED.C: 102: WPUB = 0B00000000;
+   526  02DC  018D               	clrf	13	;volatile
+   527                           
+   528                           ;FT62F08x_LED.C: 103: WPUC = 0B00000000;
+   529  02DD  018E               	clrf	14	;volatile
+   530                           
+   531                           ;FT62F08x_LED.C: 106: WPDA = 0B00000000;
+   532  02DE  0024               	movlb	4	; select bank4
+   533  02DF  018C               	clrf	12	;volatile
+   534                           
+   535                           ;FT62F08x_LED.C: 107: WPDB = 0B00000000;
+   536  02E0  018D               	clrf	13	;volatile
+   537                           
+   538                           ;FT62F08x_LED.C: 108: WPDC = 0B00000000;
+   539  02E1  018E               	clrf	14	;volatile
+   540                           
+   541                           ;FT62F08x_LED.C: 111: PSRC0 = 0B11111111;
+   542  02E2  0022               	movlb	2	; select bank2
+   543  02E3  009A               	movwf	26	;volatile
+   544                           
+   545                           ;FT62F08x_LED.C: 112: PSRC1 = 0B11111111;
+   546  02E4  009B               	movwf	27	;volatile
+   547                           
+   548                           ;FT62F08x_LED.C: 115: PSINK0 = 0B11111111;
+   549  02E5  0023               	movlb	3	; select bank3
+   550  02E6  009A               	movwf	26	;volatile
+   551                           
+   552                           ;FT62F08x_LED.C: 116: PSINK1 = 0B11111111;
+   553  02E7  009B               	movwf	27	;volatile
+   554                           
+   555                           ;FT62F08x_LED.C: 117: PSINK2 = 0B11111111;
+   556  02E8  009C               	movwf	28	;volatile
+   557                           
+   558                           ;FT62F08x_LED.C: 120: ANSELA = 0B00000000;
+   559  02E9  0197               	clrf	23	;volatile
+   560  02EA  0008               	return
+   561  02EB                     __end_of_POWER_INITIAL:	
+   562                           
+   563                           	psect	cstackCOMMON
+   564  0072                     __pcstackCOMMON:	
+   565  0072                     ?_user_isr:	
+   566  0072                     ??_user_isr:	
+   567                           ; 1 bytes @ 0x0
+   568                           
+   569  0072                     ?_ISR:	
+   570                           ; 1 bytes @ 0x0
+   571                           
+   572  0072                     ??_ISR:	
+   573                           ; 1 bytes @ 0x0
+   574                           
+   575  0072                     ?_POWER_INITIAL:	
+   576                           ; 1 bytes @ 0x0
+   577                           
+   578  0072                     ??_POWER_INITIAL:	
+   579                           ; 1 bytes @ 0x0
+   580                           
+   581  0072                     ?_DelayUs:	
+   582                           ; 1 bytes @ 0x0
+   583                           
+   584  0072                     ??_DelayUs:	
+   585                           ; 1 bytes @ 0x0
+   586                           
+   587  0072                     ?_DelayMs:	
+   588                           ; 1 bytes @ 0x0
+   589                           
+   590  0072                     ?_main:	
+   591                           ; 1 bytes @ 0x0
+   592                           
+   593  0072                     DelayUs@Time:	
+   594                           ; 1 bytes @ 0x0
+   595                           
+   596                           
+   597                           ; 1 bytes @ 0x0
+   598  0072                     	ds	1
+   599  0073                     DelayUs@a:	
+   600                           
+   601                           ; 1 bytes @ 0x1
+   602  0073                     	ds	1
+   603  0074                     ??_DelayMs:	
+   604  0074                     DelayMs@Time:	
+   605                           ; 1 bytes @ 0x2
+   606                           
+   607                           
+   608                           ; 1 bytes @ 0x2
+   609  0074                     	ds	1
+   610  0075                     DelayMs@a:	
+   611                           
+   612                           ; 1 bytes @ 0x3
+   613  0075                     	ds	1
+   614  0076                     DelayMs@b:	
+   615                           
+   616                           ; 1 bytes @ 0x4
+   617  0076                     	ds	1
+   618  0077                     ??_main:	
+   619                           
+   620                           	psect	intentry
+   621  0204                     __pintentry:	
+   622 ;; *************** function _ISR *****************
+   623 ;; Defined at:
+   624 ;;		line 38 in file "FT62F08x_LED.C"
+   625 ;; Parameters:    Size  Location     Type
+   626 ;;		None
+   627 ;; Auto vars:     Size  Location     Type
+   628 ;;		None
+   629 ;; Return value:  Size  Location     Type
+   630 ;;                  1    wreg      void 
+   631 ;; Registers used:
+   632 ;;		wreg, status,2, status,0, pclath, cstack
+   633 ;; Tracked objects:
+   634 ;;		On entry : 0/0
+   635 ;;		On exit  : 1F/0
+   636 ;;		Unchanged: 0/0
+   637 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   638 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   639 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   640 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   641 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   642 ;;Total ram usage:        0 bytes
+   643 ;; Hardware stack levels used:    1
+   644 ;; Hardware stack levels required when called:    1
+   645 ;; This function calls:
+   646 ;;		_user_isr
+   647 ;; This function is called by:
+   648 ;;		Interrupt level 1
+   649 ;; This function uses a non-reentrant model
+   650 ;;
+   651                           
+   652  0204                     _ISR:	
+   653                           
+   654                           ;incstack = 0
+   655  0204  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   656                           
+   657                           ; Regs used in _ISR: [wreg+status,2+status,0+pclath+cstack]
+   658  0205  3182               	pagesel	$
+   659  0206  0000               	nop	; ;# 
+   660  0207  0000               	nop	; ;# 
+   661  0208  0000               	nop	; ;# 
+   662  0209  0000               	nop	; ;# 
+   663  020A  0000               	nop	; ;# 
+   664  020B  0000               	nop	; ;# 
+   665  020C  0000               	nop	; ;# 
+   666  020D  0000               	nop	; ;# 
+   667  020E  0000               	nop	; ;# 
+   668  020F  0000               	nop	; ;# 
+   669  0210  0000               	nop	; ;# 
+   670  0211  0000               	nop	; ;# 
+   671  0212  0000               	nop	; ;# 
+   672  0213  0000               	nop	; ;# 
+   673  0214  0000               	nop	; ;# 
+   674  0215  0000               	nop	; ;# 
+   675  0216  0000               	nop	; ;# 
+   676  0217  0000               	nop	; ;# 
+   677  0218  0000               	nop	; ;# 
+   678  0219  0000               	nop	; ;# 
+   679  021A  0000               	nop	; ;# 
+   680                           
+   681                           ;FT62F08x_LED.C: 63: user_isr();
+   682  021B  3182  22EB         	fcall	_user_isr
+   683  021D  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   684  021E  0009               	retfie
+   685  021F                     __end_of_ISR:	
+   686                           
+   687                           	psect	text5
+   688  02EB                     __ptext5:	
+   689 ;; *************** function _user_isr *****************
+   690 ;; Defined at:
+   691 ;;		line 65 in file "FT62F08x_LED.C"
+   692 ;; Parameters:    Size  Location     Type
+   693 ;;		None
+   694 ;; Auto vars:     Size  Location     Type
+   695 ;;  temp            1    0        unsigned char 
+   696 ;; Return value:  Size  Location     Type
+   697 ;;                  1    wreg      void 
+   698 ;; Registers used:
+   699 ;;		wreg
+   700 ;; Tracked objects:
+   701 ;;		On entry : 0/0
+   702 ;;		On exit  : 1F/0
+   703 ;;		Unchanged: 0/0
+   704 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   705 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   706 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   707 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   708 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   709 ;;Total ram usage:        0 bytes
+   710 ;; Hardware stack levels used:    1
+   711 ;; This function calls:
+   712 ;;		Nothing
+   713 ;; This function is called by:
+   714 ;;		_ISR
+   715 ;; This function uses a non-reentrant model
+   716 ;;
+   717                           
+   718                           
+   719                           ;psect for function _user_isr
+   720  02EB                     _user_isr:	
+   721                           
+   722                           ;FT62F08x_LED.C: 67: unsigned char temp;
+   723                           ;FT62F08x_LED.C: 68: if(uart_rxnef==1)
+   724                           
+   725                           ;incstack = 0
+   726                           ; Regs used in _user_isr: [wreg]
+   727  02EB  0020               	movlb	0	; select bank0
+   728  02EC  1DA0               	btfss	32,3
+   729  02ED  0008               	return
+   730                           
+   731                           ;FT62F08x_LED.C: 69: {
+   732                           ;FT62F08x_LED.C: 70: uart_rxnef = 0;
+   733  02EE  11A0               	bcf	32,3
+   734                           
+   735                           ;FT62F08x_LED.C: 71: temp=iap_recdata;
+   736  02EF  0822               	movf	34,w
+   737  02F0  0008               	return
+   738  02F1                     __end_of_user_isr:	
+   739  007E                     btemp	set	126	;btemp
+   740  007E                     int$flags	set	126
+   741  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           12      5       5
+    BANK0            75      0       0
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            80      0       0
+    BANK7            80      0       0
+    BANK8            80      0       0
+    BANK9            80      0       0
+    BANK10           80      0       0
+    BANK11           80      0       0
+    BANK12           48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_DelayMs
+    _DelayMs->_DelayUs
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _ISR in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _ISR in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _ISR in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _ISR in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _ISR in BANK12
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      90
+                            _DelayMs
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _DelayMs                                              3     3      0      90
+                                              2 COMMON     3     3      0
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _DelayUs                                              2     2      0      30
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  0     0      0       0
+                           _user_isr
+ ---------------------------------------------------------------------------------
+ (4) _user_isr                                             1     1      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _DelayMs
+     _DelayUs
+   _POWER_INITIAL
+
+ _ISR (ROOT)
+   _user_isr
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            C      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               C      5       5       2       41.7%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITBANK0            4B      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               4B      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BITBANK2            50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BANK2               50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BITBANK3            50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BANK3               50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITBANK4            50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BANK4               50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITBANK5            50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BANK5               50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITBANK6            50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BANK6               50      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITBANK7            50      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BANK7               50      0       0      19        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+ABS                  0      0       0      20        0.0%
+BITBANK8            50      0       0      21        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BANK8               50      0       0      22        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITBANK9            50      0       0      23        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BANK9               50      0       0      24        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITBANK10           50      0       0      25        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BANK10              50      0       0      26        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITBANK11           50      0       0      27        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BANK11              50      0       0      28        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITBANK12           30      0       0      29        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BANK12              30      0       0      30        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+DATA                 0      0       0      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Tue Nov 16 11:07:46 2021
+
+                    _RA4 0064                      _RA6 0066                      _RA7 0067  
+                    _RC3 0073                      _RC4 0074                      _RC5 0075  
+                    _RC6 0076                      _ISR 0204                     ?_ISR 0072  
+                   l2828 02B4                     l2836 02AF                     l2794 02C0  
+                   _WPDA 020C                     _WPDB 020D                     _WPDC 020E  
+                   _WPUA 018C                     _WPUB 018D                     _WPUC 018E  
+         _ad3nop_absaddr 0003                     _flag 0020                     _main 0224  
+                   btemp 007E                     start 021F          __end_of_DelayMs 02BE  
+        __end_of_DelayUs 02C7                    ??_ISR 0072                    ?_main 0072  
+                  _CRC_H 0024                    _CRC_L 0023                    _PSRC0 011A  
+                  _PSRC1 011B                    _PORTA 000C                    _PORTB 000D  
+                  _PORTC 000E                    _TRISA 008C                    _TRISB 008D  
+                  _TRISC 008E                    _W_TMP 0070                    _count 0021  
+                  wtemp0 007E          __initialization 0221             __end_of_main 02AD  
+                 ??_main 0077                   _ANSELA 0197                   _CRC_16 0023  
+              ??_DelayMs 0074                ??_DelayUs 0072                   _OSCCON 0099  
+                 _PSINK0 019A                   _PSINK1 019B                   _PSINK2 019C  
+                 _ad3nop 0003         __end_of_user_isr 02F1    __end_of_POWER_INITIAL 02EB  
+__end_of__initialization 0221           __pcstackCOMMON 0072               __pmaintext 0224  
+             __pintentry 0204                  _BSR_TMP 0071                  _DelayMs 02AD  
+                _DelayUs 02BE                ?_user_isr 0072                  __ptext1 02C7  
+                __ptext2 02AD                  __ptext3 02BE                  __ptext5 02EB  
+           __size_of_ISR 001B             _iap_err_flag 0101     end_of_initialization 0221  
+             ??_user_isr 0072               _uart_rxnef 0103           __end_of_ad3nop 0004  
+    start_initialization 0221           __p_ad3nop_text 0003              __end_of_ISR 021F  
+ __size_of_POWER_INITIAL 0024                ___latbits 0002                 ?_DelayMs 0072  
+               ?_DelayUs 0072        __size_of_user_isr 0006                _read_flag 0100  
+            _iap_ok_flag 0102              _iap_recdata 0022            _POWER_INITIAL 02C7  
+               DelayMs@a 0075                 DelayMs@b 0076                 DelayUs@a 0073  
+            DelayMs@Time 0074           ?_POWER_INITIAL 0072              DelayUs@Time 0072  
+       __size_of_DelayMs 0011         __size_of_DelayUs 0009            __size_of_main 0089  
+               int$flags 007E                 _user_isr 02EB          ??_POWER_INITIAL 0072  
+               intlevel1 0000  

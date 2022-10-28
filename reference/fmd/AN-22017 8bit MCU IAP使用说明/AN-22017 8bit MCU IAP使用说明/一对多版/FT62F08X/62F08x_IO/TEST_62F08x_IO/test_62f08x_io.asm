@@ -1,0 +1,273 @@
+//Deviec:FT62F08X
+//-----------------------Variable---------------------------------
+//		DelayMs@Time		EQU		74H
+//		DelayMs@b		EQU		76H
+//		DelayMs@a		EQU		75H
+//		DelayMs@Time		EQU		C00000H
+//		DelayUs@Time		EQU		72H
+//		DelayUs@a		EQU		73H
+//		DelayUs@Time		EQU		C00000H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		NOP 					//0003 	1000
+		ORG		0200H
+		NOP 					//0200 	1000
+		MOVLP 	2H 			//0201 	0182
+		LJUMP 	21FH 			//0202 	3A1F
+		ORG		0204H
+		BSR 	7EH, 0H 			//0204 	247E
+		MOVLP 	2H 			//0205 	0182
+		NOP 					//0206 	1000
+		NOP 					//0207 	1000
+		NOP 					//0208 	1000
+		NOP 					//0209 	1000
+		NOP 					//020A 	1000
+		NOP 					//020B 	1000
+		ORG		020CH
+		NOP 					//020C 	1000
+		NOP 					//020D 	1000
+		NOP 					//020E 	1000
+		NOP 					//020F 	1000
+		NOP 					//0210 	1000
+		NOP 					//0211 	1000
+		NOP 					//0212 	1000
+		NOP 					//0213 	1000
+		ORG		0214H
+		NOP 					//0214 	1000
+		NOP 					//0215 	1000
+		NOP 					//0216 	1000
+		NOP 					//0217 	1000
+		NOP 					//0218 	1000
+		NOP 					//0219 	1000
+		NOP 					//021A 	1000
+
+		//;TEST_62F08x_IO.C: 64: user_isr();
+		MOVLP 	2H 			//021B 	0182
+		ORG		021CH
+		LCALL 	293H 			//021C 	3293
+		BCR 	7EH, 0H 			//021D 	207E
+		RETI 					//021E 	1009
+		MOVLP 	2H 			//021F 	0182
+		LJUMP 	221H 			//0220 	3A21
+		BCR 	7EH, 0H 			//0221 	207E
+		MOVLB 	0H 			//0222 	1020
+		LJUMP 	224H 			//0223 	3A24
+		ORG		0224H
+
+		//;TEST_62F08x_IO.C: 174: POWER_INITIAL();
+		LCALL 	266H 			//0224 	3266
+		MOVLP 	2H 			//0225 	0182
+
+		//;TEST_62F08x_IO.C: 176: {
+		//;TEST_62F08x_IO.C: 177: RC5 = 1;
+		MOVLB 	0H 			//0226 	1020
+		BSR 	EH, 5H 			//0227 	268E
+
+		//;TEST_62F08x_IO.C: 178: DelayMs(10);
+		LDWI 	AH 			//0228 	000A
+		LCALL 	24CH 			//0229 	324C
+		MOVLP 	2H 			//022A 	0182
+
+		//;TEST_62F08x_IO.C: 179: DelayMs(10);
+		LDWI 	AH 			//022B 	000A
+		ORG		022CH
+		LCALL 	24CH 			//022C 	324C
+		MOVLP 	2H 			//022D 	0182
+
+		//;TEST_62F08x_IO.C: 180: DelayMs(10);
+		LDWI 	AH 			//022E 	000A
+		LCALL 	24CH 			//022F 	324C
+		MOVLP 	2H 			//0230 	0182
+
+		//;TEST_62F08x_IO.C: 181: DelayMs(10);
+		LDWI 	AH 			//0231 	000A
+		LCALL 	24CH 			//0232 	324C
+		MOVLP 	2H 			//0233 	0182
+		ORG		0234H
+
+		//;TEST_62F08x_IO.C: 182: DelayMs(10);
+		LDWI 	AH 			//0234 	000A
+		LCALL 	24CH 			//0235 	324C
+		MOVLP 	2H 			//0236 	0182
+
+		//;TEST_62F08x_IO.C: 183: DelayMs(10);
+		LDWI 	AH 			//0237 	000A
+		LCALL 	24CH 			//0238 	324C
+		MOVLP 	2H 			//0239 	0182
+
+		//;TEST_62F08x_IO.C: 184: DelayMs(10);
+		LDWI 	AH 			//023A 	000A
+		LCALL 	24CH 			//023B 	324C
+		ORG		023CH
+		MOVLP 	2H 			//023C 	0182
+
+		//;TEST_62F08x_IO.C: 185: DelayMs(10);
+		LDWI 	AH 			//023D 	000A
+		LCALL 	24CH 			//023E 	324C
+		MOVLP 	2H 			//023F 	0182
+
+		//;TEST_62F08x_IO.C: 186: DelayMs(10);
+		LDWI 	AH 			//0240 	000A
+		LCALL 	24CH 			//0241 	324C
+		MOVLP 	2H 			//0242 	0182
+
+		//;TEST_62F08x_IO.C: 187: RC5 = 0;
+		MOVLB 	0H 			//0243 	1020
+		ORG		0244H
+		BCR 	EH, 5H 			//0244 	228E
+
+		//;TEST_62F08x_IO.C: 188: DelayMs(10);
+		LDWI 	AH 			//0245 	000A
+		LCALL 	24CH 			//0246 	324C
+		MOVLP 	2H 			//0247 	0182
+
+		//;TEST_62F08x_IO.C: 189: DelayMs(10);
+		LDWI 	AH 			//0248 	000A
+		LCALL 	24CH 			//0249 	324C
+		MOVLP 	2H 			//024A 	0182
+		LJUMP 	226H 			//024B 	3A26
+		ORG		024CH
+		STR 	74H 			//024C 	10F4
+
+		//;TEST_62F08x_IO.C: 140: unsigned char a,b;
+		//;TEST_62F08x_IO.C: 141: for(a=0;a<Time;a++)
+		CLRF 	75H 			//024D 	11F5
+		LDR 	74H, 0H 			//024E 	1874
+		SUBWR 	75H, 0H 		//024F 	1275
+		BTSC 	3H, 0H 			//0250 	2803
+		RET 					//0251 	1008
+
+		//;TEST_62F08x_IO.C: 142: {
+		//;TEST_62F08x_IO.C: 143: for(b=0;b<5;b++)
+		CLRF 	76H 			//0252 	11F6
+
+		//;TEST_62F08x_IO.C: 144: {
+		//;TEST_62F08x_IO.C: 145: DelayUs(197);
+		LDWI 	C5H 			//0253 	00C5
+		ORG		0254H
+		LCALL 	25DH 			//0254 	325D
+		MOVLP 	2H 			//0255 	0182
+		LDWI 	5H 			//0256 	0005
+		INCR 	76H, 1H 		//0257 	1AF6
+		SUBWR 	76H, 0H 		//0258 	1276
+		BTSS 	3H, 0H 			//0259 	2C03
+		LJUMP 	253H 			//025A 	3A53
+		INCR 	75H, 1H 		//025B 	1AF5
+		ORG		025CH
+		LJUMP 	24EH 			//025C 	3A4E
+		STR 	72H 			//025D 	10F2
+
+		//;TEST_62F08x_IO.C: 126: unsigned char a;
+		//;TEST_62F08x_IO.C: 127: for(a=0;a<Time;a++)
+		CLRF 	73H 			//025E 	11F3
+		LDR 	72H, 0H 			//025F 	1872
+		SUBWR 	73H, 0H 		//0260 	1273
+		BTSC 	3H, 0H 			//0261 	2803
+		RET 					//0262 	1008
+
+		//;TEST_62F08x_IO.C: 128: {
+		//;TEST_62F08x_IO.C: 129: __nop();
+		NOP 					//0263 	1000
+		ORG		0264H
+		INCR 	73H, 1H 		//0264 	1AF3
+		LJUMP 	25FH 			//0265 	3A5F
+
+		//;TEST_62F08x_IO.C: 78: OSCCON = 0B01110001;
+		LDWI 	71H 			//0266 	0071
+		MOVLB 	1H 			//0267 	1021
+		STR 	19H 			//0268 	1099
+
+		//;TEST_62F08x_IO.C: 83: PORTA = 0B00000000;
+		MOVLB 	0H 			//0269 	1020
+		CLRF 	CH 			//026A 	118C
+
+		//;TEST_62F08x_IO.C: 84: TRISA = 0B11111111;
+		LDWI 	FFH 			//026B 	00FF
+		ORG		026CH
+		MOVLB 	1H 			//026C 	1021
+		STR 	CH 			//026D 	108C
+
+		//;TEST_62F08x_IO.C: 85: PORTB = 0B00000000;
+		MOVLB 	0H 			//026E 	1020
+		CLRF 	DH 			//026F 	118D
+
+		//;TEST_62F08x_IO.C: 86: TRISB = 0B11110111;
+		LDWI 	F7H 			//0270 	00F7
+		MOVLB 	1H 			//0271 	1021
+		STR 	DH 			//0272 	108D
+
+		//;TEST_62F08x_IO.C: 87: PORTC = 0B00000000;
+		MOVLB 	0H 			//0273 	1020
+		ORG		0274H
+		CLRF 	EH 			//0274 	118E
+
+		//;TEST_62F08x_IO.C: 88: TRISC = 0B11011111;
+		LDWI 	DFH 			//0275 	00DF
+		MOVLB 	1H 			//0276 	1021
+		STR 	EH 			//0277 	108E
+
+		//;TEST_62F08x_IO.C: 89: PORTD = 0B00000000;
+		MOVLB 	0H 			//0278 	1020
+		CLRF 	FH 			//0279 	118F
+
+		//;TEST_62F08x_IO.C: 90: TRISD = 0B11110111;
+		LDWI 	F7H 			//027A 	00F7
+		MOVLB 	1H 			//027B 	1021
+		ORG		027CH
+		STR 	FH 			//027C 	108F
+
+		//;TEST_62F08x_IO.C: 92: WPUA = 0B00000000;
+		MOVLB 	3H 			//027D 	1023
+		CLRF 	CH 			//027E 	118C
+
+		//;TEST_62F08x_IO.C: 93: WPUB = 0B00000000;
+		CLRF 	DH 			//027F 	118D
+
+		//;TEST_62F08x_IO.C: 94: WPUC = 0B00001000;
+		LDWI 	8H 			//0280 	0008
+		STR 	EH 			//0281 	108E
+
+		//;TEST_62F08x_IO.C: 95: WPUD = 0B00000000;
+		CLRF 	FH 			//0282 	118F
+
+		//;TEST_62F08x_IO.C: 97: WPDA = 0B00000000;
+		MOVLB 	4H 			//0283 	1024
+		ORG		0284H
+		CLRF 	CH 			//0284 	118C
+
+		//;TEST_62F08x_IO.C: 98: WPDB = 0B00000000;
+		CLRF 	DH 			//0285 	118D
+
+		//;TEST_62F08x_IO.C: 99: WPDC = 0B00000000;
+		CLRF 	EH 			//0286 	118E
+
+		//;TEST_62F08x_IO.C: 100: WPDD = 0B00000000;
+		CLRF 	FH 			//0287 	118F
+
+		//;TEST_62F08x_IO.C: 102: PSRC0 = 0B11111111;
+		LDWI 	FFH 			//0288 	00FF
+		MOVLB 	2H 			//0289 	1022
+		STR 	1AH 			//028A 	109A
+
+		//;TEST_62F08x_IO.C: 106: PSRC1 = 0B11111111;
+		STR 	1BH 			//028B 	109B
+		ORG		028CH
+
+		//;TEST_62F08x_IO.C: 110: PSINK0 = 0B11111111;
+		MOVLB 	3H 			//028C 	1023
+		STR 	1AH 			//028D 	109A
+
+		//;TEST_62F08x_IO.C: 111: PSINK1 = 0B11111111;
+		STR 	1BH 			//028E 	109B
+
+		//;TEST_62F08x_IO.C: 112: PSINK2 = 0B11111111;
+		STR 	1CH 			//028F 	109C
+
+		//;TEST_62F08x_IO.C: 113: PSINK3 = 0B11111111;
+		STR 	1DH 			//0290 	109D
+
+		//;TEST_62F08x_IO.C: 115: ANSELA = 0B00000000;
+		CLRF 	17H 			//0291 	1197
+		RET 					//0292 	1008
+		RET 					//0293 	1008
+			END

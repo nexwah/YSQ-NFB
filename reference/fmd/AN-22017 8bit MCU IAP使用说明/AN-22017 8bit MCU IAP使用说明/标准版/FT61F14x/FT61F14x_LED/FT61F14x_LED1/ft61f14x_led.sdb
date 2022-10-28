@@ -1,0 +1,142 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"42 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\FT61F14x_LED1\FT61F14x_LED\FT61F14x_LED.C
+[v _ISR ISR `II(v  1 e 1 0 ]
+"69
+[v _user_isr user_isr `(v  1 e 1 0 ]
+"85
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"136
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"150
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"169
+[v _main main `(v  1 e 1 0 ]
+"123 c:\users\administrator\desktop\ide3.0.4_211014_测试中\data\include\FT61F14X.h
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"131
+[v _RA6 RA6 `VEb  1 e 0 @102 ]
+"132
+[v _RA7 RA7 `VEb  1 e 0 @103 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"170
+[v _RB0 RB0 `VEb  1 e 0 @104 ]
+"171
+[v _RB1 RB1 `VEb  1 e 0 @105 ]
+"172
+[v _RB2 RB2 `VEb  1 e 0 @106 ]
+"173
+[v _RB3 RB3 `VEb  1 e 0 @107 ]
+"175
+[v _RB5 RB5 `VEb  1 e 0 @109 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"17 C:\Users\Administrator\Desktop\IAP中断进入编程_V4\标准版\FT61F14x\FT61F14x_LED1\FT61F14x_LED\FT61F14x_LED.C
+[v _W_TMP W_TMP `VEuc  1 e 1 @112 ]
+"18
+[v _BSR_TMP BSR_TMP `VEuc  1 e 1 @113 ]
+"21
+[v _flag flag `uc  1 e 1 @32 ]
+"22
+[v _read_flag read_flag `b  1 e 0 @256 ]
+"23
+[v _iap_err_flag iap_err_flag `b  1 e 0 @257 ]
+"24
+[v _iap_ok_flag iap_ok_flag `b  1 e 0 @258 ]
+"25
+[v _uart_rxnef uart_rxnef `b  1 e 0 @259 ]
+"28
+[v _count count `uc  1 e 1 @33 ]
+"29
+[v _iap_recdata iap_recdata `uc  1 e 1 @34 ]
+"30
+[v _CRC_16 CRC_16 `ui  1 e 2 @35 ]
+"31
+[v _CRC_L CRC_L `uc  1 e 1 @35 ]
+"32
+[v _CRC_H CRC_H `uc  1 e 1 @36 ]
+"169
+[v _main main `(v  1 e 1 0 ]
+{
+"240
+} 0
+"85
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"124
+} 0
+"150
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"152
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"150
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"153
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"160
+} 0
+"136
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"138
+[v DelayUs@a a `uc  1 a 1 1 ]
+"136
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"139
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"143
+} 0
+"42
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"68
+} 0
+"69
+[v _user_isr user_isr `(v  1 e 1 0 ]
+{
+"78
+} 0

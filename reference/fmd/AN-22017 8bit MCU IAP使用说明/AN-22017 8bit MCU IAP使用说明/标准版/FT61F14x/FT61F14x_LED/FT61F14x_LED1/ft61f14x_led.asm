@@ -1,0 +1,449 @@
+//Deviec:FT61F14X
+//-----------------------Variable---------------------------------
+//		DelayMs@Time		EQU		74H
+//		DelayMs@b		EQU		76H
+//		DelayMs@a		EQU		75H
+//		DelayMs@Time		EQU		C00000H
+//		DelayUs@Time		EQU		72H
+//		DelayUs@a		EQU		73H
+//		DelayUs@Time		EQU		C00000H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		NOP 					//0400 	1000
+		MOVLP 	4H 			//0401 	0184
+		LJUMP 	41FH 			//0402 	3C1F
+		ORG		0404H
+		BSR 	7EH, 0H 			//0404 	247E
+		MOVLP 	4H 			//0405 	0184
+		NOP 					//0406 	1000
+		NOP 					//0407 	1000
+		NOP 					//0408 	1000
+		NOP 					//0409 	1000
+		NOP 					//040A 	1000
+		NOP 					//040B 	1000
+		ORG		040CH
+		NOP 					//040C 	1000
+		NOP 					//040D 	1000
+		NOP 					//040E 	1000
+		NOP 					//040F 	1000
+		NOP 					//0410 	1000
+		NOP 					//0411 	1000
+		NOP 					//0412 	1000
+		NOP 					//0413 	1000
+		ORG		0414H
+		NOP 					//0414 	1000
+		NOP 					//0415 	1000
+		NOP 					//0416 	1000
+		NOP 					//0417 	1000
+		NOP 					//0418 	1000
+		NOP 					//0419 	1000
+		NOP 					//041A 	1000
+
+		//;FT61F14x_LED.C: 67: user_isr();
+		MOVLP 	4H 			//041B 	0184
+		ORG		041CH
+		LCALL 	4ECH 			//041C 	34EC
+		BCR 	7EH, 0H 			//041D 	207E
+		RETI 					//041E 	1009
+		MOVLP 	4H 			//041F 	0184
+		LJUMP 	421H 			//0420 	3C21
+		BCR 	7EH, 0H 			//0421 	207E
+		MOVLB 	0H 			//0422 	1020
+		LJUMP 	424H 			//0423 	3C24
+		ORG		0424H
+
+		//;FT61F14x_LED.C: 172: POWER_INITIAL();
+		LCALL 	4C7H 			//0424 	34C7
+		MOVLP 	4H 			//0425 	0184
+
+		//;FT61F14x_LED.C: 174: DelayMs(5);
+		LDWI 	5H 			//0426 	0005
+		LCALL 	4ADH 			//0427 	34AD
+		MOVLP 	4H 			//0428 	0184
+
+		//;FT61F14x_LED.C: 178: {
+		//;FT61F14x_LED.C: 179: RB5=0;
+		MOVLB 	0H 			//0429 	1020
+		BCR 	DH, 5H 			//042A 	228D
+
+		//;FT61F14x_LED.C: 180: DelayMs(200);
+		LDWI 	C8H 			//042B 	00C8
+		ORG		042CH
+		LCALL 	4ADH 			//042C 	34AD
+		MOVLP 	4H 			//042D 	0184
+
+		//;FT61F14x_LED.C: 181: DelayMs(200);
+		LDWI 	C8H 			//042E 	00C8
+		LCALL 	4ADH 			//042F 	34AD
+		MOVLP 	4H 			//0430 	0184
+
+		//;FT61F14x_LED.C: 182: DelayMs(200);
+		LDWI 	C8H 			//0431 	00C8
+		LCALL 	4ADH 			//0432 	34AD
+		MOVLP 	4H 			//0433 	0184
+		ORG		0434H
+
+		//;FT61F14x_LED.C: 183: DelayMs(200);
+		LDWI 	C8H 			//0434 	00C8
+		LCALL 	4ADH 			//0435 	34AD
+		MOVLP 	4H 			//0436 	0184
+
+		//;FT61F14x_LED.C: 184: RB5=1;
+		MOVLB 	0H 			//0437 	1020
+		BSR 	DH, 5H 			//0438 	268D
+
+		//;FT61F14x_LED.C: 185: DelayMs(200);
+		LDWI 	C8H 			//0439 	00C8
+		LCALL 	4ADH 			//043A 	34AD
+		MOVLP 	4H 			//043B 	0184
+		ORG		043CH
+
+		//;FT61F14x_LED.C: 187: RB3=0;
+		MOVLB 	0H 			//043C 	1020
+		BCR 	DH, 3H 			//043D 	218D
+
+		//;FT61F14x_LED.C: 188: DelayMs(200);
+		LDWI 	C8H 			//043E 	00C8
+		LCALL 	4ADH 			//043F 	34AD
+		MOVLP 	4H 			//0440 	0184
+
+		//;FT61F14x_LED.C: 189: DelayMs(200);
+		LDWI 	C8H 			//0441 	00C8
+		LCALL 	4ADH 			//0442 	34AD
+		MOVLP 	4H 			//0443 	0184
+		ORG		0444H
+
+		//;FT61F14x_LED.C: 190: DelayMs(200);
+		LDWI 	C8H 			//0444 	00C8
+		LCALL 	4ADH 			//0445 	34AD
+		MOVLP 	4H 			//0446 	0184
+
+		//;FT61F14x_LED.C: 191: DelayMs(200);
+		LDWI 	C8H 			//0447 	00C8
+		LCALL 	4ADH 			//0448 	34AD
+		MOVLP 	4H 			//0449 	0184
+
+		//;FT61F14x_LED.C: 192: RB3=1;
+		MOVLB 	0H 			//044A 	1020
+		BSR 	DH, 3H 			//044B 	258D
+		ORG		044CH
+
+		//;FT61F14x_LED.C: 193: DelayMs(200);
+		LDWI 	C8H 			//044C 	00C8
+		LCALL 	4ADH 			//044D 	34AD
+		MOVLP 	4H 			//044E 	0184
+
+		//;FT61F14x_LED.C: 196: RB2=0;
+		MOVLB 	0H 			//044F 	1020
+		BCR 	DH, 2H 			//0450 	210D
+
+		//;FT61F14x_LED.C: 197: DelayMs(200);
+		LDWI 	C8H 			//0451 	00C8
+		LCALL 	4ADH 			//0452 	34AD
+		MOVLP 	4H 			//0453 	0184
+		ORG		0454H
+
+		//;FT61F14x_LED.C: 198: DelayMs(200);
+		LDWI 	C8H 			//0454 	00C8
+		LCALL 	4ADH 			//0455 	34AD
+		MOVLP 	4H 			//0456 	0184
+
+		//;FT61F14x_LED.C: 199: DelayMs(200);
+		LDWI 	C8H 			//0457 	00C8
+		LCALL 	4ADH 			//0458 	34AD
+		MOVLP 	4H 			//0459 	0184
+
+		//;FT61F14x_LED.C: 200: DelayMs(200);
+		LDWI 	C8H 			//045A 	00C8
+		LCALL 	4ADH 			//045B 	34AD
+		ORG		045CH
+		MOVLP 	4H 			//045C 	0184
+
+		//;FT61F14x_LED.C: 201: RB2=1;
+		MOVLB 	0H 			//045D 	1020
+		BSR 	DH, 2H 			//045E 	250D
+
+		//;FT61F14x_LED.C: 202: DelayMs(200);
+		LDWI 	C8H 			//045F 	00C8
+		LCALL 	4ADH 			//0460 	34AD
+		MOVLP 	4H 			//0461 	0184
+
+		//;FT61F14x_LED.C: 205: RB1=0;
+		MOVLB 	0H 			//0462 	1020
+		BCR 	DH, 1H 			//0463 	208D
+		ORG		0464H
+
+		//;FT61F14x_LED.C: 206: DelayMs(200);
+		LDWI 	C8H 			//0464 	00C8
+		LCALL 	4ADH 			//0465 	34AD
+		MOVLP 	4H 			//0466 	0184
+
+		//;FT61F14x_LED.C: 207: DelayMs(200);
+		LDWI 	C8H 			//0467 	00C8
+		LCALL 	4ADH 			//0468 	34AD
+		MOVLP 	4H 			//0469 	0184
+
+		//;FT61F14x_LED.C: 208: DelayMs(200);
+		LDWI 	C8H 			//046A 	00C8
+		LCALL 	4ADH 			//046B 	34AD
+		ORG		046CH
+		MOVLP 	4H 			//046C 	0184
+
+		//;FT61F14x_LED.C: 209: DelayMs(200);
+		LDWI 	C8H 			//046D 	00C8
+		LCALL 	4ADH 			//046E 	34AD
+		MOVLP 	4H 			//046F 	0184
+
+		//;FT61F14x_LED.C: 210: RB1=1;
+		MOVLB 	0H 			//0470 	1020
+		BSR 	DH, 1H 			//0471 	248D
+
+		//;FT61F14x_LED.C: 211: DelayMs(200);
+		LDWI 	C8H 			//0472 	00C8
+		LCALL 	4ADH 			//0473 	34AD
+		ORG		0474H
+		MOVLP 	4H 			//0474 	0184
+
+		//;FT61F14x_LED.C: 214: RB0=0;
+		MOVLB 	0H 			//0475 	1020
+		BCR 	DH, 0H 			//0476 	200D
+
+		//;FT61F14x_LED.C: 215: DelayMs(200);
+		LDWI 	C8H 			//0477 	00C8
+		LCALL 	4ADH 			//0478 	34AD
+		MOVLP 	4H 			//0479 	0184
+
+		//;FT61F14x_LED.C: 216: DelayMs(200);
+		LDWI 	C8H 			//047A 	00C8
+		LCALL 	4ADH 			//047B 	34AD
+		ORG		047CH
+		MOVLP 	4H 			//047C 	0184
+
+		//;FT61F14x_LED.C: 217: DelayMs(200);
+		LDWI 	C8H 			//047D 	00C8
+		LCALL 	4ADH 			//047E 	34AD
+		MOVLP 	4H 			//047F 	0184
+
+		//;FT61F14x_LED.C: 218: DelayMs(200);
+		LDWI 	C8H 			//0480 	00C8
+		LCALL 	4ADH 			//0481 	34AD
+		MOVLP 	4H 			//0482 	0184
+
+		//;FT61F14x_LED.C: 219: RB0=1;
+		MOVLB 	0H 			//0483 	1020
+		ORG		0484H
+		BSR 	DH, 0H 			//0484 	240D
+
+		//;FT61F14x_LED.C: 220: DelayMs(200);
+		LDWI 	C8H 			//0485 	00C8
+		LCALL 	4ADH 			//0486 	34AD
+		MOVLP 	4H 			//0487 	0184
+
+		//;FT61F14x_LED.C: 224: RA6=0;
+		MOVLB 	0H 			//0488 	1020
+		BCR 	CH, 6H 			//0489 	230C
+
+		//;FT61F14x_LED.C: 225: DelayMs(200);
+		LDWI 	C8H 			//048A 	00C8
+		LCALL 	4ADH 			//048B 	34AD
+		ORG		048CH
+		MOVLP 	4H 			//048C 	0184
+
+		//;FT61F14x_LED.C: 226: DelayMs(200);
+		LDWI 	C8H 			//048D 	00C8
+		LCALL 	4ADH 			//048E 	34AD
+		MOVLP 	4H 			//048F 	0184
+
+		//;FT61F14x_LED.C: 227: DelayMs(200);
+		LDWI 	C8H 			//0490 	00C8
+		LCALL 	4ADH 			//0491 	34AD
+		MOVLP 	4H 			//0492 	0184
+
+		//;FT61F14x_LED.C: 228: DelayMs(200);
+		LDWI 	C8H 			//0493 	00C8
+		ORG		0494H
+		LCALL 	4ADH 			//0494 	34AD
+		MOVLP 	4H 			//0495 	0184
+
+		//;FT61F14x_LED.C: 229: RA6=1;
+		MOVLB 	0H 			//0496 	1020
+		BSR 	CH, 6H 			//0497 	270C
+
+		//;FT61F14x_LED.C: 230: DelayMs(200);
+		LDWI 	C8H 			//0498 	00C8
+		LCALL 	4ADH 			//0499 	34AD
+		MOVLP 	4H 			//049A 	0184
+
+		//;FT61F14x_LED.C: 232: RA7=0;
+		MOVLB 	0H 			//049B 	1020
+		ORG		049CH
+		BCR 	CH, 7H 			//049C 	238C
+
+		//;FT61F14x_LED.C: 233: DelayMs(200);
+		LDWI 	C8H 			//049D 	00C8
+		LCALL 	4ADH 			//049E 	34AD
+		MOVLP 	4H 			//049F 	0184
+
+		//;FT61F14x_LED.C: 234: DelayMs(200);
+		LDWI 	C8H 			//04A0 	00C8
+		LCALL 	4ADH 			//04A1 	34AD
+		MOVLP 	4H 			//04A2 	0184
+
+		//;FT61F14x_LED.C: 235: DelayMs(200);
+		LDWI 	C8H 			//04A3 	00C8
+		ORG		04A4H
+		LCALL 	4ADH 			//04A4 	34AD
+		MOVLP 	4H 			//04A5 	0184
+
+		//;FT61F14x_LED.C: 236: DelayMs(200);
+		LDWI 	C8H 			//04A6 	00C8
+		LCALL 	4ADH 			//04A7 	34AD
+		MOVLP 	4H 			//04A8 	0184
+
+		//;FT61F14x_LED.C: 237: RA7=1;
+		MOVLB 	0H 			//04A9 	1020
+		BSR 	CH, 7H 			//04AA 	278C
+
+		//;FT61F14x_LED.C: 238: DelayMs(200);
+		LDWI 	C8H 			//04AB 	00C8
+		ORG		04ACH
+		LJUMP 	427H 			//04AC 	3C27
+		STR 	74H 			//04AD 	10F4
+
+		//;FT61F14x_LED.C: 152: unsigned char a,b;
+		//;FT61F14x_LED.C: 153: for(a=0;a<Time;a++)
+		CLRF 	75H 			//04AE 	11F5
+		LDR 	74H, 0H 			//04AF 	1874
+		SUBWR 	75H, 0H 		//04B0 	1275
+		BTSC 	3H, 0H 			//04B1 	2803
+		RET 					//04B2 	1008
+
+		//;FT61F14x_LED.C: 154: {
+		//;FT61F14x_LED.C: 155: for(b=0;b<5;b++)
+		CLRF 	76H 			//04B3 	11F6
+		ORG		04B4H
+
+		//;FT61F14x_LED.C: 156: {
+		//;FT61F14x_LED.C: 157: DelayUs(197);
+		LDWI 	C5H 			//04B4 	00C5
+		LCALL 	4BEH 			//04B5 	34BE
+		MOVLP 	4H 			//04B6 	0184
+		LDWI 	5H 			//04B7 	0005
+		INCR 	76H, 1H 		//04B8 	1AF6
+		SUBWR 	76H, 0H 		//04B9 	1276
+		BTSS 	3H, 0H 			//04BA 	2C03
+		LJUMP 	4B4H 			//04BB 	3CB4
+		ORG		04BCH
+		INCR 	75H, 1H 		//04BC 	1AF5
+		LJUMP 	4AFH 			//04BD 	3CAF
+		STR 	72H 			//04BE 	10F2
+
+		//;FT61F14x_LED.C: 138: unsigned char a;
+		//;FT61F14x_LED.C: 139: for(a=0;a<Time;a++)
+		CLRF 	73H 			//04BF 	11F3
+		LDR 	72H, 0H 			//04C0 	1872
+		SUBWR 	73H, 0H 		//04C1 	1273
+		BTSC 	3H, 0H 			//04C2 	2803
+		RET 					//04C3 	1008
+		ORG		04C4H
+
+		//;FT61F14x_LED.C: 140: {
+		//;FT61F14x_LED.C: 141: __nop();
+		NOP 					//04C4 	1000
+		INCR 	73H, 1H 		//04C5 	1AF3
+		LJUMP 	4C0H 			//04C6 	3CC0
+
+		//;FT61F14x_LED.C: 87: OSCCON = 0B01110001;
+		LDWI 	71H 			//04C7 	0071
+		MOVLB 	1H 			//04C8 	1021
+		STR 	19H 			//04C9 	1099
+
+		//;FT61F14x_LED.C: 96: PORTA = 0B11111111;
+		LDWI 	FFH 			//04CA 	00FF
+		MOVLB 	0H 			//04CB 	1020
+		ORG		04CCH
+		STR 	CH 			//04CC 	108C
+
+		//;FT61F14x_LED.C: 97: TRISA = 0B00000100;
+		LDWI 	4H 			//04CD 	0004
+		MOVLB 	1H 			//04CE 	1021
+		STR 	CH 			//04CF 	108C
+
+		//;FT61F14x_LED.C: 98: PORTB = 0B10111111;
+		LDWI 	BFH 			//04D0 	00BF
+		MOVLB 	0H 			//04D1 	1020
+		STR 	DH 			//04D2 	108D
+
+		//;FT61F14x_LED.C: 99: TRISB = 0B00000000;
+		MOVLB 	1H 			//04D3 	1021
+		ORG		04D4H
+		CLRF 	DH 			//04D4 	118D
+
+		//;FT61F14x_LED.C: 100: PORTC = 0B00000011;
+		LDWI 	3H 			//04D5 	0003
+		MOVLB 	0H 			//04D6 	1020
+		STR 	EH 			//04D7 	108E
+
+		//;FT61F14x_LED.C: 101: TRISC = 0B00000011;
+		MOVLB 	1H 			//04D8 	1021
+		STR 	EH 			//04D9 	108E
+
+		//;FT61F14x_LED.C: 104: WPUA = 0B00000000;
+		MOVLB 	3H 			//04DA 	1023
+		CLRF 	CH 			//04DB 	118C
+		ORG		04DCH
+
+		//;FT61F14x_LED.C: 105: WPUB = 0B00000000;
+		CLRF 	DH 			//04DC 	118D
+
+		//;FT61F14x_LED.C: 106: WPUC = 0B00000000;
+		CLRF 	EH 			//04DD 	118E
+
+		//;FT61F14x_LED.C: 109: WPDA = 0B00000000;
+		MOVLB 	4H 			//04DE 	1024
+		CLRF 	CH 			//04DF 	118C
+
+		//;FT61F14x_LED.C: 110: WPDB = 0B00000000;
+		CLRF 	DH 			//04E0 	118D
+
+		//;FT61F14x_LED.C: 111: WPDC = 0B00000000;
+		CLRF 	EH 			//04E1 	118E
+
+		//;FT61F14x_LED.C: 114: PSRC0 = 0B11111111;
+		LDWI 	FFH 			//04E2 	00FF
+		MOVLB 	2H 			//04E3 	1022
+		ORG		04E4H
+		STR 	1AH 			//04E4 	109A
+
+		//;FT61F14x_LED.C: 115: PSRC1 = 0B11111111;
+		STR 	1BH 			//04E5 	109B
+
+		//;FT61F14x_LED.C: 118: PSINK0 = 0B11111111;
+		MOVLB 	3H 			//04E6 	1023
+		STR 	1AH 			//04E7 	109A
+
+		//;FT61F14x_LED.C: 119: PSINK1 = 0B11111111;
+		STR 	1BH 			//04E8 	109B
+
+		//;FT61F14x_LED.C: 120: PSINK2 = 0B11111111;
+		STR 	1CH 			//04E9 	109C
+
+		//;FT61F14x_LED.C: 123: ANSELA = 0B00000000;
+		CLRF 	17H 			//04EA 	1197
+		RET 					//04EB 	1008
+		ORG		04ECH
+
+		//;FT61F14x_LED.C: 71: unsigned char temp;
+		//;FT61F14x_LED.C: 72: if(uart_rxnef==1)
+		MOVLB 	0H 			//04EC 	1020
+		BTSS 	20H, 3H 		//04ED 	2DA0
+		RET 					//04EE 	1008
+
+		//;FT61F14x_LED.C: 73: {
+		//;FT61F14x_LED.C: 74: uart_rxnef = 0;
+		BCR 	20H, 3H 			//04EF 	21A0
+
+		//;FT61F14x_LED.C: 75: temp=iap_recdata;
+		LDR 	22H, 0H 			//04F0 	1822
+		RET 					//04F1 	1008
+			END

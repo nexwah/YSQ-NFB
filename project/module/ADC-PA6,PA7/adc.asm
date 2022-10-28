@@ -1,0 +1,4085 @@
+//Deviec:FT64F0AX
+//-----------------------Variable---------------------------------
+//		main@msgbuf		EQU		120H
+//		main@VOUT		EQU		152H
+//		main@ADC		EQU		157H
+//		main@len		EQU		155H
+//		strlen@cp		EQU		72H
+//		strlen@s		EQU		70H
+//		sprintf@val		EQU		A8H
+//		sprintf@tmpval.vd		EQU		A4H
+//		sprintf@tmpval.integ		EQU		A4H
+//		sprintf@tmpval		EQU		A4H
+//		sprintf@fval		EQU		B2H
+//		sprintf@prec		EQU		B5H
+//		sprintf@width		EQU		B0H
+//		sprintf@exp		EQU		AEH
+//		sprintf@flag		EQU		ACH
+//		sprintf@c		EQU		B7H
+//		sprintf@ap		EQU		A3H
+//		sprintf@sp		EQU		52H
+//		sprintf@f		EQU		54H
+//		scale@scl		EQU		3CH
+//		scale@scl		EQU		3CH
+//		scale@scl		EQU		3CH
+//		___awmod@sign		EQU		75H
+//		___awmod@counter		EQU		74H
+//		___awmod@divisor		EQU		70H
+//		___awmod@dividend		EQU		72H
+//		isdigit@c		EQU		71H
+//		isdigit@c		EQU		71H
+//		isdigit@c		EQU		71H
+//		fround@prec		EQU		3FH
+//		fround@prec		EQU		3FH
+//		fround@prec		EQU		3FH
+//		___wmul@product		EQU		24H
+//		___wmul@multiplier		EQU		20H
+//		___wmul@multiplicand		EQU		22H
+//		___lbmod@dividend		EQU		72H
+//		___lbmod@rem		EQU		74H
+//		___lbmod@counter		EQU		73H
+//		___lbmod@dividend		EQU		72H
+//		___lbmod@divisor		EQU		70H
+//		___lbmod@dividend		EQU		72H
+//		___lbdiv@dividend		EQU		76H
+//		___lbdiv@quotient		EQU		78H
+//		___lbdiv@counter		EQU		77H
+//		___lbdiv@dividend		EQU		76H
+//		___lbdiv@divisor		EQU		75H
+//		___lbdiv@dividend		EQU		76H
+//		__tdiv_to_l_@quot		EQU		20H
+//		__tdiv_to_l_@exp1		EQU		25H
+//		__tdiv_to_l_@cntr		EQU		24H
+//		__tdiv_to_l_@f1		EQU		70H
+//		__tdiv_to_l_@f2		EQU		73H
+//		__div_to_l_@quot		EQU		20H
+//		__div_to_l_@exp1		EQU		25H
+//		__div_to_l_@cntr		EQU		24H
+//		__div_to_l_@f1		EQU		70H
+//		__div_to_l_@f2		EQU		73H
+//		___lltoft@exp		EQU		7CH
+//		___lltoft@c		EQU		78H
+//		___llmod@counter		EQU		7DH
+//		___llmod@divisor		EQU		20H
+//		___llmod@dividend		EQU		24H
+//		___lldiv@quotient		EQU		78H
+//		___lldiv@counter		EQU		7CH
+//		___lldiv@divisor		EQU		70H
+//		___lldiv@dividend		EQU		74H
+//		___ftsub@f2		EQU		4CH
+//		___ftsub@f1		EQU		4FH
+//		___ftadd@exp1		EQU		4BH
+//		___ftadd@exp2		EQU		4AH
+//		___ftadd@sign		EQU		49H
+//		___ftadd@f1		EQU		40H
+//		___ftadd@f2		EQU		43H
+//		___ftneg@f1		EQU		70H
+//		___ftge@ff1		EQU		70H
+//		___ftge@ff2		EQU		73H
+//		send@i		EQU		59H
+//		send@tbuf		EQU		54H
+//		send@len		EQU		56H
+//		DelayMs@a		EQU		52H
+//		DelayMs@Time		EQU		4FH
+//		___ftdiv@f3		EQU		3FH
+//		___ftdiv@sign		EQU		43H
+//		___ftdiv@exp		EQU		42H
+//		___ftdiv@cntr		EQU		3EH
+//		___ftdiv@f2		EQU		35H
+//		___ftdiv@f1		EQU		38H
+//		GET_ADC_DATA@adcChannel		EQU		52H
+//		GET_ADC_DATA@adcChannel		EQU		52H
+//		GET_ADC_DATA@adcChannel		EQU		52H
+//		DelayUs@a		EQU		4DH
+//		DelayUs@Time		EQU		4AH
+//		___fttol@lval		EQU		45H
+//		___fttol@exp1		EQU		49H
+//		___fttol@sign1		EQU		44H
+//		___fttol@f1		EQU		3DH
+//		___ftmul@f3_as_product		EQU		30H
+//		___ftmul@sign		EQU		34H
+//		___ftmul@cntr		EQU		33H
+//		___ftmul@exp		EQU		2FH
+//		___ftmul@f1		EQU		26H
+//		___ftmul@f2		EQU		29H
+//		___awtoft@sign		EQU		23H
+//		___awtoft@c		EQU		20H
+//		___ftpack@arg		EQU		70H
+//		___ftpack@exp		EQU		73H
+//		___ftpack@sign		EQU		74H
+//		___awdiv@quotient		EQU		7CH
+//		___awdiv@sign		EQU		7BH
+//		___awdiv@counter		EQU		7AH
+//		___awdiv@divisor		EQU		76H
+//		___awdiv@dividend		EQU		78H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		ORG		0000H
+		MOVLP 	0H 			//0000 	0180
+		LJUMP 	2H 			//0001 	3802
+		MOVLP 	2H 			//0002 	0182
+		LJUMP 	200H 			//0003 	3A00
+		ORG		014FH
+		LDWI 	70H 			//014F 	0070
+		LCALL 	1EFH 			//0150 	31EF
+		MOVLP 	1H 			//0151 	0181
+		BCR 	3H, 0H 			//0152 	2003
+		RLR 	78H, 0H 			//0153 	1D78
+		RLR 	79H, 0H 			//0154 	1D79
+		MOVLB 	0H 			//0155 	1020
+		STR 	25H 			//0156 	10A5
+		LDR 	25H, 0H 			//0157 	1825
+		BTSS 	3H, 2H 			//0158 	2D03
+		LJUMP 	15FH 			//0159 	395F
+		CLRF 	70H 			//015A 	11F0
+		CLRF 	71H 			//015B 	11F1
+		CLRF 	72H 			//015C 	11F2
+		CLRF 	73H 			//015D 	11F3
+		RET 					//015E 	1008
+		LDWI 	73H 			//015F 	0073
+		LCALL 	1EFH 			//0160 	31EF
+		MOVLP 	1H 			//0161 	0181
+		BCR 	3H, 0H 			//0162 	2003
+		RLR 	78H, 0H 			//0163 	1D78
+		RLR 	79H, 0H 			//0164 	1D79
+		STR 	24H 			//0165 	10A4
+		LDR 	24H, 0H 			//0166 	1824
+		BTSC 	3H, 2H 			//0167 	2903
+		LJUMP 	15AH 			//0168 	395A
+		LDWI 	70H 			//0169 	0070
+		STR 	6H 			//016A 	1086
+		LDWI 	80H 			//016B 	0080
+		ADDFSR 	1H, 1H 		//016C 	0141
+		ADDFSR 	1H, 1H 		//016D 	0141
+		IORWR 	1H, 1H 		//016E 	1481
+		LDWI 	70H 			//016F 	0070
+		ADDFSR 	1H, 1H 		//0170 	0141
+		STR 	6H 			//0171 	1086
+		LDWI 	73H 			//0172 	0073
+		LCALL 	1FAH 			//0173 	31FA
+		MOVLP 	1H 			//0174 	0181
+		STR 	6H 			//0175 	1086
+		LDWI 	80H 			//0176 	0080
+		CLRF 	7H 			//0177 	1187
+		ADDFSR 	1H, 1H 		//0178 	0141
+		ADDFSR 	1H, 1H 		//0179 	0141
+		IORWR 	1H, 1H 		//017A 	1481
+		LDWI 	73H 			//017B 	0073
+		ADDFSR 	1H, 1H 		//017C 	0141
+		STR 	6H 			//017D 	1086
+		LDWI 	7FH 			//017E 	007F
+		LCALL 	1FAH 			//017F 	31FA
+		MOVLP 	1H 			//0180 	0181
+		CLRF 	20H 			//0181 	11A0
+		CLRF 	21H 			//0182 	11A1
+		CLRF 	22H 			//0183 	11A2
+		CLRF 	23H 			//0184 	11A3
+		SUBWR 	25H, 1H 		//0185 	12A5
+		LDWI 	A0H 			//0186 	00A0
+		ADDWR 	24H, 0H 		//0187 	1724
+		STR 	76H 			//0188 	10F6
+		SUBWR 	25H, 1H 		//0189 	12A5
+		LDWI 	20H 			//018A 	0020
+		STR 	24H 			//018B 	10A4
+		LDWI 	73H 			//018C 	0073
+		LSLF 	20H, 1H 		//018D 	05A0
+		RLR 	21H, 1H 			//018E 	1DA1
+		RLR 	22H, 1H 			//018F 	1DA2
+		RLR 	23H, 1H 			//0190 	1DA3
+		LCALL 	1EFH 			//0191 	31EF
+		MOVLP 	1H 			//0192 	0181
+		LDWI 	70H 			//0193 	0070
+		STR 	6H 			//0194 	1086
+		MOVIW 	0H[1] 			//0195 	0F40
+		STR 	7AH 			//0196 	10FA
+		MOVIW 	1H[1] 			//0197 	0F41
+		STR 	7BH 			//0198 	10FB
+		MOVIW 	2H[1] 			//0199 	0F42
+		STR 	7CH 			//019A 	10FC
+		MOVIW 	3H[1] 			//019B 	0F43
+		STR 	7DH 			//019C 	10FD
+		LDR 	79H, 0H 			//019D 	1879
+		SUBWR 	7DH, 0H 		//019E 	127D
+		BTSS 	3H, 2H 			//019F 	2D03
+		LJUMP 	1ABH 			//01A0 	39AB
+		LDR 	78H, 0H 			//01A1 	1878
+		SUBWR 	7CH, 0H 		//01A2 	127C
+		BTSS 	3H, 2H 			//01A3 	2D03
+		LJUMP 	1ABH 			//01A4 	39AB
+		LDR 	77H, 0H 			//01A5 	1877
+		SUBWR 	7BH, 0H 		//01A6 	127B
+		BTSS 	3H, 2H 			//01A7 	2D03
+		LJUMP 	1ABH 			//01A8 	39AB
+		LDR 	76H, 0H 			//01A9 	1876
+		SUBWR 	7AH, 0H 		//01AA 	127A
+		BTSS 	3H, 0H 			//01AB 	2C03
+		LJUMP 	1BFH 			//01AC 	39BF
+		LDWI 	73H 			//01AD 	0073
+		LCALL 	1EFH 			//01AE 	31EF
+		MOVLP 	1H 			//01AF 	0181
+		LDWI 	70H 			//01B0 	0070
+		STR 	6H 			//01B1 	1086
+		LDR 	76H, 0H 			//01B2 	1876
+		SUBWR 	1H, 1H 		//01B3 	1281
+		ADDFSR 	1H, 1H 		//01B4 	0141
+		LDR 	77H, 0H 			//01B5 	1877
+		SUBWFB 	1H, 1H 		//01B6 	0B81
+		ADDFSR 	1H, 1H 		//01B7 	0141
+		LDR 	78H, 0H 			//01B8 	1878
+		SUBWFB 	1H, 1H 		//01B9 	0B81
+		ADDFSR 	1H, 1H 		//01BA 	0141
+		LDR 	79H, 0H 			//01BB 	1879
+		SUBWFB 	1H, 1H 		//01BC 	0B81
+		ADDFSR 	1H, 3DH 		//01BD 	017D
+		BSR 	20H, 0H 			//01BE 	2420
+		LDWI 	70H 			//01BF 	0070
+		STR 	6H 			//01C0 	1086
+		CLRF 	7H 			//01C1 	1187
+		LSLF 	1H, 1H 			//01C2 	0581
+		ADDFSR 	1H, 1H 		//01C3 	0141
+		RLR 	1H, 1H 			//01C4 	1D81
+		ADDFSR 	1H, 1H 		//01C5 	0141
+		RLR 	1H, 1H 			//01C6 	1D81
+		ADDFSR 	1H, 1H 		//01C7 	0141
+		RLR 	1H, 1H 			//01C8 	1D81
+		DECRSZ 	24H, 1H 		//01C9 	1BA4
+		LJUMP 	18CH 			//01CA 	398C
+		BTSS 	25H, 7H 		//01CB 	2FA5
+		LJUMP 	1D9H 			//01CC 	39D9
+		LDR 	25H, 0H 			//01CD 	1825
+		XORWI 	80H 			//01CE 	0A80
+		ADDWI 	9FH 			//01CF 	0E9F
+		BTSS 	3H, 0H 			//01D0 	2C03
+		LJUMP 	15AH 			//01D1 	395A
+		LSRF 	23H, 1H 		//01D2 	06A3
+		RRR 	22H, 1H 			//01D3 	1CA2
+		RRR 	21H, 1H 			//01D4 	1CA1
+		RRR 	20H, 1H 			//01D5 	1CA0
+		INCRSZ 	25H, 1H 		//01D6 	1FA5
+		LJUMP 	1D2H 			//01D7 	39D2
+		LJUMP 	1E6H 			//01D8 	39E6
+		LDWI 	20H 			//01D9 	0020
+		SUBWR 	25H, 0H 		//01DA 	1225
+		BTSC 	3H, 0H 			//01DB 	2803
+		LJUMP 	15AH 			//01DC 	395A
+		LDR 	25H, 0H 			//01DD 	1825
+		BTSC 	3H, 2H 			//01DE 	2903
+		LJUMP 	1E6H 			//01DF 	39E6
+		LSLF 	20H, 1H 		//01E0 	05A0
+		RLR 	21H, 1H 			//01E1 	1DA1
+		RLR 	22H, 1H 			//01E2 	1DA2
+		RLR 	23H, 1H 			//01E3 	1DA3
+		DECR 	25H, 1H 		//01E4 	13A5
+		LJUMP 	1DDH 			//01E5 	39DD
+		LDR 	23H, 0H 			//01E6 	1823
+		STR 	73H 			//01E7 	10F3
+		LDR 	22H, 0H 			//01E8 	1822
+		STR 	72H 			//01E9 	10F2
+		LDR 	21H, 0H 			//01EA 	1821
+		STR 	71H 			//01EB 	10F1
+		LDR 	20H, 0H 			//01EC 	1820
+		STR 	70H 			//01ED 	10F0
+		RET 					//01EE 	1008
+		STR 	6H 			//01EF 	1086
+		CLRF 	7H 			//01F0 	1187
+		MOVIW 	0H[1] 			//01F1 	0F40
+		STR 	76H 			//01F2 	10F6
+		MOVIW 	1H[1] 			//01F3 	0F41
+		STR 	77H 			//01F4 	10F7
+		MOVIW 	2H[1] 			//01F5 	0F42
+		STR 	78H 			//01F6 	10F8
+		MOVIW 	3H[1] 			//01F7 	0F43
+		STR 	79H 			//01F8 	10F9
+		RET 					//01F9 	1008
+		CLRF 	7H 			//01FA 	1187
+		ADDFSR 	1H, 1H 		//01FB 	0141
+		ADDFSR 	1H, 1H 		//01FC 	0141
+		ADDFSR 	1H, 1H 		//01FD 	0141
+		CLRF 	1H 			//01FE 	1181
+		RET 					//01FF 	1008
+		MOVLB 	0H 			//0200 	1020
+		LJUMP 	2CEH 			//0201 	3ACE
+		LDWI 	8EH 			//0202 	008E
+		STR 	7CH 			//0203 	10FC
+		LDWI 	FFH 			//0204 	00FF
+		ANDWR 	7BH, 0H 		//0205 	157B
+		BTSC 	3H, 2H 			//0206 	2903
+		LJUMP 	20EH 			//0207 	3A0E
+		LSRF 	7BH, 1H 		//0208 	06FB
+		RRR 	7AH, 1H 			//0209 	1CFA
+		RRR 	79H, 1H 			//020A 	1CF9
+		RRR 	78H, 1H 			//020B 	1CF8
+		INCR 	7CH, 1H 		//020C 	1AFC
+		LJUMP 	204H 			//020D 	3A04
+		LDR 	78H, 0H 			//020E 	1878
+		STR 	70H 			//020F 	10F0
+		LDR 	79H, 0H 			//0210 	1879
+		STR 	71H 			//0211 	10F1
+		LDR 	7AH, 0H 			//0212 	187A
+		STR 	72H 			//0213 	10F2
+		LDR 	7CH, 0H 			//0214 	187C
+		STR 	73H 			//0215 	10F3
+		CLRF 	74H 			//0216 	11F4
+		LCALL 	6EFH 			//0217 	36EF
+		LDR 	70H, 0H 			//0218 	1870
+		STR 	78H 			//0219 	10F8
+		LDR 	71H, 0H 			//021A 	1871
+		STR 	79H 			//021B 	10F9
+		LDR 	72H, 0H 			//021C 	1872
+		STR 	7AH 			//021D 	10FA
+		RET 					//021E 	1008
+		LDR 	40H, 0H 			//021F 	1840
+		STR 	46H 			//0220 	10C6
+		LDR 	41H, 0H 			//0221 	1841
+		STR 	47H 			//0222 	10C7
+		LDR 	42H, 0H 			//0223 	1842
+		STR 	48H 			//0224 	10C8
+		BCR 	3H, 0H 			//0225 	2003
+		RLR 	47H, 0H 			//0226 	1D47
+		RLR 	48H, 0H 			//0227 	1D48
+		STR 	4BH 			//0228 	10CB
+		LDR 	43H, 0H 			//0229 	1843
+		STR 	46H 			//022A 	10C6
+		LDR 	44H, 0H 			//022B 	1844
+		STR 	47H 			//022C 	10C7
+		LDR 	45H, 0H 			//022D 	1845
+		STR 	48H 			//022E 	10C8
+		BCR 	3H, 0H 			//022F 	2003
+		RLR 	47H, 0H 			//0230 	1D47
+		RLR 	48H, 0H 			//0231 	1D48
+		STR 	4AH 			//0232 	10CA
+		LDR 	4BH, 0H 			//0233 	184B
+		BTSC 	3H, 2H 			//0234 	2903
+		LJUMP 	242H 			//0235 	3A42
+		LDR 	4AH, 0H 			//0236 	184A
+		SUBWR 	4BH, 0H 		//0237 	124B
+		LDR 	4AH, 0H 			//0238 	184A
+		BTSC 	3H, 0H 			//0239 	2803
+		LJUMP 	24AH 			//023A 	3A4A
+		STR 	46H 			//023B 	10C6
+		LDR 	4BH, 0H 			//023C 	184B
+		SUBWR 	46H, 1H 		//023D 	12C6
+		LDWI 	19H 			//023E 	0019
+		SUBWR 	46H, 0H 		//023F 	1246
+		BTSS 	3H, 0H 			//0240 	2C03
+		LJUMP 	249H 			//0241 	3A49
+		LDR 	43H, 0H 			//0242 	1843
+		STR 	40H 			//0243 	10C0
+		LDR 	44H, 0H 			//0244 	1844
+		STR 	41H 			//0245 	10C1
+		LDR 	45H, 0H 			//0246 	1845
+		STR 	42H 			//0247 	10C2
+		RET 					//0248 	1008
+		LDR 	4AH, 0H 			//0249 	184A
+		BTSC 	3H, 2H 			//024A 	2903
+		RET 					//024B 	1008
+		LDR 	4BH, 0H 			//024C 	184B
+		SUBWR 	4AH, 0H 		//024D 	124A
+		BTSC 	3H, 0H 			//024E 	2803
+		LJUMP 	258H 			//024F 	3A58
+		LDR 	4BH, 0H 			//0250 	184B
+		STR 	46H 			//0251 	10C6
+		LDR 	4AH, 0H 			//0252 	184A
+		SUBWR 	46H, 1H 		//0253 	12C6
+		LDWI 	19H 			//0254 	0019
+		SUBWR 	46H, 0H 		//0255 	1246
+		BTSC 	3H, 0H 			//0256 	2803
+		RET 					//0257 	1008
+		LDWI 	6H 			//0258 	0006
+		STR 	49H 			//0259 	10C9
+		BTSC 	42H, 7H 		//025A 	2BC2
+		BSR 	49H, 7H 			//025B 	27C9
+		BTSC 	45H, 7H 		//025C 	2BC5
+		BSR 	49H, 6H 			//025D 	2749
+		BSR 	41H, 7H 			//025E 	27C1
+		CLRF 	42H 			//025F 	11C2
+		BSR 	44H, 7H 			//0260 	27C4
+		CLRF 	45H 			//0261 	11C5
+		LDR 	4AH, 0H 			//0262 	184A
+		SUBWR 	4BH, 0H 		//0263 	124B
+		BTSC 	3H, 0H 			//0264 	2803
+		LJUMP 	27DH 			//0265 	3A7D
+		LSLF 	43H, 1H 		//0266 	05C3
+		RLR 	44H, 1H 			//0267 	1DC4
+		RLR 	45H, 1H 			//0268 	1DC5
+		DECR 	4AH, 1H 		//0269 	13CA
+		LDR 	4AH, 0H 			//026A 	184A
+		XORWR 	4BH, 0H 		//026B 	164B
+		BTSC 	3H, 2H 			//026C 	2903
+		LJUMP 	278H 			//026D 	3A78
+		DECR 	49H, 1H 		//026E 	13C9
+		LDR 	49H, 0H 			//026F 	1849
+		ANDWI 	7H 			//0270 	0907
+		BTSC 	3H, 2H 			//0271 	2903
+		LJUMP 	278H 			//0272 	3A78
+		LJUMP 	266H 			//0273 	3A66
+		LSRF 	42H, 1H 		//0274 	06C2
+		RRR 	41H, 1H 			//0275 	1CC1
+		RRR 	40H, 1H 			//0276 	1CC0
+		INCR 	4BH, 1H 		//0277 	1ACB
+		LDR 	4BH, 0H 			//0278 	184B
+		XORWR 	4AH, 0H 		//0279 	164A
+		BTSC 	3H, 2H 			//027A 	2903
+		LJUMP 	297H 			//027B 	3A97
+		LJUMP 	274H 			//027C 	3A74
+		LDR 	4BH, 0H 			//027D 	184B
+		SUBWR 	4AH, 0H 		//027E 	124A
+		BTSC 	3H, 0H 			//027F 	2803
+		LJUMP 	297H 			//0280 	3A97
+		LSLF 	40H, 1H 		//0281 	05C0
+		RLR 	41H, 1H 			//0282 	1DC1
+		RLR 	42H, 1H 			//0283 	1DC2
+		DECR 	4BH, 1H 		//0284 	13CB
+		LDR 	4AH, 0H 			//0285 	184A
+		XORWR 	4BH, 0H 		//0286 	164B
+		BTSC 	3H, 2H 			//0287 	2903
+		LJUMP 	293H 			//0288 	3A93
+		DECR 	49H, 1H 		//0289 	13C9
+		LDR 	49H, 0H 			//028A 	1849
+		ANDWI 	7H 			//028B 	0907
+		BTSC 	3H, 2H 			//028C 	2903
+		LJUMP 	293H 			//028D 	3A93
+		LJUMP 	281H 			//028E 	3A81
+		LSRF 	45H, 1H 		//028F 	06C5
+		RRR 	44H, 1H 			//0290 	1CC4
+		RRR 	43H, 1H 			//0291 	1CC3
+		INCR 	4AH, 1H 		//0292 	1ACA
+		LDR 	4BH, 0H 			//0293 	184B
+		XORWR 	4AH, 0H 		//0294 	164A
+		BTSS 	3H, 2H 			//0295 	2D03
+		LJUMP 	28FH 			//0296 	3A8F
+		BTSS 	49H, 7H 		//0297 	2FC9
+		LJUMP 	2A2H 			//0298 	3AA2
+		LDWI 	FFH 			//0299 	00FF
+		XORWR 	40H, 1H 		//029A 	16C0
+		XORWR 	41H, 1H 		//029B 	16C1
+		XORWR 	42H, 1H 		//029C 	16C2
+		INCR 	40H, 1H 		//029D 	1AC0
+		BTSC 	3H, 2H 			//029E 	2903
+		INCR 	41H, 1H 		//029F 	1AC1
+		BTSC 	3H, 2H 			//02A0 	2903
+		INCR 	42H, 1H 		//02A1 	1AC2
+		BTSS 	49H, 6H 		//02A2 	2F49
+		LJUMP 	2AAH 			//02A3 	3AAA
+		LCALL 	7E8H 			//02A4 	37E8
+		MOVLP 	2H 			//02A5 	0182
+		BTSC 	3H, 2H 			//02A6 	2903
+		INCR 	44H, 1H 		//02A7 	1AC4
+		BTSC 	3H, 2H 			//02A8 	2903
+		INCR 	45H, 1H 		//02A9 	1AC5
+		CLRF 	49H 			//02AA 	11C9
+		LDR 	40H, 0H 			//02AB 	1840
+		ADDWR 	43H, 1H 		//02AC 	17C3
+		LDR 	41H, 0H 			//02AD 	1841
+		ADDWFC 	44H, 1H 		//02AE 	0DC4
+		LDR 	42H, 0H 			//02AF 	1842
+		ADDWFC 	45H, 1H 		//02B0 	0DC5
+		BTSS 	45H, 7H 		//02B1 	2FC5
+		LJUMP 	2BBH 			//02B2 	3ABB
+		LCALL 	7E8H 			//02B3 	37E8
+		MOVLP 	2H 			//02B4 	0182
+		BTSC 	3H, 2H 			//02B5 	2903
+		INCR 	44H, 1H 		//02B6 	1AC4
+		BTSC 	3H, 2H 			//02B7 	2903
+		INCR 	45H, 1H 		//02B8 	1AC5
+		CLRF 	49H 			//02B9 	11C9
+		INCR 	49H, 1H 		//02BA 	1AC9
+		LDR 	43H, 0H 			//02BB 	1843
+		STR 	70H 			//02BC 	10F0
+		LDR 	44H, 0H 			//02BD 	1844
+		STR 	71H 			//02BE 	10F1
+		LDR 	45H, 0H 			//02BF 	1845
+		STR 	72H 			//02C0 	10F2
+		LDR 	4BH, 0H 			//02C1 	184B
+		STR 	73H 			//02C2 	10F3
+		LDR 	49H, 0H 			//02C3 	1849
+		STR 	74H 			//02C4 	10F4
+		LCALL 	6EFH 			//02C5 	36EF
+		LDR 	70H, 0H 			//02C6 	1870
+		MOVLB 	0H 			//02C7 	1020
+		STR 	40H 			//02C8 	10C0
+		LDR 	71H, 0H 			//02C9 	1871
+		STR 	41H 			//02CA 	10C1
+		LDR 	72H, 0H 			//02CB 	1872
+		STR 	42H 			//02CC 	10C2
+		RET 					//02CD 	1008
+
+		//;ADC.C: 198: POWER_INITIAL();
+		LCALL 	3DAH 			//02CE 	33DA
+		MOVLP 	2H 			//02CF 	0182
+
+		//;ADC.C: 199: UART_INITIAL();
+		LCALL 	400H 			//02D0 	3400
+		MOVLP 	2H 			//02D1 	0182
+
+		//;ADC.C: 200: ADC_INITIAL();
+		LCALL 	355H 			//02D2 	3355
+		MOVLP 	2H 			//02D3 	0182
+
+		//;ADC.C: 202: while(1)
+		//;ADC.C: 203: {
+		//;ADC.C: 204: int ADC=GET_ADC_DATA(4);
+		LDWI 	4H 			//02D4 	0004
+		LCALL 	3BAH 			//02D5 	33BA
+		MOVLP 	2H 			//02D6 	0182
+		LDR 	50H, 0H 			//02D7 	1850
+		MOVLB 	2H 			//02D8 	1022
+		STR 	58H 			//02D9 	10D8
+		MOVLB 	0H 			//02DA 	1020
+		LDR 	4FH, 0H 			//02DB 	184F
+		MOVLB 	2H 			//02DC 	1022
+		STR 	57H 			//02DD 	10D7
+
+		//;ADC.C: 205: float VOUT=(float)ADC*2/4096;
+		MOVLB 	0H 			//02DE 	1020
+		LDWI 	80H 			//02DF 	0080
+		CLRF 	35H 			//02E0 	11B5
+		STR 	36H 			//02E1 	10B6
+		LDWI 	45H 			//02E2 	0045
+		STR 	37H 			//02E3 	10B7
+		LDWI 	40H 			//02E4 	0040
+		CLRF 	26H 			//02E5 	11A6
+		CLRF 	27H 			//02E6 	11A7
+		STR 	28H 			//02E7 	10A8
+		MOVLB 	2H 			//02E8 	1022
+		LDR 	58H, 0H 			//02E9 	1858
+		MOVLB 	0H 			//02EA 	1020
+		STR 	21H 			//02EB 	10A1
+		MOVLB 	2H 			//02EC 	1022
+		LDR 	57H, 0H 			//02ED 	1857
+		MOVLB 	0H 			//02EE 	1020
+		STR 	20H 			//02EF 	10A0
+		LCALL 	39EH 			//02F0 	339E
+		MOVLP 	2H 			//02F1 	0182
+		LCALL 	7DAH 			//02F2 	37DA
+		MOVLP 	2H 			//02F3 	0182
+		LCALL 	662H 			//02F4 	3662
+		MOVLP 	2H 			//02F5 	0182
+		LDR 	26H, 0H 			//02F6 	1826
+		STR 	38H 			//02F7 	10B8
+		LDR 	27H, 0H 			//02F8 	1827
+		STR 	39H 			//02F9 	10B9
+		LDR 	28H, 0H 			//02FA 	1828
+		STR 	3AH 			//02FB 	10BA
+		LCALL 	40DH 			//02FC 	340D
+		MOVLP 	2H 			//02FD 	0182
+		LDR 	35H, 0H 			//02FE 	1835
+		MOVLB 	2H 			//02FF 	1022
+		STR 	52H 			//0300 	10D2
+		MOVLB 	0H 			//0301 	1020
+		LDR 	36H, 0H 			//0302 	1836
+		MOVLB 	2H 			//0303 	1022
+		STR 	53H 			//0304 	10D3
+		MOVLB 	0H 			//0305 	1020
+		LDR 	37H, 0H 			//0306 	1837
+		MOVLB 	2H 			//0307 	1022
+		STR 	54H 			//0308 	10D4
+
+		//;ADC.C: 206: char msgbuf[50] = "";
+		LDWI 	20H 			//0309 	0020
+		STR 	6H 			//030A 	1086
+		LDWI 	1H 			//030B 	0001
+		STR 	7H 			//030C 	1087
+		LDWI 	32H 			//030D 	0032
+		MOVLB 	0H 			//030E 	1020
+		STR 	61H 			//030F 	10E1
+		LDWI 	0H 			//0310 	0000
+		MOVWI 	FSR1++ 		//0311 	101E
+		DECRSZ 	61H, 1H 		//0312 	1BE1
+		LJUMP 	311H 			//0313 	3B11
+
+		//;ADC.C: 207: sprintf(msgbuf,"ADC:%d,VOUT:%0.2f\r\n",ADC,VOUT);
+		LDWI 	20H 			//0314 	0020
+		STR 	52H 			//0315 	10D2
+		LDWI 	1H 			//0316 	0001
+		STR 	53H 			//0317 	10D3
+		LDWI 	B7H 			//0318 	00B7
+		STR 	54H 			//0319 	10D4
+		LDWI 	90H 			//031A 	0090
+		STR 	55H 			//031B 	10D5
+		MOVLB 	2H 			//031C 	1022
+		LDR 	58H, 0H 			//031D 	1858
+		MOVLB 	0H 			//031E 	1020
+		STR 	57H 			//031F 	10D7
+		MOVLB 	2H 			//0320 	1022
+		LDR 	57H, 0H 			//0321 	1857
+		MOVLB 	0H 			//0322 	1020
+		STR 	56H 			//0323 	10D6
+		MOVLB 	2H 			//0324 	1022
+		LDR 	52H, 0H 			//0325 	1852
+		MOVLB 	0H 			//0326 	1020
+		STR 	58H 			//0327 	10D8
+		MOVLB 	2H 			//0328 	1022
+		LDR 	53H, 0H 			//0329 	1853
+		MOVLB 	0H 			//032A 	1020
+		STR 	59H 			//032B 	10D9
+		MOVLB 	2H 			//032C 	1022
+		LDR 	54H, 0H 			//032D 	1854
+		MOVLB 	0H 			//032E 	1020
+		STR 	5AH 			//032F 	10DA
+		MOVLP 	8H 			//0330 	0188
+		LCALL 	8AH 			//0331 	308A
+		MOVLP 	2H 			//0332 	0182
+
+		//;ADC.C: 208: int len = strlen(msgbuf);
+		LDWI 	20H 			//0333 	0020
+		STR 	70H 			//0334 	10F0
+		LDWI 	1H 			//0335 	0001
+		STR 	71H 			//0336 	10F1
+		LCALL 	4A7H 			//0337 	34A7
+		MOVLP 	2H 			//0338 	0182
+		LDR 	71H, 0H 			//0339 	1871
+		MOVLB 	2H 			//033A 	1022
+		STR 	56H 			//033B 	10D6
+		LDR 	70H, 0H 			//033C 	1870
+		STR 	55H 			//033D 	10D5
+
+		//;ADC.C: 209: send(msgbuf,len);
+		LDWI 	20H 			//033E 	0020
+		MOVLB 	0H 			//033F 	1020
+		STR 	54H 			//0340 	10D4
+		LDWI 	1H 			//0341 	0001
+		STR 	55H 			//0342 	10D5
+		MOVLB 	2H 			//0343 	1022
+		LDR 	56H, 0H 			//0344 	1856
+		MOVLB 	0H 			//0345 	1020
+		STR 	57H 			//0346 	10D7
+		MOVLB 	2H 			//0347 	1022
+		LDR 	55H, 0H 			//0348 	1855
+		MOVLB 	0H 			//0349 	1020
+		STR 	56H 			//034A 	10D6
+		LCALL 	484H 			//034B 	3484
+		MOVLP 	2H 			//034C 	0182
+
+		//;ADC.C: 210: DelayMs(100);
+		LDWI 	64H 			//034D 	0064
+		MOVLB 	0H 			//034E 	1020
+		STR 	4FH 			//034F 	10CF
+		CLRF 	50H 			//0350 	11D0
+		LCALL 	46AH 			//0351 	346A
+		MOVLP 	2H 			//0352 	0182
+
+		//;ADC.C: 211: __nop();
+		NOP 					//0353 	1000
+		LJUMP 	2D4H 			//0354 	3AD4
+
+		//;ADC.C: 97: ANSELA|=0B00111111;
+		LDWI 	3FH 			//0355 	003F
+		MOVLB 	3H 			//0356 	1023
+		IORWR 	17H, 1H 		//0357 	1497
+
+		//;ADC.C: 101: ADCON0=0B00000000;
+		MOVLB 	1H 			//0358 	1021
+		CLRF 	1DH 			//0359 	119D
+
+		//;ADC.C: 107: ADCON1=0B11100100;
+		LDWI 	E4H 			//035A 	00E4
+		STR 	1EH 			//035B 	109E
+
+		//;ADC.C: 113: ADCON2=0B01000000;
+		LDWI 	40H 			//035C 	0040
+		STR 	1FH 			//035D 	109F
+
+		//;ADC.C: 116: ADCON3=0B00000000;
+		MOVLB 	8H 			//035E 	1028
+		CLRF 	1AH 			//035F 	119A
+
+		//;ADC.C: 117: ADDLY=0B00000000;
+		MOVLB 	0H 			//0360 	1020
+		CLRF 	1FH 			//0361 	119F
+
+		//;ADC.C: 118: ADCMPH=0B00000000;
+		MOVLB 	8H 			//0362 	1028
+		CLRF 	1BH 			//0363 	119B
+
+		//;ADC.C: 119: ADON=1;
+		MOVLB 	1H 			//0364 	1021
+		BSR 	1DH, 0H 			//0365 	241D
+		RET 					//0366 	1008
+
+		//;ADC.C: 129: Time = (int)(Time/2*0.8);
+		LDR 	4BH, 0H 			//0367 	184B
+		STR 	79H 			//0368 	10F9
+		LDR 	4AH, 0H 			//0369 	184A
+		STR 	78H 			//036A 	10F8
+		LDWI 	2H 			//036B 	0002
+		STR 	76H 			//036C 	10F6
+		CLRF 	77H 			//036D 	11F7
+		MOVLP 	EH 			//036E 	018E
+		LCALL 	630H 			//036F 	3630
+		MOVLP 	2H 			//0370 	0182
+		LDR 	77H, 0H 			//0371 	1877
+		MOVLB 	0H 			//0372 	1020
+		STR 	21H 			//0373 	10A1
+		LDR 	76H, 0H 			//0374 	1876
+		STR 	20H 			//0375 	10A0
+		LCALL 	39EH 			//0376 	339E
+		MOVLP 	2H 			//0377 	0182
+		LCALL 	7DAH 			//0378 	37DA
+		MOVLP 	2H 			//0379 	0182
+		LDWI 	CDH 			//037A 	00CD
+		STR 	26H 			//037B 	10A6
+		LDWI 	4CH 			//037C 	004C
+		STR 	27H 			//037D 	10A7
+		LDWI 	3FH 			//037E 	003F
+		STR 	28H 			//037F 	10A8
+		LCALL 	662H 			//0380 	3662
+		MOVLP 	2H 			//0381 	0182
+		LCALL 	7B8H 			//0382 	37B8
+		MOVLP 	DH 			//0383 	018D
+		LCALL 	58EH 			//0384 	358E
+		MOVLP 	2H 			//0385 	0182
+		LDR 	3EH, 0H 			//0386 	183E
+		STR 	4BH 			//0387 	10CB
+		LDR 	3DH, 0H 			//0388 	183D
+		STR 	4AH 			//0389 	10CA
+
+		//;ADC.C: 130: for(int a=0;a<Time;a++)
+		CLRF 	4DH 			//038A 	11CD
+		CLRF 	4EH 			//038B 	11CE
+		LDR 	4EH, 0H 			//038C 	184E
+		XORWI 	80H 			//038D 	0A80
+		STR 	4CH 			//038E 	10CC
+		LDR 	4BH, 0H 			//038F 	184B
+		XORWI 	80H 			//0390 	0A80
+		SUBWR 	4CH, 0H 		//0391 	124C
+		BTSS 	3H, 2H 			//0392 	2D03
+		LJUMP 	396H 			//0393 	3B96
+		LDR 	4AH, 0H 			//0394 	184A
+		SUBWR 	4DH, 0H 		//0395 	124D
+		BTSC 	3H, 0H 			//0396 	2803
+		RET 					//0397 	1008
+
+		//;ADC.C: 131: {
+		//;ADC.C: 132: __nop();
+		NOP 					//0398 	1000
+		MOVLB 	0H 			//0399 	1020
+		INCR 	4DH, 1H 		//039A 	1ACD
+		BTSC 	3H, 2H 			//039B 	2903
+		INCR 	4EH, 1H 		//039C 	1ACE
+		LJUMP 	38CH 			//039D 	3B8C
+		CLRF 	23H 			//039E 	11A3
+		BTSS 	21H, 7H 		//039F 	2FA1
+		LJUMP 	3A8H 			//03A0 	3BA8
+		COMR 	20H, 1H 		//03A1 	19A0
+		COMR 	21H, 1H 		//03A2 	19A1
+		INCR 	20H, 1H 		//03A3 	1AA0
+		BTSC 	3H, 2H 			//03A4 	2903
+		INCR 	21H, 1H 		//03A5 	1AA1
+		CLRF 	23H 			//03A6 	11A3
+		INCR 	23H, 1H 		//03A7 	1AA3
+		LDR 	20H, 0H 			//03A8 	1820
+		STR 	70H 			//03A9 	10F0
+		LDR 	21H, 0H 			//03AA 	1821
+		STR 	71H 			//03AB 	10F1
+		LDWI 	8EH 			//03AC 	008E
+		CLRF 	72H 			//03AD 	11F2
+		STR 	73H 			//03AE 	10F3
+		LDR 	23H, 0H 			//03AF 	1823
+		STR 	74H 			//03B0 	10F4
+		LCALL 	6EFH 			//03B1 	36EF
+		LDR 	70H, 0H 			//03B2 	1870
+		MOVLB 	0H 			//03B3 	1020
+		STR 	20H 			//03B4 	10A0
+		LDR 	71H, 0H 			//03B5 	1871
+		STR 	21H 			//03B6 	10A1
+		LDR 	72H, 0H 			//03B7 	1872
+		STR 	22H 			//03B8 	10A2
+		RET 					//03B9 	1008
+		MOVLB 	0H 			//03BA 	1020
+		STR 	52H 			//03BB 	10D2
+
+		//;ADC.C: 156: ADCON0&=0B00001111;
+		LDWI 	FH 			//03BC 	000F
+		MOVLB 	1H 			//03BD 	1021
+		ANDWR 	1DH, 1H 		//03BE 	159D
+
+		//;ADC.C: 157: ADCON0|=adcChannel<<4;
+		MOVLB 	0H 			//03BF 	1020
+		SWAPR 	52H, 0H 		//03C0 	1E52
+		ANDWI 	F0H 			//03C1 	09F0
+		MOVLB 	1H 			//03C2 	1021
+		IORWR 	1DH, 1H 		//03C3 	149D
+
+		//;ADC.C: 158: DelayUs(100);
+		LDWI 	64H 			//03C4 	0064
+		MOVLB 	0H 			//03C5 	1020
+		STR 	4AH 			//03C6 	10CA
+		CLRF 	4BH 			//03C7 	11CB
+		LCALL 	367H 			//03C8 	3367
+		MOVLP 	2H 			//03C9 	0182
+
+		//;ADC.C: 159: GO=1;
+		MOVLB 	1H 			//03CA 	1021
+		BSR 	1DH, 1H 			//03CB 	249D
+
+		//;ADC.C: 160: __nop();
+		NOP 					//03CC 	1000
+
+		//;ADC.C: 161: __nop();
+		NOP 					//03CD 	1000
+
+		//;ADC.C: 162: while(GO);
+		MOVLB 	1H 			//03CE 	1021
+		BTSC 	1DH, 1H 		//03CF 	289D
+		LJUMP 	3CEH 			//03D0 	3BCE
+
+		//;ADC.C: 164: return (unsigned int)(ADRESH<<8|ADRESL);
+		LDR 	1CH, 0H 			//03D1 	181C
+		MOVLB 	0H 			//03D2 	1020
+		STR 	50H 			//03D3 	10D0
+		CLRF 	4FH 			//03D4 	11CF
+		MOVLB 	1H 			//03D5 	1021
+		LDR 	1BH, 0H 			//03D6 	181B
+		MOVLB 	0H 			//03D7 	1020
+		IORWR 	4FH, 1H 		//03D8 	14CF
+		RET 					//03D9 	1008
+
+		//;ADC.C: 40: OSCCON=0B01110001;
+		LDWI 	71H 			//03DA 	0071
+		MOVLB 	1H 			//03DB 	1021
+		STR 	19H 			//03DC 	1099
+
+		//;ADC.C: 42: PCKEN|=0B00000001;
+		BSR 	1AH, 0H 			//03DD 	241A
+
+		//;ADC.C: 44: INTCON=0;
+		CLRF 	BH 			//03DE 	118B
+
+		//;ADC.C: 46: PORTA=0B00000000;
+		MOVLB 	0H 			//03DF 	1020
+		CLRF 	CH 			//03E0 	118C
+
+		//;ADC.C: 47: PORTB=0B00000000;
+		CLRF 	DH 			//03E1 	118D
+
+		//;ADC.C: 48: PORTC=0B00000000;
+		CLRF 	EH 			//03E2 	118E
+
+		//;ADC.C: 50: WPUA=0B00000000;
+		MOVLB 	3H 			//03E3 	1023
+		CLRF 	CH 			//03E4 	118C
+
+		//;ADC.C: 51: WPUB=0B00000000;
+		CLRF 	DH 			//03E5 	118D
+
+		//;ADC.C: 52: WPUC=0B00000000;
+		CLRF 	EH 			//03E6 	118E
+
+		//;ADC.C: 54: WPDA=0B00000000;
+		MOVLB 	4H 			//03E7 	1024
+		CLRF 	CH 			//03E8 	118C
+
+		//;ADC.C: 55: WPDB=0B00000000;
+		CLRF 	DH 			//03E9 	118D
+
+		//;ADC.C: 56: WPDC=0B00000000;
+		CLRF 	EH 			//03EA 	118E
+
+		//;ADC.C: 58: TRISA=0B10111111;
+		LDWI 	BFH 			//03EB 	00BF
+		MOVLB 	1H 			//03EC 	1021
+		STR 	CH 			//03ED 	108C
+
+		//;ADC.C: 59: TRISB=0B11111111;
+		LDWI 	FFH 			//03EE 	00FF
+		STR 	DH 			//03EF 	108D
+
+		//;ADC.C: 60: TRISC=0B00000011;
+		LDWI 	3H 			//03F0 	0003
+		STR 	EH 			//03F1 	108E
+
+		//;ADC.C: 62: PSRC0=0B11111111;
+		LDWI 	FFH 			//03F2 	00FF
+		MOVLB 	2H 			//03F3 	1022
+		STR 	1AH 			//03F4 	109A
+
+		//;ADC.C: 63: PSRC1=0B11111111;
+		STR 	1BH 			//03F5 	109B
+
+		//;ADC.C: 64: PSRC2=0B00001111;
+		LDWI 	FH 			//03F6 	000F
+		STR 	1CH 			//03F7 	109C
+
+		//;ADC.C: 66: PSINK0=0B11111111;
+		LDWI 	FFH 			//03F8 	00FF
+		MOVLB 	3H 			//03F9 	1023
+		STR 	1AH 			//03FA 	109A
+
+		//;ADC.C: 67: PSINK1=0B11111111;
+		STR 	1BH 			//03FB 	109B
+
+		//;ADC.C: 68: PSINK2=0B00000011;
+		LDWI 	3H 			//03FC 	0003
+		STR 	1CH 			//03FD 	109C
+
+		//;ADC.C: 70: ANSELA=0B00000000;
+		CLRF 	17H 			//03FE 	1197
+		RET 					//03FF 	1008
+
+		//;ADC.C: 80: PCKEN|=0B00100000;
+		MOVLB 	1H 			//0400 	1021
+		BSR 	1AH, 5H 			//0401 	269A
+
+		//;ADC.C: 81: UR1IER=0B00000000;
+		MOVLB 	9H 			//0402 	1029
+		CLRF 	EH 			//0403 	118E
+
+		//;ADC.C: 82: UR1LCR=0B00000001;
+		LDWI 	1H 			//0404 	0001
+		STR 	FH 			//0405 	108F
+
+		//;ADC.C: 83: UR1MCR=0B00011000;
+		LDWI 	18H 			//0406 	0018
+		STR 	11H 			//0407 	1091
+
+		//;ADC.C: 85: UR1DLL=104;
+		LDWI 	68H 			//0408 	0068
+		STR 	14H 			//0409 	1094
+
+		//;ADC.C: 86: UR1DLH=0;
+		CLRF 	15H 			//040A 	1195
+
+		//;ADC.C: 87: UR1TCF=1;
+		BSR 	1CH, 0H 			//040B 	241C
+		RET 					//040C 	1008
+		LDR 	38H, 0H 			//040D 	1838
+		STR 	3BH 			//040E 	10BB
+		LDR 	39H, 0H 			//040F 	1839
+		STR 	3CH 			//0410 	10BC
+		LDR 	3AH, 0H 			//0411 	183A
+		STR 	3DH 			//0412 	10BD
+		BCR 	3H, 0H 			//0413 	2003
+		RLR 	3CH, 0H 			//0414 	1D3C
+		RLR 	3DH, 0H 			//0415 	1D3D
+		STR 	42H 			//0416 	10C2
+		LDR 	42H, 0H 			//0417 	1842
+		BTSS 	3H, 2H 			//0418 	2D03
+		LJUMP 	41BH 			//0419 	3C1B
+		LJUMP 	7F3H 			//041A 	3FF3
+		LDR 	35H, 0H 			//041B 	1835
+		STR 	3BH 			//041C 	10BB
+		LDR 	36H, 0H 			//041D 	1836
+		STR 	3CH 			//041E 	10BC
+		LDR 	37H, 0H 			//041F 	1837
+		STR 	3DH 			//0420 	10BD
+		BCR 	3H, 0H 			//0421 	2003
+		RLR 	3CH, 0H 			//0422 	1D3C
+		RLR 	3DH, 0H 			//0423 	1D3D
+		STR 	43H 			//0424 	10C3
+		LDR 	43H, 0H 			//0425 	1843
+		BTSS 	3H, 2H 			//0426 	2D03
+		LJUMP 	429H 			//0427 	3C29
+		LJUMP 	7F3H 			//0428 	3FF3
+		LDWI 	89H 			//0429 	0089
+		CLRF 	3FH 			//042A 	11BF
+		CLRF 	40H 			//042B 	11C0
+		CLRF 	41H 			//042C 	11C1
+		ADDWR 	43H, 0H 		//042D 	1743
+		STR 	3BH 			//042E 	10BB
+		SUBWR 	42H, 1H 		//042F 	12C2
+		LDR 	3AH, 0H 			//0430 	183A
+		STR 	43H 			//0431 	10C3
+		LDR 	37H, 0H 			//0432 	1837
+		XORWR 	43H, 1H 		//0433 	16C3
+		LDWI 	80H 			//0434 	0080
+		ANDWR 	43H, 1H 		//0435 	15C3
+		LDWI 	18H 			//0436 	0018
+		BSR 	39H, 7H 			//0437 	27B9
+		CLRF 	3AH 			//0438 	11BA
+		BSR 	36H, 7H 			//0439 	27B6
+		CLRF 	37H 			//043A 	11B7
+		STR 	3EH 			//043B 	10BE
+		LSLF 	3FH, 1H 		//043C 	05BF
+		RLR 	40H, 1H 			//043D 	1DC0
+		RLR 	41H, 1H 			//043E 	1DC1
+		LDR 	37H, 0H 			//043F 	1837
+		SUBWR 	3AH, 0H 		//0440 	123A
+		BTSS 	3H, 2H 			//0441 	2D03
+		LJUMP 	449H 			//0442 	3C49
+		LDR 	36H, 0H 			//0443 	1836
+		SUBWR 	39H, 0H 		//0444 	1239
+		BTSS 	3H, 2H 			//0445 	2D03
+		LJUMP 	449H 			//0446 	3C49
+		LDR 	35H, 0H 			//0447 	1835
+		SUBWR 	38H, 0H 		//0448 	1238
+		BTSS 	3H, 0H 			//0449 	2C03
+		LJUMP 	452H 			//044A 	3C52
+		LDR 	35H, 0H 			//044B 	1835
+		SUBWR 	38H, 1H 		//044C 	12B8
+		LDR 	36H, 0H 			//044D 	1836
+		SUBWFB 	39H, 1H 		//044E 	0BB9
+		LDR 	37H, 0H 			//044F 	1837
+		SUBWFB 	3AH, 1H 		//0450 	0BBA
+		BSR 	3FH, 0H 			//0451 	243F
+		LSLF 	38H, 1H 		//0452 	05B8
+		RLR 	39H, 1H 			//0453 	1DB9
+		RLR 	3AH, 1H 			//0454 	1DBA
+		DECRSZ 	3EH, 1H 		//0455 	1BBE
+		LJUMP 	43CH 			//0456 	3C3C
+		LDR 	3FH, 0H 			//0457 	183F
+		STR 	70H 			//0458 	10F0
+		LDR 	40H, 0H 			//0459 	1840
+		STR 	71H 			//045A 	10F1
+		LDR 	41H, 0H 			//045B 	1841
+		STR 	72H 			//045C 	10F2
+		LDR 	42H, 0H 			//045D 	1842
+		STR 	73H 			//045E 	10F3
+		LDR 	43H, 0H 			//045F 	1843
+		STR 	74H 			//0460 	10F4
+		LCALL 	6EFH 			//0461 	36EF
+		LDR 	70H, 0H 			//0462 	1870
+		MOVLB 	0H 			//0463 	1020
+		STR 	35H 			//0464 	10B5
+		LDR 	71H, 0H 			//0465 	1871
+		STR 	36H 			//0466 	10B6
+		LDR 	72H, 0H 			//0467 	1872
+		STR 	37H 			//0468 	10B7
+		RET 					//0469 	1008
+
+		//;ADC.C: 143: for(int a=0;a<Time;a++)
+		CLRF 	52H 			//046A 	11D2
+		CLRF 	53H 			//046B 	11D3
+		LDR 	53H, 0H 			//046C 	1853
+		XORWI 	80H 			//046D 	0A80
+		STR 	51H 			//046E 	10D1
+		LDR 	50H, 0H 			//046F 	1850
+		XORWI 	80H 			//0470 	0A80
+		SUBWR 	51H, 0H 		//0471 	1251
+		BTSS 	3H, 2H 			//0472 	2D03
+		LJUMP 	476H 			//0473 	3C76
+		LDR 	4FH, 0H 			//0474 	184F
+		SUBWR 	52H, 0H 		//0475 	1252
+		BTSC 	3H, 0H 			//0476 	2803
+		RET 					//0477 	1008
+
+		//;ADC.C: 144: {
+		//;ADC.C: 145: DelayUs(1000);
+		LDWI 	E8H 			//0478 	00E8
+		MOVLB 	0H 			//0479 	1020
+		STR 	4AH 			//047A 	10CA
+		LDWI 	3H 			//047B 	0003
+		STR 	4BH 			//047C 	10CB
+		LCALL 	367H 			//047D 	3367
+		MOVLP 	2H 			//047E 	0182
+		MOVLB 	0H 			//047F 	1020
+		INCR 	52H, 1H 		//0480 	1AD2
+		BTSC 	3H, 2H 			//0481 	2903
+		INCR 	53H, 1H 		//0482 	1AD3
+		LJUMP 	46CH 			//0483 	3C6C
+
+		//;ADC.C: 169: for(int i=0;i<len;i++)
+		CLRF 	59H 			//0484 	11D9
+		CLRF 	5AH 			//0485 	11DA
+		LDR 	5AH, 0H 			//0486 	185A
+		XORWI 	80H 			//0487 	0A80
+		STR 	58H 			//0488 	10D8
+		LDR 	57H, 0H 			//0489 	1857
+		XORWI 	80H 			//048A 	0A80
+		SUBWR 	58H, 0H 		//048B 	1258
+		BTSS 	3H, 2H 			//048C 	2D03
+		LJUMP 	490H 			//048D 	3C90
+		LDR 	56H, 0H 			//048E 	1856
+		SUBWR 	59H, 0H 		//048F 	1259
+		BTSC 	3H, 0H 			//0490 	2803
+		RET 					//0491 	1008
+
+		//;ADC.C: 170: {
+		//;ADC.C: 171: UR1DATAL=tbuf[i];
+		MOVLB 	0H 			//0492 	1020
+		LDR 	59H, 0H 			//0493 	1859
+		ADDWR 	54H, 0H 		//0494 	1754
+		STR 	6H 			//0495 	1086
+		LDR 	5AH, 0H 			//0496 	185A
+		ADDWFC 	55H, 0H 		//0497 	0D55
+		STR 	7H 			//0498 	1087
+		LDR 	1H, 0H 			//0499 	1801
+		MOVLB 	9H 			//049A 	1029
+		STR 	CH 			//049B 	108C
+
+		//;ADC.C: 172: DelayMs(1);
+		MOVLB 	0H 			//049C 	1020
+		CLRF 	4FH 			//049D 	11CF
+		INCR 	4FH, 1H 		//049E 	1ACF
+		CLRF 	50H 			//049F 	11D0
+		LCALL 	46AH 			//04A0 	346A
+		MOVLP 	2H 			//04A1 	0182
+		MOVLB 	0H 			//04A2 	1020
+		INCR 	59H, 1H 		//04A3 	1AD9
+		BTSC 	3H, 2H 			//04A4 	2903
+		INCR 	5AH, 1H 		//04A5 	1ADA
+		LJUMP 	486H 			//04A6 	3C86
+		LDR 	71H, 0H 			//04A7 	1871
+		STR 	73H 			//04A8 	10F3
+		LDR 	70H, 0H 			//04A9 	1870
+		STR 	72H 			//04AA 	10F2
+		LDR 	72H, 0H 			//04AB 	1872
+		STR 	6H 			//04AC 	1086
+		LDR 	73H, 0H 			//04AD 	1873
+		STR 	7H 			//04AE 	1087
+		LDR 	1H, 0H 			//04AF 	1801
+		BTSC 	3H, 2H 			//04B0 	2903
+		LJUMP 	4B6H 			//04B1 	3CB6
+		INCR 	72H, 1H 		//04B2 	1AF2
+		BTSC 	3H, 2H 			//04B3 	2903
+		INCR 	73H, 1H 		//04B4 	1AF3
+		LJUMP 	4ABH 			//04B5 	3CAB
+		LDR 	70H, 0H 			//04B6 	1870
+		SUBWR 	72H, 0H 		//04B7 	1272
+		STR 	70H 			//04B8 	10F0
+		LDR 	71H, 0H 			//04B9 	1871
+		SUBWFB 	73H, 0H 		//04BA 	0B73
+		STR 	71H 			//04BB 	10F1
+		RET 					//04BC 	1008
+		MOVLB 	0H 			//04BD 	1020
+		STR 	3FH 			//04BE 	10BF
+		LDWI 	6EH 			//04BF 	006E
+		SUBWR 	3FH, 0H 		//04C0 	123F
+		BTSS 	3H, 0H 			//04C1 	2C03
+		LJUMP 	508H 			//04C2 	3D08
+		LDWI 	AH 			//04C3 	000A
+		STR 	75H 			//04C4 	10F5
+		LDWI 	64H 			//04C5 	0064
+		STR 	70H 			//04C6 	10F0
+		LDR 	3FH, 0H 			//04C7 	183F
+		LCALL 	6D7H 			//04C8 	36D7
+		MOVLP 	2H 			//04C9 	0182
+		LCALL 	6BFH 			//04CA 	36BF
+		MOVLP 	2H 			//04CB 	0182
+		LCALL 	78AH 			//04CC 	378A
+		MOVLP 	2H 			//04CD 	0182
+		LCALL 	614H 			//04CE 	3614
+		MOVLP 	2H 			//04CF 	0182
+		LCALL 	75EH 			//04D0 	375E
+		MOVLP 	2H 			//04D1 	0182
+		LCALL 	73BH 			//04D2 	373B
+		MOVLP 	2H 			//04D3 	0182
+		LDWI 	64H 			//04D4 	0064
+		STR 	75H 			//04D5 	10F5
+		LDR 	3FH, 0H 			//04D6 	183F
+		LCALL 	6BFH 			//04D7 	36BF
+		MOVLP 	2H 			//04D8 	0182
+		LCALL 	78AH 			//04D9 	378A
+		MOVLP 	2H 			//04DA 	0182
+		LCALL 	614H 			//04DB 	3614
+		MOVLP 	2H 			//04DC 	0182
+		LCALL 	77BH 			//04DD 	377B
+		MOVLP 	2H 			//04DE 	0182
+		LCALL 	756H 			//04DF 	3756
+		MOVLP 	2H 			//04E0 	0182
+		LCALL 	662H 			//04E1 	3662
+		MOVLP 	2H 			//04E2 	0182
+		LCALL 	7C6H 			//04E3 	37C6
+		MOVLP 	2H 			//04E4 	0182
+		LDWI 	AH 			//04E5 	000A
+		STR 	70H 			//04E6 	10F0
+		LDR 	3FH, 0H 			//04E7 	183F
+		LCALL 	6D7H 			//04E8 	36D7
+		MOVLP 	2H 			//04E9 	0182
+		LCALL 	78AH 			//04EA 	378A
+		MOVLP 	2H 			//04EB 	0182
+		LCALL 	614H 			//04EC 	3614
+		MOVLP 	2H 			//04ED 	0182
+		LDR 	21H, 0H 			//04EE 	1821
+		LCALL 	72DH 			//04EF 	372D
+		MOVLP 	2H 			//04F0 	0182
+		LCALL 	7CDH 			//04F1 	37CD
+		MOVLP 	2H 			//04F2 	0182
+		LCALL 	662H 			//04F3 	3662
+		MOVLP 	2H 			//04F4 	0182
+		LDR 	26H, 0H 			//04F5 	1826
+		STR 	39H 			//04F6 	10B9
+		LDR 	27H, 0H 			//04F7 	1827
+		STR 	3AH 			//04F8 	10BA
+		LDR 	28H, 0H 			//04F9 	1828
+		STR 	3BH 			//04FA 	10BB
+		LDWI 	3FH 			//04FB 	003F
+		CLRF 	26H 			//04FC 	11A6
+		CLRF 	27H 			//04FD 	11A7
+		STR 	28H 			//04FE 	10A8
+		LDR 	39H, 0H 			//04FF 	1839
+		STR 	29H 			//0500 	10A9
+		LDR 	3AH, 0H 			//0501 	183A
+		STR 	2AH 			//0502 	10AA
+		LDR 	3BH, 0H 			//0503 	183B
+		STR 	2BH 			//0504 	10AB
+		LCALL 	662H 			//0505 	3662
+		MOVLP 	2H 			//0506 	0182
+		LJUMP 	7A4H 			//0507 	3FA4
+		LDWI 	BH 			//0508 	000B
+		SUBWR 	3FH, 0H 		//0509 	123F
+		BTSS 	3H, 0H 			//050A 	2C03
+		LJUMP 	532H 			//050B 	3D32
+		LDWI 	AH 			//050C 	000A
+		STR 	70H 			//050D 	10F0
+		LDR 	3FH, 0H 			//050E 	183F
+		LCALL 	6D7H 			//050F 	36D7
+		MOVLP 	2H 			//0510 	0182
+		LCALL 	78AH 			//0511 	378A
+		MOVLP 	2H 			//0512 	0182
+		LCALL 	614H 			//0513 	3614
+		MOVLP 	2H 			//0514 	0182
+		LDR 	21H, 0H 			//0515 	1821
+		LCALL 	72DH 			//0516 	372D
+		MOVLP 	2H 			//0517 	0182
+		LDWI 	AH 			//0518 	000A
+		STR 	75H 			//0519 	10F5
+		LDR 	3FH, 0H 			//051A 	183F
+		LCALL 	6BFH 			//051B 	36BF
+		MOVLP 	2H 			//051C 	0182
+		LCALL 	78AH 			//051D 	378A
+		MOVLP 	2H 			//051E 	0182
+		LCALL 	614H 			//051F 	3614
+		MOVLP 	2H 			//0520 	0182
+		LCALL 	75EH 			//0521 	375E
+		MOVLP 	2H 			//0522 	0182
+		LCALL 	756H 			//0523 	3756
+		MOVLP 	2H 			//0524 	0182
+		LCALL 	662H 			//0525 	3662
+		MOVLP 	2H 			//0526 	0182
+		LCALL 	7C6H 			//0527 	37C6
+		MOVLP 	2H 			//0528 	0182
+		LDWI 	3FH 			//0529 	003F
+		CLRF 	26H 			//052A 	11A6
+		CLRF 	27H 			//052B 	11A7
+		STR 	28H 			//052C 	10A8
+		LCALL 	7CDH 			//052D 	37CD
+		MOVLP 	2H 			//052E 	0182
+		LCALL 	662H 			//052F 	3662
+		MOVLP 	2H 			//0530 	0182
+		LJUMP 	7A4H 			//0531 	3FA4
+		LDWI 	3FH 			//0532 	003F
+		CLRF 	26H 			//0533 	11A6
+		CLRF 	27H 			//0534 	11A7
+		STR 	28H 			//0535 	10A8
+		LDR 	3FH, 0H 			//0536 	183F
+		LCALL 	78AH 			//0537 	378A
+		MOVLP 	2H 			//0538 	0182
+		LCALL 	614H 			//0539 	3614
+		MOVLP 	2H 			//053A 	0182
+		LCALL 	743H 			//053B 	3743
+		MOVLP 	2H 			//053C 	0182
+		STR 	29H 			//053D 	10A9
+		MOVIW 	1H[0] 			//053E 	0F01
+		STR 	2AH 			//053F 	10AA
+		MOVIW 	2H[0] 			//0540 	0F02
+		STR 	2BH 			//0541 	10AB
+		LCALL 	662H 			//0542 	3662
+		MOVLP 	2H 			//0543 	0182
+		LJUMP 	7A4H 			//0544 	3FA4
+		MOVLB 	0H 			//0545 	1020
+		STR 	3CH 			//0546 	10BC
+		BTSS 	3CH, 7H 		//0547 	2FBC
+		LJUMP 	5ABH 			//0548 	3DAB
+		COMR 	3CH, 1H 		//0549 	19BC
+		INCR 	3CH, 1H 		//054A 	1ABC
+		LDR 	3CH, 0H 			//054B 	183C
+		XORWI 	80H 			//054C 	0A80
+		ADDWI 	12H 			//054D 	0E12
+		BTSS 	3H, 0H 			//054E 	2C03
+		LJUMP 	583H 			//054F 	3D83
+		LCALL 	798H 			//0550 	3798
+		MOVLP 	2H 			//0551 	0182
+		LCALL 	629H 			//0552 	3629
+		MOVLP 	2H 			//0553 	0182
+		LCALL 	7EEH 			//0554 	37EE
+		MOVLP 	EH 			//0555 	018E
+		LCALL 	630H 			//0556 	3630
+		MOVLP 	2H 			//0557 	0182
+		LCALL 	74DH 			//0558 	374D
+		MOVLP 	2H 			//0559 	0182
+		LCALL 	614H 			//055A 	3614
+		MOVLP 	2H 			//055B 	0182
+		LCALL 	75EH 			//055C 	375E
+		MOVLP 	2H 			//055D 	0182
+		LCALL 	73BH 			//055E 	373B
+		MOVLP 	2H 			//055F 	0182
+		LDWI 	64H 			//0560 	0064
+		LCALL 	7B2H 			//0561 	37B2
+		BTSC 	78H, 7H 		//0562 	2BF8
+		DECR 	79H, 1H 		//0563 	13F9
+		MOVLP 	EH 			//0564 	018E
+		LCALL 	630H 			//0565 	3630
+		MOVLP 	2H 			//0566 	0182
+		LCALL 	74DH 			//0567 	374D
+		MOVLP 	2H 			//0568 	0182
+		LCALL 	614H 			//0569 	3614
+		MOVLP 	2H 			//056A 	0182
+		LCALL 	77BH 			//056B 	377B
+		MOVLP 	2H 			//056C 	0182
+		LCALL 	756H 			//056D 	3756
+		MOVLP 	2H 			//056E 	0182
+		LCALL 	662H 			//056F 	3662
+		MOVLP 	2H 			//0570 	0182
+		LCALL 	790H 			//0571 	3790
+		MOVLP 	2H 			//0572 	0182
+		LCALL 	773H 			//0573 	3773
+		MOVLP 	2H 			//0574 	0182
+		LCALL 	629H 			//0575 	3629
+		MOVLP 	2H 			//0576 	0182
+		LCALL 	782H 			//0577 	3782
+		MOVLP 	2H 			//0578 	0182
+		LCALL 	614H 			//0579 	3614
+		MOVLP 	2H 			//057A 	0182
+		LDR 	21H, 0H 			//057B 	1821
+		LCALL 	72DH 			//057C 	372D
+		MOVLP 	2H 			//057D 	0182
+		LCALL 	7E1H 			//057E 	37E1
+		MOVLP 	2H 			//057F 	0182
+		LCALL 	662H 			//0580 	3662
+		MOVLP 	2H 			//0581 	0182
+		LJUMP 	76CH 			//0582 	3F6C
+		LCALL 	7F7H 			//0583 	37F7
+		MOVLP 	2H 			//0584 	0182
+		BTSS 	3H, 0H 			//0585 	2C03
+		LJUMP 	5A4H 			//0586 	3DA4
+		LCALL 	773H 			//0587 	3773
+		MOVLP 	2H 			//0588 	0182
+		LCALL 	629H 			//0589 	3629
+		MOVLP 	2H 			//058A 	0182
+		LCALL 	782H 			//058B 	3782
+		MOVLP 	2H 			//058C 	0182
+		LCALL 	614H 			//058D 	3614
+		MOVLP 	2H 			//058E 	0182
+		LDR 	21H, 0H 			//058F 	1821
+		LCALL 	72DH 			//0590 	372D
+		MOVLP 	2H 			//0591 	0182
+		LDWI 	AH 			//0592 	000A
+		LCALL 	7B2H 			//0593 	37B2
+		BTSC 	78H, 7H 		//0594 	2BF8
+		DECR 	79H, 1H 		//0595 	13F9
+		MOVLP 	EH 			//0596 	018E
+		LCALL 	630H 			//0597 	3630
+		MOVLP 	2H 			//0598 	0182
+		LCALL 	74DH 			//0599 	374D
+		MOVLP 	2H 			//059A 	0182
+		LCALL 	614H 			//059B 	3614
+		MOVLP 	2H 			//059C 	0182
+		LCALL 	75EH 			//059D 	375E
+		MOVLP 	2H 			//059E 	0182
+		LCALL 	756H 			//059F 	3756
+		MOVLP 	2H 			//05A0 	0182
+		LCALL 	662H 			//05A1 	3662
+		MOVLP 	2H 			//05A2 	0182
+		LJUMP 	76CH 			//05A3 	3F6C
+		LCALL 	78AH 			//05A4 	378A
+		MOVLP 	2H 			//05A5 	0182
+		LCALL 	614H 			//05A6 	3614
+		MOVLP 	2H 			//05A7 	0182
+		LCALL 	743H 			//05A8 	3743
+		MOVLP 	2H 			//05A9 	0182
+		LJUMP 	7D4H 			//05AA 	3FD4
+		LDR 	3CH, 0H 			//05AB 	183C
+		XORWI 	80H 			//05AC 	0A80
+		ADDWI 	12H 			//05AD 	0E12
+		BTSS 	3H, 0H 			//05AE 	2C03
+		LJUMP 	5E9H 			//05AF 	3DE9
+		LCALL 	798H 			//05B0 	3798
+		MOVLP 	2H 			//05B1 	0182
+		LCALL 	629H 			//05B2 	3629
+		MOVLP 	2H 			//05B3 	0182
+		LCALL 	7EEH 			//05B4 	37EE
+		MOVLP 	EH 			//05B5 	018E
+		LCALL 	630H 			//05B6 	3630
+		MOVLP 	2H 			//05B7 	0182
+		LCALL 	74DH 			//05B8 	374D
+		MOVLP 	2H 			//05B9 	0182
+		LCALL 	614H 			//05BA 	3614
+		MOVLP 	2H 			//05BB 	0182
+		LCALL 	7ABH 			//05BC 	37AB
+		MOVLP 	2H 			//05BD 	0182
+		LCALL 	73BH 			//05BE 	373B
+		MOVLP 	2H 			//05BF 	0182
+		LDWI 	64H 			//05C0 	0064
+		LCALL 	7B2H 			//05C1 	37B2
+		BTSC 	78H, 7H 		//05C2 	2BF8
+		DECR 	79H, 1H 		//05C3 	13F9
+		MOVLP 	EH 			//05C4 	018E
+		LCALL 	630H 			//05C5 	3630
+		MOVLP 	2H 			//05C6 	0182
+		LCALL 	74DH 			//05C7 	374D
+		MOVLP 	2H 			//05C8 	0182
+		LCALL 	614H 			//05C9 	3614
+		MOVLP 	2H 			//05CA 	0182
+		LDR 	21H, 0H 			//05CB 	1821
+		STR 	5H 			//05CC 	1085
+		LDR 	20H, 0H 			//05CD 	1820
+		STR 	4H 			//05CE 	1084
+		LDWI 	9FH 			//05CF 	009F
+		ADDWR 	4H, 1H 		//05D0 	1784
+		LDWI 	90H 			//05D1 	0090
+		LCALL 	756H 			//05D2 	3756
+		MOVLP 	2H 			//05D3 	0182
+		LCALL 	662H 			//05D4 	3662
+		MOVLP 	2H 			//05D5 	0182
+		LCALL 	790H 			//05D6 	3790
+		MOVLP 	2H 			//05D7 	0182
+		LCALL 	773H 			//05D8 	3773
+		MOVLP 	2H 			//05D9 	0182
+		LCALL 	629H 			//05DA 	3629
+		MOVLP 	2H 			//05DB 	0182
+		LCALL 	782H 			//05DC 	3782
+		MOVLP 	2H 			//05DD 	0182
+		LCALL 	614H 			//05DE 	3614
+		MOVLP 	2H 			//05DF 	0182
+		LCALL 	765H 			//05E0 	3765
+		MOVLP 	2H 			//05E1 	0182
+		LCALL 	73BH 			//05E2 	373B
+		MOVLP 	2H 			//05E3 	0182
+		LCALL 	7E1H 			//05E4 	37E1
+		MOVLP 	2H 			//05E5 	0182
+		LCALL 	662H 			//05E6 	3662
+		MOVLP 	2H 			//05E7 	0182
+		LJUMP 	76CH 			//05E8 	3F6C
+		LCALL 	7F7H 			//05E9 	37F7
+		MOVLP 	2H 			//05EA 	0182
+		BTSS 	3H, 0H 			//05EB 	2C03
+		LJUMP 	60BH 			//05EC 	3E0B
+		LCALL 	773H 			//05ED 	3773
+		MOVLP 	2H 			//05EE 	0182
+		LCALL 	629H 			//05EF 	3629
+		MOVLP 	2H 			//05F0 	0182
+		LCALL 	782H 			//05F1 	3782
+		MOVLP 	2H 			//05F2 	0182
+		LCALL 	614H 			//05F3 	3614
+		MOVLP 	2H 			//05F4 	0182
+		LCALL 	765H 			//05F5 	3765
+		MOVLP 	2H 			//05F6 	0182
+		LCALL 	73BH 			//05F7 	373B
+		MOVLP 	2H 			//05F8 	0182
+		LDWI 	AH 			//05F9 	000A
+		LCALL 	7B2H 			//05FA 	37B2
+		BTSC 	78H, 7H 		//05FB 	2BF8
+		DECR 	79H, 1H 		//05FC 	13F9
+		MOVLP 	EH 			//05FD 	018E
+		LCALL 	630H 			//05FE 	3630
+		MOVLP 	2H 			//05FF 	0182
+		LCALL 	74DH 			//0600 	374D
+		MOVLP 	2H 			//0601 	0182
+		LCALL 	614H 			//0602 	3614
+		MOVLP 	2H 			//0603 	0182
+		LCALL 	7ABH 			//0604 	37AB
+		MOVLP 	2H 			//0605 	0182
+		LCALL 	756H 			//0606 	3756
+		MOVLP 	2H 			//0607 	0182
+		LCALL 	662H 			//0608 	3662
+		MOVLP 	2H 			//0609 	0182
+		LJUMP 	76CH 			//060A 	3F6C
+		LCALL 	78AH 			//060B 	378A
+		MOVLP 	2H 			//060C 	0182
+		LCALL 	614H 			//060D 	3614
+		MOVLP 	2H 			//060E 	0182
+		LCALL 	765H 			//060F 	3765
+		MOVLP 	2H 			//0610 	0182
+		ADDWFC 	5H, 1H 		//0611 	0D85
+		MOVIW 	0H[0] 			//0612 	0F00
+		LJUMP 	7D4H 			//0613 	3FD4
+		CLRF 	24H 			//0614 	11A4
+		CLRF 	25H 			//0615 	11A5
+		BTSS 	20H, 0H 		//0616 	2C20
+		LJUMP 	61CH 			//0617 	3E1C
+		LDR 	22H, 0H 			//0618 	1822
+		ADDWR 	24H, 1H 		//0619 	17A4
+		LDR 	23H, 0H 			//061A 	1823
+		ADDWFC 	25H, 1H 		//061B 	0DA5
+		LSLF 	22H, 1H 		//061C 	05A2
+		RLR 	23H, 1H 			//061D 	1DA3
+		LSRF 	21H, 1H 		//061E 	06A1
+		RRR 	20H, 1H 			//061F 	1CA0
+		LDR 	20H, 0H 			//0620 	1820
+		IORWR 	21H, 0H 		//0621 	1421
+		BTSS 	3H, 2H 			//0622 	2D03
+		LJUMP 	616H 			//0623 	3E16
+		LDR 	25H, 0H 			//0624 	1825
+		STR 	21H 			//0625 	10A1
+		LDR 	24H, 0H 			//0626 	1824
+		STR 	20H 			//0627 	10A0
+		RET 					//0628 	1008
+		CLRF 	75H 			//0629 	11F5
+		BTSS 	73H, 7H 		//062A 	2FF3
+		LJUMP 	633H 			//062B 	3E33
+		COMR 	72H, 1H 		//062C 	19F2
+		COMR 	73H, 1H 		//062D 	19F3
+		INCR 	72H, 1H 		//062E 	1AF2
+		BTSC 	3H, 2H 			//062F 	2903
+		INCR 	73H, 1H 		//0630 	1AF3
+		CLRF 	75H 			//0631 	11F5
+		INCR 	75H, 1H 		//0632 	1AF5
+		BTSS 	71H, 7H 		//0633 	2FF1
+		LJUMP 	63AH 			//0634 	3E3A
+		COMR 	70H, 1H 		//0635 	19F0
+		COMR 	71H, 1H 		//0636 	19F1
+		INCR 	70H, 1H 		//0637 	1AF0
+		BTSC 	3H, 2H 			//0638 	2903
+		INCR 	71H, 1H 		//0639 	1AF1
+		LDR 	70H, 0H 			//063A 	1870
+		IORWR 	71H, 0H 		//063B 	1471
+		BTSC 	3H, 2H 			//063C 	2903
+		LJUMP 	655H 			//063D 	3E55
+		CLRF 	74H 			//063E 	11F4
+		INCR 	74H, 1H 		//063F 	1AF4
+		BTSC 	71H, 7H 		//0640 	2BF1
+		LJUMP 	645H 			//0641 	3E45
+		LSLF 	70H, 1H 		//0642 	05F0
+		RLR 	71H, 1H 			//0643 	1DF1
+		LJUMP 	63FH 			//0644 	3E3F
+		LDR 	71H, 0H 			//0645 	1871
+		SUBWR 	73H, 0H 		//0646 	1273
+		BTSS 	3H, 2H 			//0647 	2D03
+		LJUMP 	64BH 			//0648 	3E4B
+		LDR 	70H, 0H 			//0649 	1870
+		SUBWR 	72H, 0H 		//064A 	1272
+		BTSS 	3H, 0H 			//064B 	2C03
+		LJUMP 	651H 			//064C 	3E51
+		LDR 	70H, 0H 			//064D 	1870
+		SUBWR 	72H, 1H 		//064E 	12F2
+		LDR 	71H, 0H 			//064F 	1871
+		SUBWFB 	73H, 1H 		//0650 	0BF3
+		LSRF 	71H, 1H 		//0651 	06F1
+		RRR 	70H, 1H 			//0652 	1CF0
+		DECRSZ 	74H, 1H 		//0653 	1BF4
+		LJUMP 	645H 			//0654 	3E45
+		LDR 	75H, 0H 			//0655 	1875
+		BTSC 	3H, 2H 			//0656 	2903
+		LJUMP 	65DH 			//0657 	3E5D
+		COMR 	72H, 1H 		//0658 	19F2
+		COMR 	73H, 1H 		//0659 	19F3
+		INCR 	72H, 1H 		//065A 	1AF2
+		BTSC 	3H, 2H 			//065B 	2903
+		INCR 	73H, 1H 		//065C 	1AF3
+		LDR 	73H, 0H 			//065D 	1873
+		STR 	71H 			//065E 	10F1
+		LDR 	72H, 0H 			//065F 	1872
+		STR 	70H 			//0660 	10F0
+		RET 					//0661 	1008
+		LDR 	26H, 0H 			//0662 	1826
+		STR 	2CH 			//0663 	10AC
+		LDR 	27H, 0H 			//0664 	1827
+		STR 	2DH 			//0665 	10AD
+		LDR 	28H, 0H 			//0666 	1828
+		STR 	2EH 			//0667 	10AE
+		BCR 	3H, 0H 			//0668 	2003
+		RLR 	2DH, 0H 			//0669 	1D2D
+		RLR 	2EH, 0H 			//066A 	1D2E
+		STR 	2FH 			//066B 	10AF
+		LDR 	2FH, 0H 			//066C 	182F
+		BTSS 	3H, 2H 			//066D 	2D03
+		LJUMP 	670H 			//066E 	3E70
+		LJUMP 	7FCH 			//066F 	3FFC
+		LDR 	29H, 0H 			//0670 	1829
+		STR 	2CH 			//0671 	10AC
+		LDR 	2AH, 0H 			//0672 	182A
+		STR 	2DH 			//0673 	10AD
+		LDR 	2BH, 0H 			//0674 	182B
+		STR 	2EH 			//0675 	10AE
+		BCR 	3H, 0H 			//0676 	2003
+		RLR 	2DH, 0H 			//0677 	1D2D
+		RLR 	2EH, 0H 			//0678 	1D2E
+		STR 	34H 			//0679 	10B4
+		LDR 	34H, 0H 			//067A 	1834
+		BTSS 	3H, 2H 			//067B 	2D03
+		LJUMP 	67EH 			//067C 	3E7E
+		LJUMP 	7FCH 			//067D 	3FFC
+		LDR 	34H, 0H 			//067E 	1834
+		ADDWI 	7BH 			//067F 	0E7B
+		ADDWR 	2FH, 1H 		//0680 	17AF
+		LDR 	28H, 0H 			//0681 	1828
+		STR 	34H 			//0682 	10B4
+		LDR 	2BH, 0H 			//0683 	182B
+		XORWR 	34H, 1H 		//0684 	16B4
+		LDWI 	80H 			//0685 	0080
+		ANDWR 	34H, 1H 		//0686 	15B4
+		LDWI 	FFH 			//0687 	00FF
+		BSR 	27H, 7H 			//0688 	27A7
+		BSR 	2AH, 7H 			//0689 	27AA
+		ANDWR 	29H, 1H 		//068A 	15A9
+		ANDWR 	2AH, 1H 		//068B 	15AA
+		LDWI 	7H 			//068C 	0007
+		CLRF 	2BH 			//068D 	11AB
+		CLRF 	30H 			//068E 	11B0
+		CLRF 	31H 			//068F 	11B1
+		CLRF 	32H 			//0690 	11B2
+		STR 	33H 			//0691 	10B3
+		BTSS 	26H, 0H 		//0692 	2C26
+		LJUMP 	696H 			//0693 	3E96
+		LCALL 	7BFH 			//0694 	37BF
+		MOVLP 	2H 			//0695 	0182
+		LSRF 	28H, 1H 		//0696 	06A8
+		RRR 	27H, 1H 			//0697 	1CA7
+		RRR 	26H, 1H 			//0698 	1CA6
+		LSLF 	29H, 1H 		//0699 	05A9
+		RLR 	2AH, 1H 			//069A 	1DAA
+		RLR 	2BH, 1H 			//069B 	1DAB
+		DECRSZ 	33H, 1H 		//069C 	1BB3
+		LJUMP 	692H 			//069D 	3E92
+		LDWI 	9H 			//069E 	0009
+		STR 	33H 			//069F 	10B3
+		BTSS 	26H, 0H 		//06A0 	2C26
+		LJUMP 	6A4H 			//06A1 	3EA4
+		LCALL 	7BFH 			//06A2 	37BF
+		MOVLP 	2H 			//06A3 	0182
+		LSRF 	28H, 1H 		//06A4 	06A8
+		RRR 	27H, 1H 			//06A5 	1CA7
+		RRR 	26H, 1H 			//06A6 	1CA6
+		LSRF 	32H, 1H 		//06A7 	06B2
+		RRR 	31H, 1H 			//06A8 	1CB1
+		RRR 	30H, 1H 			//06A9 	1CB0
+		DECRSZ 	33H, 1H 		//06AA 	1BB3
+		LJUMP 	6A0H 			//06AB 	3EA0
+		LDR 	30H, 0H 			//06AC 	1830
+		STR 	70H 			//06AD 	10F0
+		LDR 	31H, 0H 			//06AE 	1831
+		STR 	71H 			//06AF 	10F1
+		LDR 	32H, 0H 			//06B0 	1832
+		STR 	72H 			//06B1 	10F2
+		LDR 	2FH, 0H 			//06B2 	182F
+		STR 	73H 			//06B3 	10F3
+		LDR 	34H, 0H 			//06B4 	1834
+		STR 	74H 			//06B5 	10F4
+		LCALL 	6EFH 			//06B6 	36EF
+		LDR 	70H, 0H 			//06B7 	1870
+		MOVLB 	0H 			//06B8 	1020
+		STR 	26H 			//06B9 	10A6
+		LDR 	71H, 0H 			//06BA 	1871
+		STR 	27H 			//06BB 	10A7
+		LDR 	72H, 0H 			//06BC 	1872
+		STR 	28H 			//06BD 	10A8
+		RET 					//06BE 	1008
+		STR 	76H 			//06BF 	10F6
+		CLRF 	78H 			//06C0 	11F8
+		LDR 	75H, 0H 			//06C1 	1875
+		BTSC 	3H, 2H 			//06C2 	2903
+		LJUMP 	6D5H 			//06C3 	3ED5
+		CLRF 	77H 			//06C4 	11F7
+		INCR 	77H, 1H 		//06C5 	1AF7
+		BTSC 	75H, 7H 		//06C6 	2BF5
+		LJUMP 	6CAH 			//06C7 	3ECA
+		LSLF 	75H, 1H 		//06C8 	05F5
+		LJUMP 	6C5H 			//06C9 	3EC5
+		LSLF 	78H, 1H 		//06CA 	05F8
+		LDR 	75H, 0H 			//06CB 	1875
+		SUBWR 	76H, 0H 		//06CC 	1276
+		BTSS 	3H, 0H 			//06CD 	2C03
+		LJUMP 	6D2H 			//06CE 	3ED2
+		LDR 	75H, 0H 			//06CF 	1875
+		SUBWR 	76H, 1H 		//06D0 	12F6
+		BSR 	78H, 0H 			//06D1 	2478
+		LSRF 	75H, 1H 		//06D2 	06F5
+		DECRSZ 	77H, 1H 		//06D3 	1BF7
+		LJUMP 	6CAH 			//06D4 	3ECA
+		LDR 	78H, 0H 			//06D5 	1878
+		RET 					//06D6 	1008
+		STR 	72H 			//06D7 	10F2
+		LDWI 	8H 			//06D8 	0008
+		STR 	73H 			//06D9 	10F3
+		CLRF 	74H 			//06DA 	11F4
+		LDR 	72H, 0H 			//06DB 	1872
+		STR 	71H 			//06DC 	10F1
+		LDWI 	7H 			//06DD 	0007
+		LSRF 	71H, 1H 		//06DE 	06F1
+		DECRSZ 	9H, 1H 		//06DF 	1B89
+		LJUMP 	6DEH 			//06E0 	3EDE
+		LSLF 	74H, 0H 		//06E1 	0574
+		IORWR 	71H, 0H 		//06E2 	1471
+		STR 	74H 			//06E3 	10F4
+		LSLF 	72H, 1H 		//06E4 	05F2
+		LDR 	70H, 0H 			//06E5 	1870
+		SUBWR 	74H, 0H 		//06E6 	1274
+		BTSS 	3H, 0H 			//06E7 	2C03
+		LJUMP 	6EBH 			//06E8 	3EEB
+		LDR 	70H, 0H 			//06E9 	1870
+		SUBWR 	74H, 1H 		//06EA 	12F4
+		DECRSZ 	73H, 1H 		//06EB 	1BF3
+		LJUMP 	6DBH 			//06EC 	3EDB
+		LDR 	74H, 0H 			//06ED 	1874
+		RET 					//06EE 	1008
+		LDR 	73H, 0H 			//06EF 	1873
+		BTSC 	3H, 2H 			//06F0 	2903
+		LJUMP 	6F7H 			//06F1 	3EF7
+		LDR 	72H, 0H 			//06F2 	1872
+		IORWR 	71H, 0H 		//06F3 	1471
+		IORWR 	70H, 0H 		//06F4 	1470
+		BTSS 	3H, 2H 			//06F5 	2D03
+		LJUMP 	6FFH 			//06F6 	3EFF
+		CLRF 	70H 			//06F7 	11F0
+		CLRF 	71H 			//06F8 	11F1
+		CLRF 	72H 			//06F9 	11F2
+		RET 					//06FA 	1008
+		INCR 	73H, 1H 		//06FB 	1AF3
+		LSRF 	72H, 1H 		//06FC 	06F2
+		RRR 	71H, 1H 			//06FD 	1CF1
+		RRR 	70H, 1H 			//06FE 	1CF0
+		LDWI 	FEH 			//06FF 	00FE
+		ANDWR 	72H, 0H 		//0700 	1572
+		BTSC 	3H, 2H 			//0701 	2903
+		LJUMP 	70DH 			//0702 	3F0D
+		LJUMP 	6FBH 			//0703 	3EFB
+		INCR 	73H, 1H 		//0704 	1AF3
+		INCR 	70H, 1H 		//0705 	1AF0
+		BTSC 	3H, 2H 			//0706 	2903
+		INCR 	71H, 1H 		//0707 	1AF1
+		BTSC 	3H, 2H 			//0708 	2903
+		INCR 	72H, 1H 		//0709 	1AF2
+		LSRF 	72H, 1H 		//070A 	06F2
+		RRR 	71H, 1H 			//070B 	1CF1
+		RRR 	70H, 1H 			//070C 	1CF0
+		LDWI 	FFH 			//070D 	00FF
+		ANDWR 	72H, 0H 		//070E 	1572
+		BTSC 	3H, 2H 			//070F 	2903
+		LJUMP 	71AH 			//0710 	3F1A
+		LJUMP 	704H 			//0711 	3F04
+		LDWI 	2H 			//0712 	0002
+		SUBWR 	73H, 0H 		//0713 	1273
+		BTSS 	3H, 0H 			//0714 	2C03
+		LJUMP 	71CH 			//0715 	3F1C
+		DECR 	73H, 1H 		//0716 	13F3
+		LSLF 	70H, 1H 		//0717 	05F0
+		RLR 	71H, 1H 			//0718 	1DF1
+		RLR 	72H, 1H 			//0719 	1DF2
+		BTSS 	71H, 7H 		//071A 	2FF1
+		LJUMP 	712H 			//071B 	3F12
+		BTSS 	73H, 0H 		//071C 	2C73
+		BCR 	71H, 7H 			//071D 	23F1
+		LSRF 	73H, 1H 		//071E 	06F3
+		LDR 	73H, 0H 			//071F 	1873
+		STR 	77H 			//0720 	10F7
+		CLRF 	76H 			//0721 	11F6
+		CLRF 	75H 			//0722 	11F5
+		LDR 	75H, 0H 			//0723 	1875
+		IORWR 	70H, 1H 		//0724 	14F0
+		LDR 	76H, 0H 			//0725 	1876
+		IORWR 	71H, 1H 		//0726 	14F1
+		LDR 	77H, 0H 			//0727 	1877
+		IORWR 	72H, 1H 		//0728 	14F2
+		LDR 	74H, 0H 			//0729 	1874
+		BTSS 	3H, 2H 			//072A 	2D03
+		BSR 	72H, 7H 			//072B 	27F2
+		RET 					//072C 	1008
+		STR 	5H 			//072D 	1085
+		LDR 	20H, 0H 			//072E 	1820
+		STR 	4H 			//072F 	1084
+		LDWI 	90H 			//0730 	0090
+		ADDWR 	4H, 1H 		//0731 	1784
+		LDWI 	90H 			//0732 	0090
+		ADDWFC 	5H, 1H 		//0733 	0D85
+		MOVIW 	0H[0] 			//0734 	0F00
+		STR 	26H 			//0735 	10A6
+		MOVIW 	1H[0] 			//0736 	0F01
+		STR 	27H 			//0737 	10A7
+		MOVIW 	2H[0] 			//0738 	0F02
+		STR 	28H 			//0739 	10A8
+		RET 					//073A 	1008
+		ADDWFC 	5H, 1H 		//073B 	0D85
+		MOVIW 	0H[0] 			//073C 	0F00
+		STR 	26H 			//073D 	10A6
+		MOVIW 	1H[0] 			//073E 	0F01
+		STR 	27H 			//073F 	10A7
+		MOVIW 	2H[0] 			//0740 	0F02
+		STR 	28H 			//0741 	10A8
+		RET 					//0742 	1008
+		LDR 	21H, 0H 			//0743 	1821
+		STR 	5H 			//0744 	1085
+		LDR 	20H, 0H 			//0745 	1820
+		STR 	4H 			//0746 	1084
+		LDWI 	90H 			//0747 	0090
+		ADDWR 	4H, 1H 		//0748 	1784
+		LDWI 	90H 			//0749 	0090
+		ADDWFC 	5H, 1H 		//074A 	0D85
+		MOVIW 	0H[0] 			//074B 	0F00
+		RET 					//074C 	1008
+		LDR 	77H, 0H 			//074D 	1877
+		MOVLB 	0H 			//074E 	1020
+		STR 	21H 			//074F 	10A1
+		LDR 	76H, 0H 			//0750 	1876
+		STR 	20H 			//0751 	10A0
+		LDWI 	3H 			//0752 	0003
+		STR 	22H 			//0753 	10A2
+		CLRF 	23H 			//0754 	11A3
+		RET 					//0755 	1008
+		ADDWFC 	5H, 1H 		//0756 	0D85
+		MOVIW 	0H[0] 			//0757 	0F00
+		STR 	29H 			//0758 	10A9
+		MOVIW 	1H[0] 			//0759 	0F01
+		STR 	2AH 			//075A 	10AA
+		MOVIW 	2H[0] 			//075B 	0F02
+		STR 	2BH 			//075C 	10AB
+		RET 					//075D 	1008
+		LDR 	21H, 0H 			//075E 	1821
+		STR 	5H 			//075F 	1085
+		LDR 	20H, 0H 			//0760 	1820
+		STR 	4H 			//0761 	1084
+		LDWI 	ABH 			//0762 	00AB
+		ADDWR 	4H, 1H 		//0763 	1784
+		RETW 	90H 			//0764 	0490
+		LDR 	21H, 0H 			//0765 	1821
+		STR 	5H 			//0766 	1085
+		LDR 	20H, 0H 			//0767 	1820
+		STR 	4H 			//0768 	1084
+		LDWI 	69H 			//0769 	0069
+		ADDWR 	4H, 1H 		//076A 	1784
+		RETW 	90H 			//076B 	0490
+		LDR 	26H, 0H 			//076C 	1826
+		STR 	35H 			//076D 	10B5
+		LDR 	27H, 0H 			//076E 	1827
+		STR 	36H 			//076F 	10B6
+		LDR 	28H, 0H 			//0770 	1828
+		STR 	37H 			//0771 	10B7
+		RET 					//0772 	1008
+		STR 	72H 			//0773 	10F2
+		CLRF 	73H 			//0774 	11F3
+		BTSC 	72H, 7H 		//0775 	2BF2
+		DECR 	73H, 1H 		//0776 	13F3
+		LDWI 	AH 			//0777 	000A
+		STR 	70H 			//0778 	10F0
+		CLRF 	71H 			//0779 	11F1
+		RET 					//077A 	1008
+		LDR 	21H, 0H 			//077B 	1821
+		STR 	5H 			//077C 	1085
+		LDR 	20H, 0H 			//077D 	1820
+		STR 	4H 			//077E 	1084
+		LDWI 	C6H 			//077F 	00C6
+		ADDWR 	4H, 1H 		//0780 	1784
+		RETW 	90H 			//0781 	0490
+		LDR 	71H, 0H 			//0782 	1871
+		STR 	21H 			//0783 	10A1
+		LDR 	70H, 0H 			//0784 	1870
+		STR 	20H 			//0785 	10A0
+		LDWI 	3H 			//0786 	0003
+		STR 	22H 			//0787 	10A2
+		CLRF 	23H 			//0788 	11A3
+		RET 					//0789 	1008
+		STR 	20H 			//078A 	10A0
+		LDWI 	3H 			//078B 	0003
+		CLRF 	21H 			//078C 	11A1
+		STR 	22H 			//078D 	10A2
+		CLRF 	23H 			//078E 	11A3
+		RET 					//078F 	1008
+		LDR 	26H, 0H 			//0790 	1826
+		STR 	39H 			//0791 	10B9
+		LDR 	27H, 0H 			//0792 	1827
+		STR 	3AH 			//0793 	10BA
+		LDR 	28H, 0H 			//0794 	1828
+		STR 	3BH 			//0795 	10BB
+		LDR 	3CH, 0H 			//0796 	183C
+		RET 					//0797 	1008
+		LDWI 	AH 			//0798 	000A
+		STR 	76H 			//0799 	10F6
+		CLRF 	77H 			//079A 	11F7
+		LDR 	3CH, 0H 			//079B 	183C
+		STR 	72H 			//079C 	10F2
+		CLRF 	73H 			//079D 	11F3
+		BTSC 	72H, 7H 		//079E 	2BF2
+		DECR 	73H, 1H 		//079F 	13F3
+		LDWI 	64H 			//07A0 	0064
+		STR 	70H 			//07A1 	10F0
+		CLRF 	71H 			//07A2 	11F1
+		RET 					//07A3 	1008
+		LDR 	26H, 0H 			//07A4 	1826
+		STR 	35H 			//07A5 	10B5
+		LDR 	27H, 0H 			//07A6 	1827
+		STR 	36H 			//07A7 	10B6
+		LDR 	28H, 0H 			//07A8 	1828
+		STR 	37H 			//07A9 	10B7
+		RET 					//07AA 	1008
+		LDR 	21H, 0H 			//07AB 	1821
+		STR 	5H 			//07AC 	1085
+		LDR 	20H, 0H 			//07AD 	1820
+		STR 	4H 			//07AE 	1084
+		LDWI 	84H 			//07AF 	0084
+		ADDWR 	4H, 1H 		//07B0 	1784
+		RETW 	90H 			//07B1 	0490
+		STR 	76H 			//07B2 	10F6
+		CLRF 	77H 			//07B3 	11F7
+		LDR 	3CH, 0H 			//07B4 	183C
+		STR 	78H 			//07B5 	10F8
+		CLRF 	79H 			//07B6 	11F9
+		RET 					//07B7 	1008
+		LDR 	26H, 0H 			//07B8 	1826
+		STR 	3DH 			//07B9 	10BD
+		LDR 	27H, 0H 			//07BA 	1827
+		STR 	3EH 			//07BB 	10BE
+		LDR 	28H, 0H 			//07BC 	1828
+		STR 	3FH 			//07BD 	10BF
+		RET 					//07BE 	1008
+		LDR 	29H, 0H 			//07BF 	1829
+		ADDWR 	30H, 1H 		//07C0 	17B0
+		LDR 	2AH, 0H 			//07C1 	182A
+		ADDWFC 	31H, 1H 		//07C2 	0DB1
+		LDR 	2BH, 0H 			//07C3 	182B
+		ADDWFC 	32H, 1H 		//07C4 	0DB2
+		RET 					//07C5 	1008
+		LDR 	26H, 0H 			//07C6 	1826
+		STR 	3CH 			//07C7 	10BC
+		LDR 	27H, 0H 			//07C8 	1827
+		STR 	3DH 			//07C9 	10BD
+		LDR 	28H, 0H 			//07CA 	1828
+		STR 	3EH 			//07CB 	10BE
+		RET 					//07CC 	1008
+		LDR 	3CH, 0H 			//07CD 	183C
+		STR 	29H 			//07CE 	10A9
+		LDR 	3DH, 0H 			//07CF 	183D
+		STR 	2AH 			//07D0 	10AA
+		LDR 	3EH, 0H 			//07D1 	183E
+		STR 	2BH 			//07D2 	10AB
+		RET 					//07D3 	1008
+		STR 	35H 			//07D4 	10B5
+		MOVIW 	1H[0] 			//07D5 	0F01
+		STR 	36H 			//07D6 	10B6
+		MOVIW 	2H[0] 			//07D7 	0F02
+		STR 	37H 			//07D8 	10B7
+		RET 					//07D9 	1008
+		LDR 	20H, 0H 			//07DA 	1820
+		STR 	29H 			//07DB 	10A9
+		LDR 	21H, 0H 			//07DC 	1821
+		STR 	2AH 			//07DD 	10AA
+		LDR 	22H, 0H 			//07DE 	1822
+		STR 	2BH 			//07DF 	10AB
+		RET 					//07E0 	1008
+		LDR 	39H, 0H 			//07E1 	1839
+		STR 	29H 			//07E2 	10A9
+		LDR 	3AH, 0H 			//07E3 	183A
+		STR 	2AH 			//07E4 	10AA
+		LDR 	3BH, 0H 			//07E5 	183B
+		STR 	2BH 			//07E6 	10AB
+		RET 					//07E7 	1008
+		LDWI 	FFH 			//07E8 	00FF
+		XORWR 	43H, 1H 		//07E9 	16C3
+		XORWR 	44H, 1H 		//07EA 	16C4
+		XORWR 	45H, 1H 		//07EB 	16C5
+		INCR 	43H, 1H 		//07EC 	1AC3
+		RET 					//07ED 	1008
+		LDR 	71H, 0H 			//07EE 	1871
+		STR 	79H 			//07EF 	10F9
+		LDR 	70H, 0H 			//07F0 	1870
+		STR 	78H 			//07F1 	10F8
+		RET 					//07F2 	1008
+		CLRF 	35H 			//07F3 	11B5
+		CLRF 	36H 			//07F4 	11B6
+		CLRF 	37H 			//07F5 	11B7
+		RET 					//07F6 	1008
+		LDR 	3CH, 0H 			//07F7 	183C
+		XORWI 	80H 			//07F8 	0A80
+		ADDWI 	75H 			//07F9 	0E75
+		LDR 	3CH, 0H 			//07FA 	183C
+		RET 					//07FB 	1008
+		CLRF 	26H 			//07FC 	11A6
+		CLRF 	27H 			//07FD 	11A7
+		CLRF 	28H 			//07FE 	11A8
+		ORG		07FFH
+		RET 					//07FF 	1008
+		ORG		088AH
+		LDWI 	56H 			//088A 	0056
+		MOVLB 	1H 			//088B 	1021
+		STR 	23H 			//088C 	10A3
+		LCALL 	6F4H 			//088D 	36F4
+		MOVLP 	8H 			//088E 	0188
+		LDR 	37H, 0H 			//088F 	1837
+		BTSC 	3H, 2H 			//0890 	2903
+		LJUMP 	529H 			//0891 	3D29
+		LDWI 	25H 			//0892 	0025
+		XORWR 	37H, 0H 		//0893 	1637
+		BTSC 	3H, 2H 			//0894 	2903
+		LJUMP 	A0H 			//0895 	38A0
+		LCALL 	6CEH 			//0896 	36CE
+		MOVLP 	8H 			//0897 	0188
+		MOVLB 	1H 			//0898 	1021
+		LDR 	37H, 0H 			//0899 	1837
+		STR 	1H 			//089A 	1081
+		MOVLB 	0H 			//089B 	1020
+		INCR 	52H, 1H 		//089C 	1AD2
+		BTSC 	3H, 2H 			//089D 	2903
+		INCR 	53H, 1H 		//089E 	1AD3
+		LJUMP 	8DH 			//089F 	388D
+		CLRF 	30H 			//08A0 	11B0
+		CLRF 	31H 			//08A1 	11B1
+		CLRF 	2CH 			//08A2 	11AC
+		CLRF 	2DH 			//08A3 	11AD
+		LJUMP 	ABH 			//08A4 	38AB
+		MOVLB 	1H 			//08A5 	1021
+		BSR 	2CH, 2H 			//08A6 	252C
+		MOVLB 	0H 			//08A7 	1020
+		INCR 	54H, 1H 		//08A8 	1AD4
+		BTSC 	3H, 2H 			//08A9 	2903
+		INCR 	55H, 1H 		//08AA 	1AD5
+		MOVLB 	0H 			//08AB 	1020
+		LCALL 	732H 			//08AC 	3732
+		MOVLP 	8H 			//08AD 	0188
+		XORWI 	30H 			//08AE 	0A30
+		BTSC 	3H, 2H 			//08AF 	2903
+		LJUMP 	A5H 			//08B0 	38A5
+		LJUMP 	B2H 			//08B1 	38B2
+		LCALL 	732H 			//08B2 	3732
+		MOVLP 	8H 			//08B3 	0188
+		LCALL 	622H 			//08B4 	3622
+		MOVLP 	8H 			//08B5 	0188
+		BTSS 	3H, 0H 			//08B6 	2C03
+		LJUMP 	EBH 			//08B7 	38EB
+		MOVLB 	1H 			//08B8 	1021
+		CLRF 	30H 			//08B9 	11B0
+		CLRF 	31H 			//08BA 	11B1
+		LDWI 	AH 			//08BB 	000A
+		MOVLB 	0H 			//08BC 	1020
+		STR 	20H 			//08BD 	10A0
+		CLRF 	21H 			//08BE 	11A1
+		MOVLB 	1H 			//08BF 	1021
+		LDR 	31H, 0H 			//08C0 	1831
+		MOVLB 	0H 			//08C1 	1020
+		STR 	23H 			//08C2 	10A3
+		MOVLB 	1H 			//08C3 	1021
+		LDR 	30H, 0H 			//08C4 	1830
+		MOVLB 	0H 			//08C5 	1020
+		STR 	22H 			//08C6 	10A2
+		MOVLP 	6H 			//08C7 	0186
+		LCALL 	614H 			//08C8 	3614
+		MOVLP 	8H 			//08C9 	0188
+		LDR 	21H, 0H 			//08CA 	1821
+		MOVLB 	1H 			//08CB 	1021
+		STR 	31H 			//08CC 	10B1
+		MOVLB 	0H 			//08CD 	1020
+		LDR 	20H, 0H 			//08CE 	1820
+		MOVLB 	1H 			//08CF 	1021
+		STR 	30H 			//08D0 	10B0
+		MOVLB 	0H 			//08D1 	1020
+		LCALL 	732H 			//08D2 	3732
+		MOVLP 	8H 			//08D3 	0188
+		ADDWI 	D0H 			//08D4 	0ED0
+		STR 	5BH 			//08D5 	10DB
+		LDWI 	FFH 			//08D6 	00FF
+		BTSC 	3H, 0H 			//08D7 	2803
+		LDWI 	0H 			//08D8 	0000
+		STR 	5CH 			//08D9 	10DC
+		LDR 	5BH, 0H 			//08DA 	185B
+		MOVLB 	1H 			//08DB 	1021
+		ADDWR 	30H, 1H 		//08DC 	17B0
+		MOVLB 	0H 			//08DD 	1020
+		LDR 	5CH, 0H 			//08DE 	185C
+		MOVLB 	1H 			//08DF 	1021
+		ADDWFC 	31H, 1H 		//08E0 	0DB1
+		MOVLB 	0H 			//08E1 	1020
+		INCR 	54H, 1H 		//08E2 	1AD4
+		BTSC 	3H, 2H 			//08E3 	2903
+		INCR 	55H, 1H 		//08E4 	1AD5
+		LCALL 	732H 			//08E5 	3732
+		MOVLP 	8H 			//08E6 	0188
+		LCALL 	622H 			//08E7 	3622
+		MOVLP 	8H 			//08E8 	0188
+		BTSC 	3H, 0H 			//08E9 	2803
+		LJUMP 	BBH 			//08EA 	38BB
+		LDR 	54H, 0H 			//08EB 	1854
+		STR 	4H 			//08EC 	1084
+		LDR 	55H, 0H 			//08ED 	1855
+		STR 	5H 			//08EE 	1085
+		MOVIW 	FSR0++ 		//08EF 	1012
+		XORWI 	2EH 			//08F0 	0A2E
+		BTSS 	3H, 2H 			//08F1 	2D03
+		LJUMP 	128H 			//08F2 	3928
+		MOVLB 	1H 			//08F3 	1021
+		BSR 	2DH, 6H 			//08F4 	272D
+		MOVLB 	0H 			//08F5 	1020
+		INCR 	54H, 1H 		//08F6 	1AD4
+		BTSC 	3H, 2H 			//08F7 	2903
+		INCR 	55H, 1H 		//08F8 	1AD5
+		MOVLB 	1H 			//08F9 	1021
+		CLRF 	35H 			//08FA 	11B5
+		CLRF 	36H 			//08FB 	11B6
+		MOVLB 	0H 			//08FC 	1020
+		LCALL 	732H 			//08FD 	3732
+		MOVLP 	8H 			//08FE 	0188
+		LCALL 	622H 			//08FF 	3622
+		MOVLP 	8H 			//0900 	0188
+		BTSS 	3H, 0H 			//0901 	2C03
+		LJUMP 	12FH 			//0902 	392F
+		LCALL 	732H 			//0903 	3732
+		STR 	5BH 			//0904 	10DB
+		CLRF 	5CH 			//0905 	11DC
+		MOVLB 	1H 			//0906 	1021
+		LDR 	36H, 0H 			//0907 	1836
+		MOVLB 	0H 			//0908 	1020
+		STR 	21H 			//0909 	10A1
+		MOVLB 	1H 			//090A 	1021
+		LDR 	35H, 0H 			//090B 	1835
+		MOVLB 	0H 			//090C 	1020
+		STR 	20H 			//090D 	10A0
+		LDWI 	AH 			//090E 	000A
+		STR 	22H 			//090F 	10A2
+		CLRF 	23H 			//0910 	11A3
+		MOVLP 	6H 			//0911 	0186
+		LCALL 	614H 			//0912 	3614
+		MOVLP 	8H 			//0913 	0188
+		LDR 	5BH, 0H 			//0914 	185B
+		ADDWR 	20H, 0H 		//0915 	1720
+		STR 	5DH 			//0916 	10DD
+		LDR 	5CH, 0H 			//0917 	185C
+		ADDWFC 	21H, 0H 		//0918 	0D21
+		STR 	5EH 			//0919 	10DE
+		LDR 	5DH, 0H 			//091A 	185D
+		ADDWI 	D0H 			//091B 	0ED0
+		MOVLB 	1H 			//091C 	1021
+		STR 	35H 			//091D 	10B5
+		LDWI 	FFH 			//091E 	00FF
+		MOVLB 	0H 			//091F 	1020
+		ADDWFC 	5EH, 0H 		//0920 	0D5E
+		MOVLB 	1H 			//0921 	1021
+		STR 	36H 			//0922 	10B6
+		MOVLB 	0H 			//0923 	1020
+		INCR 	54H, 1H 		//0924 	1AD4
+		BTSC 	3H, 2H 			//0925 	2903
+		INCR 	55H, 1H 		//0926 	1AD5
+		LJUMP 	FCH 			//0927 	38FC
+		MOVLB 	1H 			//0928 	1021
+		CLRF 	35H 			//0929 	11B5
+		CLRF 	36H 			//092A 	11B6
+		BSR 	2DH, 4H 			//092B 	262D
+		LJUMP 	12FH 			//092C 	392F
+		BSR 	2DH, 2H 			//092D 	252D
+		LJUMP 	13EH 			//092E 	393E
+		LCALL 	6F4H 			//092F 	36F4
+		MOVLP 	8H 			//0930 	0188
+		XORWI 	0H 			//0931 	0A00
+		BTSC 	3H, 2H 			//0932 	2903
+		LJUMP 	529H 			//0933 	3D29
+		XORWI 	64H 			//0934 	0A64
+		BTSC 	3H, 2H 			//0935 	2903
+		LJUMP 	13EH 			//0936 	393E
+		XORWI 	2H 			//0937 	0A02
+		BTSC 	3H, 2H 			//0938 	2903
+		LJUMP 	12DH 			//0939 	392D
+		XORWI 	FH 			//093A 	0A0F
+		BTSC 	3H, 2H 			//093B 	2903
+		LJUMP 	13EH 			//093C 	393E
+		LJUMP 	8DH 			//093D 	388D
+		MOVLB 	0H 			//093E 	1020
+		LDWI 	7H 			//093F 	0007
+		CLRF 	5BH 			//0940 	11DB
+		MOVLB 	1H 			//0941 	1021
+		ANDWR 	2DH, 0H 		//0942 	152D
+		MOVLB 	0H 			//0943 	1020
+		STR 	5CH 			//0944 	10DC
+		IORWR 	5BH, 0H 		//0945 	145B
+		BTSC 	3H, 2H 			//0946 	2903
+		LJUMP 	3FFH 			//0947 	3BFF
+		MOVLB 	1H 			//0948 	1021
+		BTSS 	2DH, 4H 		//0949 	2E2D
+		LJUMP 	14EH 			//094A 	394E
+		LDWI 	6H 			//094B 	0006
+		STR 	35H 			//094C 	10B5
+		CLRF 	36H 			//094D 	11B6
+		LDR 	23H, 0H 			//094E 	1823
+		STR 	6H 			//094F 	1086
+		CLRF 	7H 			//0950 	1187
+		MOVIW 	0H[1] 			//0951 	0F40
+		STR 	32H 			//0952 	10B2
+		MOVIW 	1H[1] 			//0953 	0F41
+		STR 	33H 			//0954 	10B3
+		MOVIW 	2H[1] 			//0955 	0F42
+		STR 	34H 			//0956 	10B4
+		LDWI 	3H 			//0957 	0003
+		ADDWR 	23H, 1H 		//0958 	17A3
+		LDR 	32H, 0H 			//0959 	1832
+		STR 	70H 			//095A 	10F0
+		LDR 	33H, 0H 			//095B 	1833
+		STR 	71H 			//095C 	10F1
+		LDR 	34H, 0H 			//095D 	1834
+		STR 	72H 			//095E 	10F2
+		CLRF 	73H 			//095F 	11F3
+		CLRF 	74H 			//0960 	11F4
+		CLRF 	75H 			//0961 	11F5
+		LCALL 	52CH 			//0962 	352C
+		MOVLP 	8H 			//0963 	0188
+		BTSC 	3H, 0H 			//0964 	2803
+		LJUMP 	176H 			//0965 	3976
+		LDR 	32H, 0H 			//0966 	1832
+		STR 	70H 			//0967 	10F0
+		LDR 	33H, 0H 			//0968 	1833
+		STR 	71H 			//0969 	10F1
+		LDR 	34H, 0H 			//096A 	1834
+		STR 	72H 			//096B 	10F2
+		LCALL 	670H 			//096C 	3670
+		MOVLP 	8H 			//096D 	0188
+		LDR 	70H, 0H 			//096E 	1870
+		STR 	32H 			//096F 	10B2
+		LDR 	71H, 0H 			//0970 	1871
+		STR 	33H 			//0971 	10B3
+		LDR 	72H, 0H 			//0972 	1872
+		STR 	34H 			//0973 	10B4
+		LDWI 	3H 			//0974 	0003
+		IORWR 	2CH, 1H 		//0975 	14AC
+		CLRF 	2EH 			//0976 	11AE
+		CLRF 	2FH 			//0977 	11AF
+		LDR 	34H, 0H 			//0978 	1834
+		IORWR 	33H, 0H 		//0979 	1433
+		IORWR 	32H, 0H 		//097A 	1432
+		BTSC 	3H, 2H 			//097B 	2903
+		LJUMP 	205H 			//097C 	3A05
+		LDWI 	B2H 			//097D 	00B2
+		LCALL 	772H 			//097E 	3772
+		MOVLP 	8H 			//097F 	0188
+		MOVIW 	2H[1] 			//0980 	0F42
+		STR 	5DH 			//0981 	10DD
+		MOVIW 	3H[1] 			//0982 	0F43
+		STR 	5EH 			//0983 	10DE
+		LDWI 	FH 			//0984 	000F
+		LSRF 	5EH, 1H 		//0985 	06DE
+		RRR 	5DH, 1H 			//0986 	1CDD
+		RRR 	5CH, 1H 			//0987 	1CDC
+		RRR 	5BH, 1H 			//0988 	1CDB
+		DECRSZ 	9H, 1H 		//0989 	1B89
+		LJUMP 	185H 			//098A 	3985
+		LDR 	5CH, 0H 			//098B 	185C
+		MOVLB 	1H 			//098C 	1021
+		STR 	2FH 			//098D 	10AF
+		MOVLB 	0H 			//098E 	1020
+		LDR 	5BH, 0H 			//098F 	185B
+		MOVLB 	1H 			//0990 	1021
+		STR 	2EH 			//0991 	10AE
+		LDWI 	82H 			//0992 	0082
+		CLRF 	2FH 			//0993 	11AF
+		ADDWR 	2EH, 1H 		//0994 	17AE
+		BTSS 	3H, 0H 			//0995 	2C03
+		DECR 	2FH, 1H 		//0996 	13AF
+		LDWI 	FFH 			//0997 	00FF
+		ADDWR 	2EH, 1H 		//0998 	17AE
+		BTSS 	3H, 0H 			//0999 	2C03
+		DECR 	2FH, 1H 		//099A 	13AF
+		LDWI 	3H 			//099B 	0003
+		MOVLB 	0H 			//099C 	1020
+		STR 	20H 			//099D 	10A0
+		CLRF 	21H 			//099E 	11A1
+		MOVLB 	1H 			//099F 	1021
+		LDR 	2FH, 0H 			//09A0 	182F
+		MOVLB 	0H 			//09A1 	1020
+		STR 	23H 			//09A2 	10A3
+		MOVLB 	1H 			//09A3 	1021
+		LDR 	2EH, 0H 			//09A4 	182E
+		MOVLB 	0H 			//09A5 	1020
+		STR 	22H 			//09A6 	10A2
+		MOVLP 	6H 			//09A7 	0186
+		LCALL 	614H 			//09A8 	3614
+		MOVLP 	8H 			//09A9 	0188
+		LDR 	21H, 0H 			//09AA 	1821
+		MOVLB 	1H 			//09AB 	1021
+		STR 	2FH 			//09AC 	10AF
+		MOVLB 	0H 			//09AD 	1020
+		LDR 	20H, 0H 			//09AE 	1820
+		MOVLB 	1H 			//09AF 	1021
+		STR 	2EH 			//09B0 	10AE
+		LDWI 	AH 			//09B1 	000A
+		STR 	76H 			//09B2 	10F6
+		CLRF 	77H 			//09B3 	11F7
+		LDR 	2FH, 0H 			//09B4 	182F
+		STR 	79H 			//09B5 	10F9
+		LDR 	2EH, 0H 			//09B6 	182E
+		STR 	78H 			//09B7 	10F8
+		LCALL 	630H 			//09B8 	3630
+		MOVLP 	8H 			//09B9 	0188
+		LDR 	77H, 0H 			//09BA 	1877
+		MOVLB 	1H 			//09BB 	1021
+		STR 	2FH 			//09BC 	10AF
+		LDR 	76H, 0H 			//09BD 	1876
+		STR 	2EH 			//09BE 	10AE
+		BTSS 	2FH, 7H 		//09BF 	2FAF
+		LJUMP 	1C5H 			//09C0 	39C5
+		LDWI 	FFH 			//09C1 	00FF
+		ADDWR 	2EH, 1H 		//09C2 	17AE
+		BTSS 	3H, 0H 			//09C3 	2C03
+		DECR 	2FH, 1H 		//09C4 	13AF
+		DECR 	2EH, 0H 		//09C5 	132E
+		XORWI 	FFH 			//09C6 	0AFF
+		MOVLP 	5H 			//09C7 	0185
+		LCALL 	545H 			//09C8 	3545
+		MOVLP 	8H 			//09C9 	0188
+		LCALL 	725H 			//09CA 	3725
+		MOVLP 	8H 			//09CB 	0188
+		LCALL 	74BH 			//09CC 	374B
+		MOVLB 	1H 			//09CD 	1021
+		LDR 	24H, 0H 			//09CE 	1824
+		MOVLB 	0H 			//09CF 	1020
+		STR 	29H 			//09D0 	10A9
+		MOVLB 	1H 			//09D1 	1021
+		LDR 	25H, 0H 			//09D2 	1825
+		MOVLB 	0H 			//09D3 	1020
+		STR 	2AH 			//09D4 	10AA
+		MOVLB 	1H 			//09D5 	1021
+		LDR 	26H, 0H 			//09D6 	1826
+		MOVLB 	0H 			//09D7 	1020
+		STR 	2BH 			//09D8 	10AB
+		MOVLP 	6H 			//09D9 	0186
+		LCALL 	662H 			//09DA 	3662
+		MOVLP 	8H 			//09DB 	0188
+		LDR 	26H, 0H 			//09DC 	1826
+		MOVLB 	1H 			//09DD 	1021
+		STR 	24H 			//09DE 	10A4
+		MOVLB 	0H 			//09DF 	1020
+		LDR 	27H, 0H 			//09E0 	1827
+		MOVLB 	1H 			//09E1 	1021
+		STR 	25H 			//09E2 	10A5
+		MOVLB 	0H 			//09E3 	1020
+		LDR 	28H, 0H 			//09E4 	1828
+		MOVLB 	1H 			//09E5 	1021
+		STR 	26H 			//09E6 	10A6
+		LCALL 	76BH 			//09E7 	376B
+		MOVLP 	8H 			//09E8 	0188
+		LDWI 	80H 			//09E9 	0080
+		CLRF 	73H 			//09EA 	11F3
+		STR 	74H 			//09EB 	10F4
+		LDWI 	3FH 			//09EC 	003F
+		STR 	75H 			//09ED 	10F5
+		LCALL 	52CH 			//09EE 	352C
+		MOVLP 	8H 			//09EF 	0188
+		BTSC 	3H, 0H 			//09F0 	2803
+		LJUMP 	1F7H 			//09F1 	39F7
+		LDWI 	FFH 			//09F2 	00FF
+		ADDWR 	2EH, 1H 		//09F3 	17AE
+		BTSS 	3H, 0H 			//09F4 	2C03
+		DECR 	2FH, 1H 		//09F5 	13AF
+		LJUMP 	205H 			//09F6 	3A05
+		LCALL 	76BH 			//09F7 	376B
+		MOVLP 	8H 			//09F8 	0188
+		LDWI 	20H 			//09F9 	0020
+		CLRF 	73H 			//09FA 	11F3
+		STR 	74H 			//09FB 	10F4
+		LDWI 	41H 			//09FC 	0041
+		STR 	75H 			//09FD 	10F5
+		LCALL 	52CH 			//09FE 	352C
+		MOVLP 	8H 			//09FF 	0188
+		BTSS 	3H, 0H 			//0A00 	2C03
+		LJUMP 	205H 			//0A01 	3A05
+		INCR 	2EH, 1H 		//0A02 	1AAE
+		BTSC 	3H, 2H 			//0A03 	2903
+		INCR 	2FH, 1H 		//0A04 	1AAF
+		LDR 	36H, 0H 			//0A05 	1836
+		LCALL 	71FH 			//0A06 	371F
+		MOVLP 	8H 			//0A07 	0188
+		BTSS 	3H, 2H 			//0A08 	2D03
+		LJUMP 	20DH 			//0A09 	3A0D
+		LDWI 	DH 			//0A0A 	000D
+		MOVLB 	1H 			//0A0B 	1021
+		SUBWR 	35H, 0H 		//0A0C 	1235
+		BTSC 	3H, 0H 			//0A0D 	2803
+		LJUMP 	234H 			//0A0E 	3A34
+		MOVLB 	1H 			//0A0F 	1021
+		LDR 	35H, 0H 			//0A10 	1835
+		MOVLP 	4H 			//0A11 	0184
+		LCALL 	4BDH 			//0A12 	34BD
+		MOVLP 	8H 			//0A13 	0188
+		LDR 	35H, 0H 			//0A14 	1835
+		STR 	40H 			//0A15 	10C0
+		LDR 	36H, 0H 			//0A16 	1836
+		STR 	41H 			//0A17 	10C1
+		LDR 	37H, 0H 			//0A18 	1837
+		STR 	42H 			//0A19 	10C2
+		MOVLB 	1H 			//0A1A 	1021
+		LDR 	32H, 0H 			//0A1B 	1832
+		MOVLB 	0H 			//0A1C 	1020
+		STR 	43H 			//0A1D 	10C3
+		MOVLB 	1H 			//0A1E 	1021
+		LDR 	33H, 0H 			//0A1F 	1833
+		MOVLB 	0H 			//0A20 	1020
+		STR 	44H 			//0A21 	10C4
+		MOVLB 	1H 			//0A22 	1021
+		LDR 	34H, 0H 			//0A23 	1834
+		MOVLB 	0H 			//0A24 	1020
+		STR 	45H 			//0A25 	10C5
+		MOVLP 	2H 			//0A26 	0182
+		LCALL 	21FH 			//0A27 	321F
+		MOVLP 	8H 			//0A28 	0188
+		LDR 	40H, 0H 			//0A29 	1840
+		MOVLB 	1H 			//0A2A 	1021
+		STR 	32H 			//0A2B 	10B2
+		MOVLB 	0H 			//0A2C 	1020
+		LDR 	41H, 0H 			//0A2D 	1841
+		MOVLB 	1H 			//0A2E 	1021
+		STR 	33H 			//0A2F 	10B3
+		MOVLB 	0H 			//0A30 	1020
+		LDR 	42H, 0H 			//0A31 	1842
+		MOVLB 	1H 			//0A32 	1021
+		STR 	34H 			//0A33 	10B4
+		MOVLB 	1H 			//0A34 	1021
+		LDR 	2FH, 0H 			//0A35 	182F
+		LCALL 	71FH 			//0A36 	371F
+		MOVLP 	8H 			//0A37 	0188
+		BTSS 	3H, 2H 			//0A38 	2D03
+		LJUMP 	23DH 			//0A39 	3A3D
+		LDWI 	AH 			//0A3A 	000A
+		MOVLB 	1H 			//0A3B 	1021
+		SUBWR 	2EH, 0H 		//0A3C 	122E
+		BTSC 	3H, 0H 			//0A3D 	2803
+		LJUMP 	25AH 			//0A3E 	3A5A
+		MOVLB 	1H 			//0A3F 	1021
+		LDR 	34H, 0H 			//0A40 	1834
+		IORWR 	33H, 0H 		//0A41 	1433
+		IORWR 	32H, 0H 		//0A42 	1432
+		BTSC 	3H, 2H 			//0A43 	2903
+		LJUMP 	28DH 			//0A44 	3A8D
+		LCALL 	738H 			//0A45 	3738
+		MOVLP 	8H 			//0A46 	0188
+		LCALL 	58EH 			//0A47 	358E
+		MOVLP 	8H 			//0A48 	0188
+		LDR 	40H, 0H 			//0A49 	1840
+		IORWR 	3FH, 0H 		//0A4A 	143F
+		IORWR 	3EH, 0H 		//0A4B 	143E
+		IORWR 	3DH, 0H 		//0A4C 	143D
+		BTSS 	3H, 2H 			//0A4D 	2D03
+		LJUMP 	28DH 			//0A4E 	3A8D
+		MOVLB 	1H 			//0A4F 	1021
+		LDR 	2FH, 0H 			//0A50 	182F
+		LCALL 	71FH 			//0A51 	371F
+		MOVLP 	8H 			//0A52 	0188
+		BTSS 	3H, 2H 			//0A53 	2D03
+		LJUMP 	258H 			//0A54 	3A58
+		LDWI 	2H 			//0A55 	0002
+		MOVLB 	1H 			//0A56 	1021
+		SUBWR 	2EH, 0H 		//0A57 	122E
+		BTSS 	3H, 0H 			//0A58 	2C03
+		LJUMP 	28DH 			//0A59 	3A8D
+		MOVLB 	1H 			//0A5A 	1021
+		LCALL 	76BH 			//0A5B 	376B
+		MOVLP 	8H 			//0A5C 	0188
+		LDWI 	70H 			//0A5D 	0070
+		STR 	73H 			//0A5E 	10F3
+		LDWI 	89H 			//0A5F 	0089
+		STR 	74H 			//0A60 	10F4
+		LDWI 	40H 			//0A61 	0040
+		STR 	75H 			//0A62 	10F5
+		LCALL 	52CH 			//0A63 	352C
+		MOVLP 	8H 			//0A64 	0188
+		BTSC 	3H, 0H 			//0A65 	2803
+		LJUMP 	269H 			//0A66 	3A69
+		LDWI 	F7H 			//0A67 	00F7
+		LJUMP 	26AH 			//0A68 	3A6A
+		LDWI 	F8H 			//0A69 	00F8
+		ADDWR 	2EH, 1H 		//0A6A 	17AE
+		BTSS 	3H, 0H 			//0A6B 	2C03
+		DECR 	2FH, 1H 		//0A6C 	13AF
+		LDR 	2EH, 0H 			//0A6D 	182E
+		MOVLP 	5H 			//0A6E 	0185
+		LCALL 	545H 			//0A6F 	3545
+		MOVLP 	8H 			//0A70 	0188
+		LCALL 	725H 			//0A71 	3725
+		MOVLP 	8H 			//0A72 	0188
+		STR 	70H 			//0A73 	10F0
+		LDR 	33H, 0H 			//0A74 	1833
+		STR 	71H 			//0A75 	10F1
+		LDR 	34H, 0H 			//0A76 	1834
+		STR 	72H 			//0A77 	10F2
+		LDR 	24H, 0H 			//0A78 	1824
+		STR 	73H 			//0A79 	10F3
+		LDR 	25H, 0H 			//0A7A 	1825
+		STR 	74H 			//0A7B 	10F4
+		LDR 	26H, 0H 			//0A7C 	1826
+		STR 	75H 			//0A7D 	10F5
+		LCALL 	790H 			//0A7E 	3790
+		MOVLP 	8H 			//0A7F 	0188
+		LDR 	73H, 0H 			//0A80 	1873
+		MOVLB 	1H 			//0A81 	1021
+		STR 	2BH 			//0A82 	10AB
+		LDR 	72H, 0H 			//0A83 	1872
+		STR 	2AH 			//0A84 	10AA
+		LDR 	71H, 0H 			//0A85 	1871
+		STR 	29H 			//0A86 	10A9
+		LDR 	70H, 0H 			//0A87 	1870
+		STR 	28H 			//0A88 	10A8
+		CLRF 	32H 			//0A89 	11B2
+		CLRF 	33H 			//0A8A 	11B3
+		CLRF 	34H 			//0A8B 	11B4
+		LJUMP 	2C2H 			//0A8C 	3AC2
+		MOVLB 	1H 			//0A8D 	1021
+		LCALL 	738H 			//0A8E 	3738
+		MOVLP 	8H 			//0A8F 	0188
+		LCALL 	58EH 			//0A90 	358E
+		MOVLP 	8H 			//0A91 	0188
+		LCALL 	711H 			//0A92 	3711
+		MOVLB 	1H 			//0A93 	1021
+		STR 	28H 			//0A94 	10A8
+		LDR 	2BH, 0H 			//0A95 	182B
+		STR 	7BH 			//0A96 	10FB
+		LDR 	2AH, 0H 			//0A97 	182A
+		STR 	7AH 			//0A98 	10FA
+		LDR 	29H, 0H 			//0A99 	1829
+		STR 	79H 			//0A9A 	10F9
+		LDR 	28H, 0H 			//0A9B 	1828
+		STR 	78H 			//0A9C 	10F8
+		MOVLP 	2H 			//0A9D 	0182
+		LCALL 	202H 			//0A9E 	3202
+		MOVLP 	8H 			//0A9F 	0188
+		LDR 	78H, 0H 			//0AA0 	1878
+		MOVLB 	0H 			//0AA1 	1020
+		STR 	4CH 			//0AA2 	10CC
+		LDR 	79H, 0H 			//0AA3 	1879
+		STR 	4DH 			//0AA4 	10CD
+		LDR 	7AH, 0H 			//0AA5 	187A
+		STR 	4EH 			//0AA6 	10CE
+		MOVLB 	1H 			//0AA7 	1021
+		LDR 	32H, 0H 			//0AA8 	1832
+		MOVLB 	0H 			//0AA9 	1020
+		STR 	4FH 			//0AAA 	10CF
+		MOVLB 	1H 			//0AAB 	1021
+		LDR 	33H, 0H 			//0AAC 	1833
+		MOVLB 	0H 			//0AAD 	1020
+		STR 	50H 			//0AAE 	10D0
+		MOVLB 	1H 			//0AAF 	1021
+		LDR 	34H, 0H 			//0AB0 	1834
+		MOVLB 	0H 			//0AB1 	1020
+		STR 	51H 			//0AB2 	10D1
+		LCALL 	678H 			//0AB3 	3678
+		MOVLP 	8H 			//0AB4 	0188
+		LDR 	4CH, 0H 			//0AB5 	184C
+		MOVLB 	1H 			//0AB6 	1021
+		STR 	32H 			//0AB7 	10B2
+		MOVLB 	0H 			//0AB8 	1020
+		LDR 	4DH, 0H 			//0AB9 	184D
+		MOVLB 	1H 			//0ABA 	1021
+		STR 	33H 			//0ABB 	10B3
+		MOVLB 	0H 			//0ABC 	1020
+		LDR 	4EH, 0H 			//0ABD 	184E
+		MOVLB 	1H 			//0ABE 	1021
+		STR 	34H 			//0ABF 	10B4
+		CLRF 	2EH 			//0AC0 	11AE
+		CLRF 	2FH 			//0AC1 	11AF
+		CLRF 	37H 			//0AC2 	11B7
+		INCR 	37H, 1H 		//0AC3 	1AB7
+		LCALL 	694H 			//0AC4 	3694
+		MOVLP 	8H 			//0AC5 	0188
+		LCALL 	761H 			//0AC6 	3761
+		MOVLP 	8H 			//0AC7 	0188
+		BTSS 	3H, 2H 			//0AC8 	2D03
+		LJUMP 	2D4H 			//0AC9 	3AD4
+		LCALL 	78BH 			//0ACA 	378B
+		MOVLP 	8H 			//0ACB 	0188
+		BTSS 	3H, 2H 			//0ACC 	2D03
+		LJUMP 	2D4H 			//0ACD 	3AD4
+		LCALL 	786H 			//0ACE 	3786
+		MOVLP 	8H 			//0ACF 	0188
+		BTSS 	3H, 2H 			//0AD0 	2D03
+		LJUMP 	2D4H 			//0AD1 	3AD4
+		LCALL 	781H 			//0AD2 	3781
+		MOVLP 	8H 			//0AD3 	0188
+		BTSS 	3H, 0H 			//0AD4 	2C03
+		LJUMP 	2DBH 			//0AD5 	3ADB
+		LDWI 	AH 			//0AD6 	000A
+		INCR 	37H, 1H 		//0AD7 	1AB7
+		XORWR 	37H, 0H 		//0AD8 	1637
+		BTSS 	3H, 2H 			//0AD9 	2D03
+		LJUMP 	2C4H 			//0ADA 	3AC4
+		LDR 	37H, 0H 			//0ADB 	1837
+		LCALL 	744H 			//0ADC 	3744
+		MOVLP 	8H 			//0ADD 	0188
+		LDR 	35H, 0H 			//0ADE 	1835
+		MOVLB 	0H 			//0ADF 	1020
+		ADDWR 	5BH, 0H 		//0AE0 	175B
+		STR 	5DH 			//0AE1 	10DD
+		MOVLB 	1H 			//0AE2 	1021
+		LDR 	36H, 0H 			//0AE3 	1836
+		MOVLB 	0H 			//0AE4 	1020
+		ADDWFC 	5CH, 0H 		//0AE5 	0D5C
+		STR 	5EH 			//0AE6 	10DE
+		MOVLB 	1H 			//0AE7 	1021
+		LDR 	2EH, 0H 			//0AE8 	182E
+		MOVLB 	0H 			//0AE9 	1020
+		ADDWR 	5DH, 0H 		//0AEA 	175D
+		STR 	5FH 			//0AEB 	10DF
+		MOVLB 	1H 			//0AEC 	1021
+		LDR 	2FH, 0H 			//0AED 	182F
+		MOVLB 	0H 			//0AEE 	1020
+		ADDWFC 	5EH, 0H 		//0AEF 	0D5E
+		STR 	60H 			//0AF0 	10E0
+		LDR 	5FH, 0H 			//0AF1 	185F
+		MOVLB 	1H 			//0AF2 	1021
+		SUBWR 	30H, 1H 		//0AF3 	12B0
+		MOVLB 	0H 			//0AF4 	1020
+		LDR 	60H, 0H 			//0AF5 	1860
+		MOVLB 	1H 			//0AF6 	1021
+		SUBWFB 	31H, 1H 		//0AF7 	0BB1
+		LDR 	35H, 0H 			//0AF8 	1835
+		IORWR 	36H, 0H 		//0AF9 	1436
+		BTSC 	3H, 2H 			//0AFA 	2903
+		LJUMP 	300H 			//0AFB 	3B00
+		LDWI 	FFH 			//0AFC 	00FF
+		ADDWR 	30H, 1H 		//0AFD 	17B0
+		BTSS 	3H, 0H 			//0AFE 	2C03
+		DECR 	31H, 1H 		//0AFF 	13B1
+		LDR 	2CH, 0H 			//0B00 	182C
+		ANDWI 	3H 			//0B01 	0903
+		BTSC 	3H, 2H 			//0B02 	2903
+		LJUMP 	308H 			//0B03 	3B08
+		LDWI 	FFH 			//0B04 	00FF
+		ADDWR 	30H, 1H 		//0B05 	17B0
+		BTSS 	3H, 0H 			//0B06 	2C03
+		DECR 	31H, 1H 		//0B07 	13B1
+		BTSS 	2CH, 2H 		//0B08 	2D2C
+		LJUMP 	32EH 			//0B09 	3B2E
+		LDR 	2CH, 0H 			//0B0A 	182C
+		ANDWI 	3H 			//0B0B 	0903
+		BTSC 	3H, 2H 			//0B0C 	2903
+		LJUMP 	315H 			//0B0D 	3B15
+		LCALL 	6CEH 			//0B0E 	36CE
+		MOVLP 	8H 			//0B0F 	0188
+		LDWI 	2DH 			//0B10 	002D
+		STR 	1H 			//0B11 	1081
+		INCR 	52H, 1H 		//0B12 	1AD2
+		BTSC 	3H, 2H 			//0B13 	2903
+		INCR 	53H, 1H 		//0B14 	1AD3
+		MOVLB 	1H 			//0B15 	1021
+		LDR 	31H, 0H 			//0B16 	1831
+		LCALL 	71FH 			//0B17 	371F
+		MOVLP 	8H 			//0B18 	0188
+		BTSS 	3H, 2H 			//0B19 	2D03
+		LJUMP 	31EH 			//0B1A 	3B1E
+		LDWI 	1H 			//0B1B 	0001
+		MOVLB 	1H 			//0B1C 	1021
+		SUBWR 	30H, 0H 		//0B1D 	1230
+		BTSS 	3H, 0H 			//0B1E 	2C03
+		LJUMP 	354H 			//0B1F 	3B54
+		MOVLB 	0H 			//0B20 	1020
+		LCALL 	6C3H 			//0B21 	36C3
+		MOVLP 	8H 			//0B22 	0188
+		ADDWR 	30H, 1H 		//0B23 	17B0
+		BTSS 	3H, 0H 			//0B24 	2C03
+		DECR 	31H, 1H 		//0B25 	13B1
+		LJUMP 	315H 			//0B26 	3B15
+		LCALL 	6CEH 			//0B27 	36CE
+		MOVLP 	8H 			//0B28 	0188
+		LDWI 	20H 			//0B29 	0020
+		LCALL 	6ECH 			//0B2A 	36EC
+		MOVLP 	8H 			//0B2B 	0188
+		BTSS 	3H, 0H 			//0B2C 	2C03
+		DECR 	31H, 1H 		//0B2D 	13B1
+		LDR 	31H, 0H 			//0B2E 	1831
+		LCALL 	71FH 			//0B2F 	371F
+		MOVLP 	8H 			//0B30 	0188
+		BTSS 	3H, 2H 			//0B31 	2D03
+		LJUMP 	336H 			//0B32 	3B36
+		LDWI 	1H 			//0B33 	0001
+		MOVLB 	1H 			//0B34 	1021
+		SUBWR 	30H, 0H 		//0B35 	1230
+		BTSC 	3H, 0H 			//0B36 	2803
+		LJUMP 	327H 			//0B37 	3B27
+		MOVLB 	1H 			//0B38 	1021
+		LDR 	2CH, 0H 			//0B39 	182C
+		ANDWI 	3H 			//0B3A 	0903
+		BTSC 	3H, 2H 			//0B3B 	2903
+		LJUMP 	354H 			//0B3C 	3B54
+		LCALL 	6CEH 			//0B3D 	36CE
+		MOVLP 	8H 			//0B3E 	0188
+		LDWI 	2DH 			//0B3F 	002D
+		LJUMP 	350H 			//0B40 	3B50
+		LCALL 	694H 			//0B41 	3694
+		MOVLP 	8H 			//0B42 	0188
+		STR 	70H 			//0B43 	10F0
+		MOVIW 	1H[0] 			//0B44 	0F01
+		STR 	71H 			//0B45 	10F1
+		LCALL 	703H 			//0B46 	3703
+		MOVLP 	8H 			//0B47 	0188
+		LCALL 	5E3H 			//0B48 	35E3
+		MOVLP 	8H 			//0B49 	0188
+		LCALL 	6A4H 			//0B4A 	36A4
+		MOVLP 	8H 			//0B4B 	0188
+		LCALL 	558H 			//0B4C 	3558
+		MOVLP 	8H 			//0B4D 	0188
+		LCALL 	6D4H 			//0B4E 	36D4
+		MOVLP 	8H 			//0B4F 	0188
+		STR 	1H 			//0B50 	1081
+		INCR 	52H, 1H 		//0B51 	1AD2
+		BTSC 	3H, 2H 			//0B52 	2903
+		INCR 	53H, 1H 		//0B53 	1AD3
+		MOVLB 	1H 			//0B54 	1021
+		DECR 	37H, 1H 		//0B55 	13B7
+		INCRSZ 	37H, 0H 		//0B56 	1F37
+		LJUMP 	341H 			//0B57 	3B41
+		LDR 	2FH, 0H 			//0B58 	182F
+		LCALL 	71FH 			//0B59 	371F
+		MOVLP 	8H 			//0B5A 	0188
+		BTSS 	3H, 2H 			//0B5B 	2D03
+		LJUMP 	360H 			//0B5C 	3B60
+		LDWI 	1H 			//0B5D 	0001
+		MOVLB 	1H 			//0B5E 	1021
+		SUBWR 	2EH, 0H 		//0B5F 	122E
+		BTSS 	3H, 0H 			//0B60 	2C03
+		LJUMP 	369H 			//0B61 	3B69
+		MOVLB 	0H 			//0B62 	1020
+		LCALL 	6C3H 			//0B63 	36C3
+		MOVLP 	8H 			//0B64 	0188
+		ADDWR 	2EH, 1H 		//0B65 	17AE
+		BTSS 	3H, 0H 			//0B66 	2C03
+		DECR 	2FH, 1H 		//0B67 	13AF
+		LJUMP 	358H 			//0B68 	3B58
+		MOVLB 	1H 			//0B69 	1021
+		LDR 	36H, 0H 			//0B6A 	1836
+		LCALL 	71FH 			//0B6B 	371F
+		MOVLP 	8H 			//0B6C 	0188
+		BTSS 	3H, 2H 			//0B6D 	2D03
+		LJUMP 	372H 			//0B6E 	3B72
+		LDWI 	9H 			//0B6F 	0009
+		MOVLB 	1H 			//0B70 	1021
+		SUBWR 	35H, 0H 		//0B71 	1235
+		BTSS 	3H, 0H 			//0B72 	2C03
+		LJUMP 	377H 			//0B73 	3B77
+		LDWI 	8H 			//0B74 	0008
+		MOVLB 	1H 			//0B75 	1021
+		LJUMP 	379H 			//0B76 	3B79
+		MOVLB 	1H 			//0B77 	1021
+		LDR 	35H, 0H 			//0B78 	1835
+		STR 	37H 			//0B79 	10B7
+		LCALL 	744H 			//0B7A 	3744
+		MOVLP 	8H 			//0B7B 	0188
+		SUBWR 	35H, 1H 		//0B7C 	12B5
+		MOVLB 	0H 			//0B7D 	1020
+		LDR 	5CH, 0H 			//0B7E 	185C
+		MOVLB 	1H 			//0B7F 	1021
+		SUBWFB 	36H, 1H 		//0B80 	0BB6
+		LDR 	37H, 0H 			//0B81 	1837
+		BTSC 	3H, 2H 			//0B82 	2903
+		LJUMP 	38AH 			//0B83 	3B8A
+		LCALL 	6CEH 			//0B84 	36CE
+		LDWI 	2EH 			//0B85 	002E
+		STR 	1H 			//0B86 	1081
+		INCR 	52H, 1H 		//0B87 	1AD2
+		BTSC 	3H, 2H 			//0B88 	2903
+		INCR 	53H, 1H 		//0B89 	1AD3
+		MOVLB 	1H 			//0B8A 	1021
+		LDR 	37H, 0H 			//0B8B 	1837
+		MOVLP 	5H 			//0B8C 	0185
+		LCALL 	545H 			//0B8D 	3545
+		MOVLP 	8H 			//0B8E 	0188
+		LDR 	35H, 0H 			//0B8F 	1835
+		MOVLB 	1H 			//0B90 	1021
+		STR 	20H 			//0B91 	10A0
+		MOVLB 	0H 			//0B92 	1020
+		LDR 	36H, 0H 			//0B93 	1836
+		MOVLB 	1H 			//0B94 	1021
+		STR 	21H 			//0B95 	10A1
+		MOVLB 	0H 			//0B96 	1020
+		LDR 	37H, 0H 			//0B97 	1837
+		MOVLB 	1H 			//0B98 	1021
+		STR 	22H 			//0B99 	10A2
+		LDR 	20H, 0H 			//0B9A 	1820
+		MOVLB 	0H 			//0B9B 	1020
+		STR 	29H 			//0B9C 	10A9
+		MOVLB 	1H 			//0B9D 	1021
+		LDR 	21H, 0H 			//0B9E 	1821
+		MOVLB 	0H 			//0B9F 	1020
+		STR 	2AH 			//0BA0 	10AA
+		MOVLB 	1H 			//0BA1 	1021
+		LDR 	22H, 0H 			//0BA2 	1822
+		MOVLB 	0H 			//0BA3 	1020
+		STR 	2BH 			//0BA4 	10AB
+		MOVLB 	1H 			//0BA5 	1021
+		LDR 	32H, 0H 			//0BA6 	1832
+		LCALL 	74BH 			//0BA7 	374B
+		MOVLP 	6H 			//0BA8 	0186
+		LCALL 	662H 			//0BA9 	3662
+		MOVLP 	8H 			//0BAA 	0188
+		MOVLP 	7H 			//0BAB 	0187
+		LCALL 	7B8H 			//0BAC 	37B8
+		MOVLP 	8H 			//0BAD 	0188
+		LCALL 	58EH 			//0BAE 	358E
+		MOVLP 	8H 			//0BAF 	0188
+		LCALL 	711H 			//0BB0 	3711
+		MOVLP 	8H 			//0BB1 	0188
+		LJUMP 	3EFH 			//0BB2 	3BEF
+		LCALL 	694H 			//0BB3 	3694
+		MOVLP 	8H 			//0BB4 	0188
+		STR 	70H 			//0BB5 	10F0
+		MOVIW 	1H[0] 			//0BB6 	0F01
+		STR 	71H 			//0BB7 	10F1
+		LCALL 	703H 			//0BB8 	3703
+		MOVLP 	8H 			//0BB9 	0188
+		LCALL 	5E3H 			//0BBA 	35E3
+		MOVLP 	8H 			//0BBB 	0188
+		LCALL 	6A4H 			//0BBC 	36A4
+		MOVLP 	8H 			//0BBD 	0188
+		LCALL 	558H 			//0BBE 	3558
+		MOVLP 	8H 			//0BBF 	0188
+		LCALL 	6D4H 			//0BC0 	36D4
+		MOVLP 	8H 			//0BC1 	0188
+		STR 	1H 			//0BC2 	1081
+		INCR 	52H, 1H 		//0BC3 	1AD2
+		BTSC 	3H, 2H 			//0BC4 	2903
+		INCR 	53H, 1H 		//0BC5 	1AD3
+		MOVLB 	1H 			//0BC6 	1021
+		LCALL 	694H 			//0BC7 	3694
+		MOVLP 	8H 			//0BC8 	0188
+		STR 	20H 			//0BC9 	10A0
+		MOVIW 	1H[0] 			//0BCA 	0F01
+		STR 	21H 			//0BCB 	10A1
+		MOVIW 	2H[0] 			//0BCC 	0F02
+		STR 	22H 			//0BCD 	10A2
+		MOVIW 	3H[0] 			//0BCE 	0F03
+		STR 	23H 			//0BCF 	10A3
+		MOVLB 	1H 			//0BD0 	1021
+		LDR 	2BH, 0H 			//0BD1 	182B
+		MOVLB 	0H 			//0BD2 	1020
+		STR 	27H 			//0BD3 	10A7
+		MOVLB 	1H 			//0BD4 	1021
+		LDR 	2AH, 0H 			//0BD5 	182A
+		MOVLB 	0H 			//0BD6 	1020
+		STR 	26H 			//0BD7 	10A6
+		MOVLB 	1H 			//0BD8 	1021
+		LDR 	29H, 0H 			//0BD9 	1829
+		MOVLB 	0H 			//0BDA 	1020
+		STR 	25H 			//0BDB 	10A5
+		MOVLB 	1H 			//0BDC 	1021
+		LDR 	28H, 0H 			//0BDD 	1828
+		MOVLB 	0H 			//0BDE 	1020
+		STR 	24H 			//0BDF 	10A4
+		LCALL 	558H 			//0BE0 	3558
+		MOVLP 	8H 			//0BE1 	0188
+		LDR 	23H, 0H 			//0BE2 	1823
+		MOVLB 	1H 			//0BE3 	1021
+		STR 	2BH 			//0BE4 	10AB
+		MOVLB 	0H 			//0BE5 	1020
+		LDR 	22H, 0H 			//0BE6 	1822
+		MOVLB 	1H 			//0BE7 	1021
+		STR 	2AH 			//0BE8 	10AA
+		MOVLB 	0H 			//0BE9 	1020
+		LDR 	21H, 0H 			//0BEA 	1821
+		MOVLB 	1H 			//0BEB 	1021
+		STR 	29H 			//0BEC 	10A9
+		MOVLB 	0H 			//0BED 	1020
+		LDR 	20H, 0H 			//0BEE 	1820
+		MOVLB 	1H 			//0BEF 	1021
+		STR 	28H 			//0BF0 	10A8
+		DECR 	37H, 1H 		//0BF1 	13B7
+		INCRSZ 	37H, 0H 		//0BF2 	1F37
+		LJUMP 	3B3H 			//0BF3 	3BB3
+		LDR 	35H, 0H 			//0BF4 	1835
+		IORWR 	36H, 0H 		//0BF5 	1436
+		BTSC 	3H, 2H 			//0BF6 	2903
+		LJUMP 	8DH 			//0BF7 	388D
+		MOVLB 	0H 			//0BF8 	1020
+		LCALL 	6C3H 			//0BF9 	36C3
+		MOVLP 	8H 			//0BFA 	0188
+		ADDWR 	35H, 1H 		//0BFB 	17B5
+		BTSS 	3H, 0H 			//0BFC 	2C03
+		DECR 	36H, 1H 		//0BFD 	13B6
+		LJUMP 	3F4H 			//0BFE 	3BF4
+		MOVLB 	1H 			//0BFF 	1021
+		LDR 	23H, 0H 			//0C00 	1823
+		LCALL 	772H 			//0C01 	3772
+		MOVLP 	8H 			//0C02 	0188
+		LDR 	5BH, 0H 			//0C03 	185B
+		MOVLB 	1H 			//0C04 	1021
+		STR 	28H 			//0C05 	10A8
+		MOVLB 	0H 			//0C06 	1020
+		LDR 	5CH, 0H 			//0C07 	185C
+		MOVLB 	1H 			//0C08 	1021
+		STR 	29H 			//0C09 	10A9
+		RLR 	9H, 1H 			//0C0A 	1D89
+		SUBWFB 	9H, 1H 		//0C0B 	0B89
+		COMR 	9H, 1H 			//0C0C 	1989
+		STR 	2AH 			//0C0D 	10AA
+		STR 	2BH 			//0C0E 	10AB
+		INCR 	23H, 1H 		//0C0F 	1AA3
+		INCR 	23H, 1H 		//0C10 	1AA3
+		BTSS 	2BH, 7H 		//0C11 	2FAB
+		LJUMP 	420H 			//0C12 	3C20
+		LDWI 	3H 			//0C13 	0003
+		IORWR 	2CH, 1H 		//0C14 	14AC
+		COMR 	28H, 1H 		//0C15 	19A8
+		COMR 	29H, 1H 		//0C16 	19A9
+		COMR 	2AH, 1H 		//0C17 	19AA
+		COMR 	2BH, 1H 		//0C18 	19AB
+		INCR 	28H, 1H 		//0C19 	1AA8
+		BTSC 	3H, 2H 			//0C1A 	2903
+		INCR 	29H, 1H 		//0C1B 	1AA9
+		BTSC 	3H, 2H 			//0C1C 	2903
+		INCR 	2AH, 1H 		//0C1D 	1AAA
+		BTSC 	3H, 2H 			//0C1E 	2903
+		INCR 	2BH, 1H 		//0C1F 	1AAB
+		LDR 	35H, 0H 			//0C20 	1835
+		IORWR 	36H, 0H 		//0C21 	1436
+		BTSS 	3H, 2H 			//0C22 	2D03
+		LJUMP 	42CH 			//0C23 	3C2C
+		LDR 	2BH, 0H 			//0C24 	182B
+		IORWR 	2AH, 0H 		//0C25 	142A
+		IORWR 	29H, 0H 		//0C26 	1429
+		IORWR 	28H, 0H 		//0C27 	1428
+		BTSC 	3H, 2H 			//0C28 	2903
+		INCR 	35H, 1H 		//0C29 	1AB5
+		BTSC 	3H, 2H 			//0C2A 	2903
+		INCR 	36H, 1H 		//0C2B 	1AB6
+		CLRF 	37H 			//0C2C 	11B7
+		INCR 	37H, 1H 		//0C2D 	1AB7
+		LCALL 	694H 			//0C2E 	3694
+		MOVLP 	8H 			//0C2F 	0188
+		LCALL 	761H 			//0C30 	3761
+		MOVLP 	8H 			//0C31 	0188
+		BTSS 	3H, 2H 			//0C32 	2D03
+		LJUMP 	43EH 			//0C33 	3C3E
+		LCALL 	78BH 			//0C34 	378B
+		MOVLP 	8H 			//0C35 	0188
+		BTSS 	3H, 2H 			//0C36 	2D03
+		LJUMP 	43EH 			//0C37 	3C3E
+		LCALL 	786H 			//0C38 	3786
+		MOVLP 	8H 			//0C39 	0188
+		BTSS 	3H, 2H 			//0C3A 	2D03
+		LJUMP 	43EH 			//0C3B 	3C3E
+		LCALL 	781H 			//0C3C 	3781
+		MOVLP 	8H 			//0C3D 	0188
+		BTSS 	3H, 0H 			//0C3E 	2C03
+		LJUMP 	445H 			//0C3F 	3C45
+		LDWI 	AH 			//0C40 	000A
+		INCR 	37H, 1H 		//0C41 	1AB7
+		XORWR 	37H, 0H 		//0C42 	1637
+		BTSS 	3H, 2H 			//0C43 	2D03
+		LJUMP 	42EH 			//0C44 	3C2E
+		LCALL 	756H 			//0C45 	3756
+		MOVLP 	8H 			//0C46 	0188
+		LDR 	36H, 0H 			//0C47 	1836
+		XORWI 	80H 			//0C48 	0A80
+		MOVLB 	0H 			//0C49 	1020
+		SUBWR 	5DH, 0H 		//0C4A 	125D
+		BTSS 	3H, 2H 			//0C4B 	2D03
+		LJUMP 	451H 			//0C4C 	3C51
+		MOVLB 	1H 			//0C4D 	1021
+		LDR 	35H, 0H 			//0C4E 	1835
+		MOVLB 	0H 			//0C4F 	1020
+		SUBWR 	5BH, 0H 		//0C50 	125B
+		BTSC 	3H, 0H 			//0C51 	2803
+		LJUMP 	457H 			//0C52 	3C57
+		MOVLB 	1H 			//0C53 	1021
+		LDR 	35H, 0H 			//0C54 	1835
+		STR 	37H 			//0C55 	10B7
+		LJUMP 	46FH 			//0C56 	3C6F
+		MOVLB 	1H 			//0C57 	1021
+		LDR 	37H, 0H 			//0C58 	1837
+		LCALL 	744H 			//0C59 	3744
+		MOVLP 	8H 			//0C5A 	0188
+		LDR 	36H, 0H 			//0C5B 	1836
+		XORWI 	80H 			//0C5C 	0A80
+		MOVLB 	0H 			//0C5D 	1020
+		STR 	5DH 			//0C5E 	10DD
+		LDR 	5CH, 0H 			//0C5F 	185C
+		XORWI 	80H 			//0C60 	0A80
+		SUBWR 	5DH, 0H 		//0C61 	125D
+		BTSS 	3H, 2H 			//0C62 	2D03
+		LJUMP 	467H 			//0C63 	3C67
+		LDR 	5BH, 0H 			//0C64 	185B
+		MOVLB 	1H 			//0C65 	1021
+		SUBWR 	35H, 0H 		//0C66 	1235
+		BTSC 	3H, 0H 			//0C67 	2803
+		LJUMP 	46FH 			//0C68 	3C6F
+		MOVLB 	1H 			//0C69 	1021
+		LDR 	37H, 0H 			//0C6A 	1837
+		STR 	35H 			//0C6B 	10B5
+		CLRF 	36H 			//0C6C 	11B6
+		BTSC 	35H, 7H 		//0C6D 	2BB5
+		DECR 	36H, 1H 		//0C6E 	13B6
+		MOVLB 	1H 			//0C6F 	1021
+		LDR 	30H, 0H 			//0C70 	1830
+		IORWR 	31H, 0H 		//0C71 	1431
+		BTSC 	3H, 2H 			//0C72 	2903
+		LJUMP 	47CH 			//0C73 	3C7C
+		LDR 	2CH, 0H 			//0C74 	182C
+		ANDWI 	3H 			//0C75 	0903
+		BTSC 	3H, 2H 			//0C76 	2903
+		LJUMP 	47CH 			//0C77 	3C7C
+		LDWI 	FFH 			//0C78 	00FF
+		ADDWR 	30H, 1H 		//0C79 	17B0
+		BTSS 	3H, 0H 			//0C7A 	2C03
+		DECR 	31H, 1H 		//0C7B 	13B1
+		BTSS 	2DH, 6H 		//0C7C 	2F2D
+		LJUMP 	497H 			//0C7D 	3C97
+		LDR 	36H, 0H 			//0C7E 	1836
+		XORWI 	80H 			//0C7F 	0A80
+		MOVLB 	0H 			//0C80 	1020
+		STR 	5BH 			//0C81 	10DB
+		MOVLB 	1H 			//0C82 	1021
+		LDR 	31H, 0H 			//0C83 	1831
+		XORWI 	80H 			//0C84 	0A80
+		MOVLB 	0H 			//0C85 	1020
+		SUBWR 	5BH, 0H 		//0C86 	125B
+		BTSS 	3H, 2H 			//0C87 	2D03
+		LJUMP 	48CH 			//0C88 	3C8C
+		MOVLB 	1H 			//0C89 	1021
+		LDR 	30H, 0H 			//0C8A 	1830
+		SUBWR 	35H, 0H 		//0C8B 	1235
+		BTSC 	3H, 0H 			//0C8C 	2803
+		LJUMP 	494H 			//0C8D 	3C94
+		MOVLB 	1H 			//0C8E 	1021
+		LDR 	35H, 0H 			//0C8F 	1835
+		SUBWR 	30H, 1H 		//0C90 	12B0
+		LDR 	36H, 0H 			//0C91 	1836
+		SUBWFB 	31H, 1H 		//0C92 	0BB1
+		LJUMP 	497H 			//0C93 	3C97
+		MOVLB 	1H 			//0C94 	1021
+		CLRF 	30H 			//0C95 	11B0
+		CLRF 	31H 			//0C96 	11B1
+		LCALL 	756H 			//0C97 	3756
+		MOVLP 	8H 			//0C98 	0188
+		LDR 	31H, 0H 			//0C99 	1831
+		XORWI 	80H 			//0C9A 	0A80
+		MOVLB 	0H 			//0C9B 	1020
+		SUBWR 	5DH, 0H 		//0C9C 	125D
+		BTSS 	3H, 2H 			//0C9D 	2D03
+		LJUMP 	4A3H 			//0C9E 	3CA3
+		MOVLB 	1H 			//0C9F 	1021
+		LDR 	30H, 0H 			//0CA0 	1830
+		MOVLB 	0H 			//0CA1 	1020
+		SUBWR 	5BH, 0H 		//0CA2 	125B
+		BTSC 	3H, 0H 			//0CA3 	2803
+		LJUMP 	4AFH 			//0CA4 	3CAF
+		MOVLB 	1H 			//0CA5 	1021
+		LDR 	37H, 0H 			//0CA6 	1837
+		LCALL 	744H 			//0CA7 	3744
+		MOVLP 	8H 			//0CA8 	0188
+		SUBWR 	30H, 1H 		//0CA9 	12B0
+		MOVLB 	0H 			//0CAA 	1020
+		LDR 	5CH, 0H 			//0CAB 	185C
+		MOVLB 	1H 			//0CAC 	1021
+		SUBWFB 	31H, 1H 		//0CAD 	0BB1
+		LJUMP 	4B2H 			//0CAE 	3CB2
+		MOVLB 	1H 			//0CAF 	1021
+		CLRF 	30H 			//0CB0 	11B0
+		CLRF 	31H 			//0CB1 	11B1
+		BTSS 	2CH, 2H 		//0CB2 	2D2C
+		LJUMP 	4CBH 			//0CB3 	3CCB
+		LDR 	2CH, 0H 			//0CB4 	182C
+		ANDWI 	3H 			//0CB5 	0903
+		BTSC 	3H, 2H 			//0CB6 	2903
+		LJUMP 	4BFH 			//0CB7 	3CBF
+		LCALL 	6CEH 			//0CB8 	36CE
+		MOVLP 	8H 			//0CB9 	0188
+		LDWI 	2DH 			//0CBA 	002D
+		STR 	1H 			//0CBB 	1081
+		INCR 	52H, 1H 		//0CBC 	1AD2
+		BTSC 	3H, 2H 			//0CBD 	2903
+		INCR 	53H, 1H 		//0CBE 	1AD3
+		MOVLB 	1H 			//0CBF 	1021
+		LDR 	30H, 0H 			//0CC0 	1830
+		IORWR 	31H, 0H 		//0CC1 	1431
+		BTSC 	3H, 2H 			//0CC2 	2903
+		LJUMP 	4E6H 			//0CC3 	3CE6
+		MOVLB 	0H 			//0CC4 	1020
+		LCALL 	6C3H 			//0CC5 	36C3
+		MOVLP 	8H 			//0CC6 	0188
+		ADDWR 	30H, 1H 		//0CC7 	17B0
+		BTSS 	3H, 0H 			//0CC8 	2C03
+		DECR 	31H, 1H 		//0CC9 	13B1
+		LJUMP 	4C0H 			//0CCA 	3CC0
+		LDR 	30H, 0H 			//0CCB 	1830
+		IORWR 	31H, 0H 		//0CCC 	1431
+		BTSC 	3H, 2H 			//0CCD 	2903
+		LJUMP 	4DAH 			//0CCE 	3CDA
+		LCALL 	6CEH 			//0CCF 	36CE
+		MOVLP 	8H 			//0CD0 	0188
+		LDWI 	20H 			//0CD1 	0020
+		LCALL 	6ECH 			//0CD2 	36EC
+		MOVLP 	8H 			//0CD3 	0188
+		BTSS 	3H, 0H 			//0CD4 	2C03
+		DECR 	31H, 1H 		//0CD5 	13B1
+		LDR 	30H, 0H 			//0CD6 	1830
+		IORWR 	31H, 0H 		//0CD7 	1431
+		BTSS 	3H, 2H 			//0CD8 	2D03
+		LJUMP 	4CFH 			//0CD9 	3CCF
+		LDR 	2CH, 0H 			//0CDA 	182C
+		ANDWI 	3H 			//0CDB 	0903
+		BTSC 	3H, 2H 			//0CDC 	2903
+		LJUMP 	4E6H 			//0CDD 	3CE6
+		LCALL 	6CEH 			//0CDE 	36CE
+		MOVLP 	8H 			//0CDF 	0188
+		LDWI 	2DH 			//0CE0 	002D
+		STR 	1H 			//0CE1 	1081
+		MOVLB 	0H 			//0CE2 	1020
+		INCR 	52H, 1H 		//0CE3 	1AD2
+		BTSC 	3H, 2H 			//0CE4 	2903
+		INCR 	53H, 1H 		//0CE5 	1AD3
+		LDWI 	FFH 			//0CE6 	00FF
+		MOVLB 	1H 			//0CE7 	1021
+		ADDWR 	35H, 1H 		//0CE8 	17B5
+		BTSS 	3H, 0H 			//0CE9 	2C03
+		DECR 	36H, 1H 		//0CEA 	13B6
+		INCRSZ 	35H, 0H 		//0CEB 	1F35
+		LJUMP 	4F0H 			//0CEC 	3CF0
+		INCR 	36H, 0H 		//0CED 	1A36
+		BTSC 	3H, 2H 			//0CEE 	2903
+		LJUMP 	8DH 			//0CEF 	388D
+		LDWI 	AH 			//0CF0 	000A
+		MOVLB 	0H 			//0CF1 	1020
+		STR 	20H 			//0CF2 	10A0
+		CLRF 	21H 			//0CF3 	11A1
+		CLRF 	22H 			//0CF4 	11A2
+		CLRF 	23H 			//0CF5 	11A3
+		MOVLB 	1H 			//0CF6 	1021
+		LDR 	36H, 0H 			//0CF7 	1836
+		STR 	5H 			//0CF8 	1085
+		LDR 	35H, 0H 			//0CF9 	1835
+		STR 	4H 			//0CFA 	1084
+		LDWI 	41H 			//0CFB 	0041
+		LSLF 	4H, 1H 			//0CFC 	0584
+		RLR 	5H, 1H 			//0CFD 	1D85
+		LSLF 	4H, 1H 			//0CFE 	0584
+		RLR 	5H, 1H 			//0CFF 	1D85
+		ADDWR 	4H, 1H 		//0D00 	1784
+		LDWI 	90H 			//0D01 	0090
+		ADDWFC 	5H, 1H 		//0D02 	0D85
+		MOVIW 	0H[0] 			//0D03 	0F00
+		STR 	70H 			//0D04 	10F0
+		MOVIW 	1H[0] 			//0D05 	0F01
+		STR 	71H 			//0D06 	10F1
+		MOVIW 	2H[0] 			//0D07 	0F02
+		STR 	72H 			//0D08 	10F2
+		MOVIW 	3H[0] 			//0D09 	0F03
+		STR 	73H 			//0D0A 	10F3
+		LDR 	2BH, 0H 			//0D0B 	182B
+		STR 	77H 			//0D0C 	10F7
+		LDR 	2AH, 0H 			//0D0D 	182A
+		STR 	76H 			//0D0E 	10F6
+		LDR 	29H, 0H 			//0D0F 	1829
+		STR 	75H 			//0D10 	10F5
+		LDR 	28H, 0H 			//0D11 	1828
+		STR 	74H 			//0D12 	10F4
+		LCALL 	5E3H 			//0D13 	35E3
+		MOVLP 	8H 			//0D14 	0188
+		LDR 	73H, 0H 			//0D15 	1873
+		MOVLB 	0H 			//0D16 	1020
+		STR 	27H 			//0D17 	10A7
+		LDR 	72H, 0H 			//0D18 	1872
+		STR 	26H 			//0D19 	10A6
+		LDR 	71H, 0H 			//0D1A 	1871
+		STR 	25H 			//0D1B 	10A5
+		LDR 	70H, 0H 			//0D1C 	1870
+		STR 	24H 			//0D1D 	10A4
+		LCALL 	558H 			//0D1E 	3558
+		MOVLP 	8H 			//0D1F 	0188
+		LDR 	20H, 0H 			//0D20 	1820
+		ADDWI 	30H 			//0D21 	0E30
+		MOVLB 	1H 			//0D22 	1021
+		STR 	37H 			//0D23 	10B7
+		LCALL 	6CEH 			//0D24 	36CE
+		MOVLP 	8H 			//0D25 	0188
+		MOVLB 	1H 			//0D26 	1021
+		LDR 	37H, 0H 			//0D27 	1837
+		LJUMP 	4E1H 			//0D28 	3CE1
+		LCALL 	6CEH 			//0D29 	36CE
+		CLRF 	1H 			//0D2A 	1181
+		RET 					//0D2B 	1008
+		BTSS 	72H, 7H 		//0D2C 	2FF2
+		LJUMP 	53BH 			//0D2D 	3D3B
+		LDR 	70H, 0H 			//0D2E 	1870
+		SUBWI 	0H 			//0D2F 	0C00
+		STR 	70H 			//0D30 	10F0
+		LDR 	71H, 0H 			//0D31 	1871
+		BTSS 	3H, 0H 			//0D32 	2C03
+		INCRSZ 	71H, 0H 		//0D33 	1F71
+		SUBWI 	0H 			//0D34 	0C00
+		STR 	71H 			//0D35 	10F1
+		LDR 	72H, 0H 			//0D36 	1872
+		BTSS 	3H, 0H 			//0D37 	2C03
+		INCRSZ 	72H, 0H 		//0D38 	1F72
+		SUBWI 	80H 			//0D39 	0C80
+		STR 	72H 			//0D3A 	10F2
+		BTSS 	75H, 7H 		//0D3B 	2FF5
+		LJUMP 	54AH 			//0D3C 	3D4A
+		LDR 	73H, 0H 			//0D3D 	1873
+		SUBWI 	0H 			//0D3E 	0C00
+		STR 	73H 			//0D3F 	10F3
+		LDR 	74H, 0H 			//0D40 	1874
+		BTSS 	3H, 0H 			//0D41 	2C03
+		INCRSZ 	74H, 0H 		//0D42 	1F74
+		SUBWI 	0H 			//0D43 	0C00
+		STR 	74H 			//0D44 	10F4
+		LDR 	75H, 0H 			//0D45 	1875
+		BTSS 	3H, 0H 			//0D46 	2C03
+		INCRSZ 	75H, 0H 		//0D47 	1F75
+		SUBWI 	80H 			//0D48 	0C80
+		STR 	75H 			//0D49 	10F5
+		LDWI 	80H 			//0D4A 	0080
+		XORWR 	72H, 1H 		//0D4B 	16F2
+		XORWR 	75H, 1H 		//0D4C 	16F5
+		LDR 	75H, 0H 			//0D4D 	1875
+		SUBWR 	72H, 0H 		//0D4E 	1272
+		BTSS 	3H, 2H 			//0D4F 	2D03
+		RET 					//0D50 	1008
+		LDR 	74H, 0H 			//0D51 	1874
+		SUBWR 	71H, 0H 		//0D52 	1271
+		BTSS 	3H, 2H 			//0D53 	2D03
+		RET 					//0D54 	1008
+		LDR 	73H, 0H 			//0D55 	1873
+		SUBWR 	70H, 0H 		//0D56 	1270
+		RET 					//0D57 	1008
+		LDR 	23H, 0H 			//0D58 	1823
+		IORWR 	22H, 0H 		//0D59 	1422
+		IORWR 	21H, 0H 		//0D5A 	1421
+		IORWR 	20H, 0H 		//0D5B 	1420
+		BTSC 	3H, 2H 			//0D5C 	2903
+		LJUMP 	585H 			//0D5D 	3D85
+		CLRF 	7DH 			//0D5E 	11FD
+		INCR 	7DH, 1H 		//0D5F 	1AFD
+		BTSC 	23H, 7H 		//0D60 	2BA3
+		LJUMP 	567H 			//0D61 	3D67
+		LSLF 	20H, 1H 		//0D62 	05A0
+		RLR 	21H, 1H 			//0D63 	1DA1
+		RLR 	22H, 1H 			//0D64 	1DA2
+		RLR 	23H, 1H 			//0D65 	1DA3
+		LJUMP 	55FH 			//0D66 	3D5F
+		LDR 	23H, 0H 			//0D67 	1823
+		SUBWR 	27H, 0H 		//0D68 	1227
+		BTSS 	3H, 2H 			//0D69 	2D03
+		LJUMP 	575H 			//0D6A 	3D75
+		LDR 	22H, 0H 			//0D6B 	1822
+		SUBWR 	26H, 0H 		//0D6C 	1226
+		BTSS 	3H, 2H 			//0D6D 	2D03
+		LJUMP 	575H 			//0D6E 	3D75
+		LDR 	21H, 0H 			//0D6F 	1821
+		SUBWR 	25H, 0H 		//0D70 	1225
+		BTSS 	3H, 2H 			//0D71 	2D03
+		LJUMP 	575H 			//0D72 	3D75
+		LDR 	20H, 0H 			//0D73 	1820
+		SUBWR 	24H, 0H 		//0D74 	1224
+		BTSS 	3H, 0H 			//0D75 	2C03
+		LJUMP 	57FH 			//0D76 	3D7F
+		LDR 	20H, 0H 			//0D77 	1820
+		SUBWR 	24H, 1H 		//0D78 	12A4
+		LDR 	21H, 0H 			//0D79 	1821
+		SUBWFB 	25H, 1H 		//0D7A 	0BA5
+		LDR 	22H, 0H 			//0D7B 	1822
+		SUBWFB 	26H, 1H 		//0D7C 	0BA6
+		LDR 	23H, 0H 			//0D7D 	1823
+		SUBWFB 	27H, 1H 		//0D7E 	0BA7
+		LSRF 	23H, 1H 		//0D7F 	06A3
+		RRR 	22H, 1H 			//0D80 	1CA2
+		RRR 	21H, 1H 			//0D81 	1CA1
+		RRR 	20H, 1H 			//0D82 	1CA0
+		DECRSZ 	7DH, 1H 		//0D83 	1BFD
+		LJUMP 	567H 			//0D84 	3D67
+		LDR 	27H, 0H 			//0D85 	1827
+		STR 	23H 			//0D86 	10A3
+		LDR 	26H, 0H 			//0D87 	1826
+		STR 	22H 			//0D88 	10A2
+		LDR 	25H, 0H 			//0D89 	1825
+		STR 	21H 			//0D8A 	10A1
+		LDR 	24H, 0H 			//0D8B 	1824
+		STR 	20H 			//0D8C 	10A0
+		RET 					//0D8D 	1008
+		LCALL 	77AH 			//0D8E 	377A
+		MOVLP 	8H 			//0D8F 	0188
+		BCR 	3H, 0H 			//0D90 	2003
+		RLR 	42H, 0H 			//0D91 	1D42
+		RLR 	43H, 0H 			//0D92 	1D43
+		STR 	49H 			//0D93 	10C9
+		LDR 	49H, 0H 			//0D94 	1849
+		BTSS 	3H, 2H 			//0D95 	2D03
+		LJUMP 	59CH 			//0D96 	3D9C
+		CLRF 	3DH 			//0D97 	11BD
+		CLRF 	3EH 			//0D98 	11BE
+		CLRF 	3FH 			//0D99 	11BF
+		CLRF 	40H 			//0D9A 	11C0
+		RET 					//0D9B 	1008
+		LCALL 	77AH 			//0D9C 	377A
+		MOVLP 	8H 			//0D9D 	0188
+		LDWI 	17H 			//0D9E 	0017
+		LSRF 	43H, 1H 		//0D9F 	06C3
+		RRR 	42H, 1H 			//0DA0 	1CC2
+		RRR 	41H, 1H 			//0DA1 	1CC1
+		DECRSZ 	9H, 1H 		//0DA2 	1B89
+		LJUMP 	59FH 			//0DA3 	3D9F
+		LDR 	41H, 0H 			//0DA4 	1841
+		STR 	44H 			//0DA5 	10C4
+		BSR 	3EH, 7H 			//0DA6 	27BE
+		CLRF 	3FH 			//0DA7 	11BF
+		LDR 	3DH, 0H 			//0DA8 	183D
+		STR 	45H 			//0DA9 	10C5
+		LDR 	3EH, 0H 			//0DAA 	183E
+		STR 	46H 			//0DAB 	10C6
+		LDR 	3FH, 0H 			//0DAC 	183F
+		STR 	47H 			//0DAD 	10C7
+		LDWI 	8EH 			//0DAE 	008E
+		CLRF 	48H 			//0DAF 	11C8
+		SUBWR 	49H, 1H 		//0DB0 	12C9
+		BTSS 	49H, 7H 		//0DB1 	2FC9
+		LJUMP 	5BFH 			//0DB2 	3DBF
+		LDR 	49H, 0H 			//0DB3 	1849
+		XORWI 	80H 			//0DB4 	0A80
+		ADDWI 	8FH 			//0DB5 	0E8F
+		BTSS 	3H, 0H 			//0DB6 	2C03
+		LJUMP 	597H 			//0DB7 	3D97
+		LSRF 	48H, 1H 		//0DB8 	06C8
+		RRR 	47H, 1H 			//0DB9 	1CC7
+		RRR 	46H, 1H 			//0DBA 	1CC6
+		RRR 	45H, 1H 			//0DBB 	1CC5
+		INCRSZ 	49H, 1H 		//0DBC 	1FC9
+		LJUMP 	5B8H 			//0DBD 	3DB8
+		LJUMP 	5CCH 			//0DBE 	3DCC
+		LDWI 	18H 			//0DBF 	0018
+		SUBWR 	49H, 0H 		//0DC0 	1249
+		BTSC 	3H, 0H 			//0DC1 	2803
+		LJUMP 	597H 			//0DC2 	3D97
+		LDR 	49H, 0H 			//0DC3 	1849
+		BTSC 	3H, 2H 			//0DC4 	2903
+		LJUMP 	5CCH 			//0DC5 	3DCC
+		LSLF 	45H, 1H 		//0DC6 	05C5
+		RLR 	46H, 1H 			//0DC7 	1DC6
+		RLR 	47H, 1H 			//0DC8 	1DC7
+		RLR 	48H, 1H 			//0DC9 	1DC8
+		DECR 	49H, 1H 		//0DCA 	13C9
+		LJUMP 	5C3H 			//0DCB 	3DC3
+		LDR 	44H, 0H 			//0DCC 	1844
+		BTSC 	3H, 2H 			//0DCD 	2903
+		LJUMP 	5DAH 			//0DCE 	3DDA
+		COMR 	45H, 1H 		//0DCF 	19C5
+		COMR 	46H, 1H 		//0DD0 	19C6
+		COMR 	47H, 1H 		//0DD1 	19C7
+		COMR 	48H, 1H 		//0DD2 	19C8
+		INCR 	45H, 1H 		//0DD3 	1AC5
+		BTSC 	3H, 2H 			//0DD4 	2903
+		INCR 	46H, 1H 		//0DD5 	1AC6
+		BTSC 	3H, 2H 			//0DD6 	2903
+		INCR 	47H, 1H 		//0DD7 	1AC7
+		BTSC 	3H, 2H 			//0DD8 	2903
+		INCR 	48H, 1H 		//0DD9 	1AC8
+		LDR 	48H, 0H 			//0DDA 	1848
+		STR 	40H 			//0DDB 	10C0
+		LDR 	47H, 0H 			//0DDC 	1847
+		STR 	3FH 			//0DDD 	10BF
+		LDR 	46H, 0H 			//0DDE 	1846
+		STR 	3EH 			//0DDF 	10BE
+		LDR 	45H, 0H 			//0DE0 	1845
+		STR 	3DH 			//0DE1 	10BD
+		RET 					//0DE2 	1008
+		CLRF 	78H 			//0DE3 	11F8
+		CLRF 	79H 			//0DE4 	11F9
+		CLRF 	7AH 			//0DE5 	11FA
+		CLRF 	7BH 			//0DE6 	11FB
+		LDR 	73H, 0H 			//0DE7 	1873
+		IORWR 	72H, 0H 		//0DE8 	1472
+		IORWR 	71H, 0H 		//0DE9 	1471
+		IORWR 	70H, 0H 		//0DEA 	1470
+		BTSC 	3H, 2H 			//0DEB 	2903
+		LJUMP 	619H 			//0DEC 	3E19
+		CLRF 	7CH 			//0DED 	11FC
+		INCR 	7CH, 1H 		//0DEE 	1AFC
+		BTSC 	73H, 7H 		//0DEF 	2BF3
+		LJUMP 	5F6H 			//0DF0 	3DF6
+		LSLF 	70H, 1H 		//0DF1 	05F0
+		RLR 	71H, 1H 			//0DF2 	1DF1
+		RLR 	72H, 1H 			//0DF3 	1DF2
+		RLR 	73H, 1H 			//0DF4 	1DF3
+		LJUMP 	5EEH 			//0DF5 	3DEE
+		LSLF 	78H, 1H 		//0DF6 	05F8
+		RLR 	79H, 1H 			//0DF7 	1DF9
+		RLR 	7AH, 1H 			//0DF8 	1DFA
+		RLR 	7BH, 1H 			//0DF9 	1DFB
+		LDR 	73H, 0H 			//0DFA 	1873
+		SUBWR 	77H, 0H 		//0DFB 	1277
+		BTSS 	3H, 2H 			//0DFC 	2D03
+		LJUMP 	608H 			//0DFD 	3E08
+		LDR 	72H, 0H 			//0DFE 	1872
+		SUBWR 	76H, 0H 		//0DFF 	1276
+		BTSS 	3H, 2H 			//0E00 	2D03
+		LJUMP 	608H 			//0E01 	3E08
+		LDR 	71H, 0H 			//0E02 	1871
+		SUBWR 	75H, 0H 		//0E03 	1275
+		BTSS 	3H, 2H 			//0E04 	2D03
+		LJUMP 	608H 			//0E05 	3E08
+		LDR 	70H, 0H 			//0E06 	1870
+		SUBWR 	74H, 0H 		//0E07 	1274
+		BTSS 	3H, 0H 			//0E08 	2C03
+		LJUMP 	613H 			//0E09 	3E13
+		LDR 	70H, 0H 			//0E0A 	1870
+		SUBWR 	74H, 1H 		//0E0B 	12F4
+		LDR 	71H, 0H 			//0E0C 	1871
+		SUBWFB 	75H, 1H 		//0E0D 	0BF5
+		LDR 	72H, 0H 			//0E0E 	1872
+		SUBWFB 	76H, 1H 		//0E0F 	0BF6
+		LDR 	73H, 0H 			//0E10 	1873
+		SUBWFB 	77H, 1H 		//0E11 	0BF7
+		BSR 	78H, 0H 			//0E12 	2478
+		LSRF 	73H, 1H 		//0E13 	06F3
+		RRR 	72H, 1H 			//0E14 	1CF2
+		RRR 	71H, 1H 			//0E15 	1CF1
+		RRR 	70H, 1H 			//0E16 	1CF0
+		DECRSZ 	7CH, 1H 		//0E17 	1BFC
+		LJUMP 	5F6H 			//0E18 	3DF6
+		LDR 	7BH, 0H 			//0E19 	187B
+		STR 	73H 			//0E1A 	10F3
+		LDR 	7AH, 0H 			//0E1B 	187A
+		STR 	72H 			//0E1C 	10F2
+		LDR 	79H, 0H 			//0E1D 	1879
+		STR 	71H 			//0E1E 	10F1
+		LDR 	78H, 0H 			//0E1F 	1878
+		STR 	70H 			//0E20 	10F0
+		RET 					//0E21 	1008
+		STR 	71H 			//0E22 	10F1
+		LDWI 	3AH 			//0E23 	003A
+		CLRF 	70H 			//0E24 	11F0
+		SUBWR 	71H, 0H 		//0E25 	1271
+		BTSC 	3H, 0H 			//0E26 	2803
+		LJUMP 	62EH 			//0E27 	3E2E
+		LDWI 	30H 			//0E28 	0030
+		SUBWR 	71H, 0H 		//0E29 	1271
+		BTSS 	3H, 0H 			//0E2A 	2C03
+		LJUMP 	62EH 			//0E2B 	3E2E
+		CLRF 	70H 			//0E2C 	11F0
+		INCR 	70H, 1H 		//0E2D 	1AF0
+		RRR 	70H, 0H 			//0E2E 	1C70
+		RET 					//0E2F 	1008
+		CLRF 	7BH 			//0E30 	11FB
+		BTSS 	77H, 7H 		//0E31 	2FF7
+		LJUMP 	63AH 			//0E32 	3E3A
+		COMR 	76H, 1H 		//0E33 	19F6
+		COMR 	77H, 1H 		//0E34 	19F7
+		INCR 	76H, 1H 		//0E35 	1AF6
+		BTSC 	3H, 2H 			//0E36 	2903
+		INCR 	77H, 1H 		//0E37 	1AF7
+		CLRF 	7BH 			//0E38 	11FB
+		INCR 	7BH, 1H 		//0E39 	1AFB
+		BTSS 	79H, 7H 		//0E3A 	2FF9
+		LJUMP 	643H 			//0E3B 	3E43
+		COMR 	78H, 1H 		//0E3C 	19F8
+		COMR 	79H, 1H 		//0E3D 	19F9
+		INCR 	78H, 1H 		//0E3E 	1AF8
+		BTSC 	3H, 2H 			//0E3F 	2903
+		INCR 	79H, 1H 		//0E40 	1AF9
+		LDWI 	1H 			//0E41 	0001
+		XORWR 	7BH, 1H 		//0E42 	16FB
+		CLRF 	7CH 			//0E43 	11FC
+		CLRF 	7DH 			//0E44 	11FD
+		LDR 	76H, 0H 			//0E45 	1876
+		IORWR 	77H, 0H 		//0E46 	1477
+		BTSC 	3H, 2H 			//0E47 	2903
+		LJUMP 	663H 			//0E48 	3E63
+		CLRF 	7AH 			//0E49 	11FA
+		INCR 	7AH, 1H 		//0E4A 	1AFA
+		BTSC 	77H, 7H 		//0E4B 	2BF7
+		LJUMP 	650H 			//0E4C 	3E50
+		LSLF 	76H, 1H 		//0E4D 	05F6
+		RLR 	77H, 1H 			//0E4E 	1DF7
+		LJUMP 	64AH 			//0E4F 	3E4A
+		LSLF 	7CH, 1H 		//0E50 	05FC
+		RLR 	7DH, 1H 			//0E51 	1DFD
+		LDR 	77H, 0H 			//0E52 	1877
+		SUBWR 	79H, 0H 		//0E53 	1279
+		BTSS 	3H, 2H 			//0E54 	2D03
+		LJUMP 	658H 			//0E55 	3E58
+		LDR 	76H, 0H 			//0E56 	1876
+		SUBWR 	78H, 0H 		//0E57 	1278
+		BTSS 	3H, 0H 			//0E58 	2C03
+		LJUMP 	65FH 			//0E59 	3E5F
+		LDR 	76H, 0H 			//0E5A 	1876
+		SUBWR 	78H, 1H 		//0E5B 	12F8
+		LDR 	77H, 0H 			//0E5C 	1877
+		SUBWFB 	79H, 1H 		//0E5D 	0BF9
+		BSR 	7CH, 0H 			//0E5E 	247C
+		LSRF 	77H, 1H 		//0E5F 	06F7
+		RRR 	76H, 1H 			//0E60 	1CF6
+		DECRSZ 	7AH, 1H 		//0E61 	1BFA
+		LJUMP 	650H 			//0E62 	3E50
+		LDR 	7BH, 0H 			//0E63 	187B
+		BTSC 	3H, 2H 			//0E64 	2903
+		LJUMP 	66BH 			//0E65 	3E6B
+		COMR 	7CH, 1H 		//0E66 	19FC
+		COMR 	7DH, 1H 		//0E67 	19FD
+		INCR 	7CH, 1H 		//0E68 	1AFC
+		BTSC 	3H, 2H 			//0E69 	2903
+		INCR 	7DH, 1H 		//0E6A 	1AFD
+		LDR 	7DH, 0H 			//0E6B 	187D
+		STR 	77H 			//0E6C 	10F7
+		LDR 	7CH, 0H 			//0E6D 	187C
+		STR 	76H 			//0E6E 	10F6
+		RET 					//0E6F 	1008
+		LDR 	72H, 0H 			//0E70 	1872
+		IORWR 	71H, 0H 		//0E71 	1471
+		IORWR 	70H, 0H 		//0E72 	1470
+		BTSC 	3H, 2H 			//0E73 	2903
+		RET 					//0E74 	1008
+		LDWI 	80H 			//0E75 	0080
+		XORWR 	72H, 1H 		//0E76 	16F2
+		RET 					//0E77 	1008
+		LDR 	4EH, 0H 			//0E78 	184E
+		IORWR 	4DH, 0H 		//0E79 	144D
+		IORWR 	4CH, 0H 		//0E7A 	144C
+		BTSC 	3H, 2H 			//0E7B 	2903
+		LJUMP 	67FH 			//0E7C 	3E7F
+		LDWI 	80H 			//0E7D 	0080
+		XORWR 	4EH, 1H 		//0E7E 	16CE
+		LDR 	4FH, 0H 			//0E7F 	184F
+		STR 	40H 			//0E80 	10C0
+		LDR 	50H, 0H 			//0E81 	1850
+		STR 	41H 			//0E82 	10C1
+		LDR 	51H, 0H 			//0E83 	1851
+		STR 	42H 			//0E84 	10C2
+		LDR 	4CH, 0H 			//0E85 	184C
+		STR 	43H 			//0E86 	10C3
+		LDR 	4DH, 0H 			//0E87 	184D
+		STR 	44H 			//0E88 	10C4
+		LDR 	4EH, 0H 			//0E89 	184E
+		STR 	45H 			//0E8A 	10C5
+		MOVLP 	2H 			//0E8B 	0182
+		LCALL 	21FH 			//0E8C 	321F
+		LDR 	40H, 0H 			//0E8D 	1840
+		STR 	4CH 			//0E8E 	10CC
+		LDR 	41H, 0H 			//0E8F 	1841
+		STR 	4DH 			//0E90 	10CD
+		LDR 	42H, 0H 			//0E91 	1842
+		STR 	4EH 			//0E92 	10CE
+		RET 					//0E93 	1008
+		LDR 	37H, 0H 			//0E94 	1837
+		MOVLB 	0H 			//0E95 	1020
+		STR 	5BH 			//0E96 	10DB
+		LDWI 	41H 			//0E97 	0041
+		CLRF 	5CH 			//0E98 	11DC
+		LSLF 	5BH, 1H 		//0E99 	05DB
+		RLR 	5CH, 1H 			//0E9A 	1DDC
+		LSLF 	5BH, 1H 		//0E9B 	05DB
+		RLR 	5CH, 1H 			//0E9C 	1DDC
+		ADDWR 	5BH, 0H 		//0E9D 	175B
+		STR 	4H 			//0E9E 	1084
+		LDWI 	90H 			//0E9F 	0090
+		ADDWFC 	5CH, 0H 		//0EA0 	0D5C
+		STR 	5H 			//0EA1 	1085
+		MOVIW 	0H[0] 			//0EA2 	0F00
+		RET 					//0EA3 	1008
+		LDR 	73H, 0H 			//0EA4 	1873
+		STR 	27H 			//0EA5 	10A7
+		LDR 	72H, 0H 			//0EA6 	1872
+		STR 	26H 			//0EA7 	10A6
+		LDR 	71H, 0H 			//0EA8 	1871
+		STR 	25H 			//0EA9 	10A5
+		LDR 	70H, 0H 			//0EAA 	1870
+		STR 	24H 			//0EAB 	10A4
+		LDWI 	AH 			//0EAC 	000A
+		MOVLB 	0H 			//0EAD 	1020
+		STR 	20H 			//0EAE 	10A0
+		CLRF 	21H 			//0EAF 	11A1
+		CLRF 	22H 			//0EB0 	11A2
+		CLRF 	23H 			//0EB1 	11A3
+		MOVLB 	1H 			//0EB2 	1021
+		LDR 	27H, 0H 			//0EB3 	1827
+		MOVLB 	0H 			//0EB4 	1020
+		STR 	27H 			//0EB5 	10A7
+		MOVLB 	1H 			//0EB6 	1021
+		LDR 	26H, 0H 			//0EB7 	1826
+		MOVLB 	0H 			//0EB8 	1020
+		STR 	26H 			//0EB9 	10A6
+		MOVLB 	1H 			//0EBA 	1021
+		LDR 	25H, 0H 			//0EBB 	1825
+		MOVLB 	0H 			//0EBC 	1020
+		STR 	25H 			//0EBD 	10A5
+		MOVLB 	1H 			//0EBE 	1021
+		LDR 	24H, 0H 			//0EBF 	1824
+		MOVLB 	0H 			//0EC0 	1020
+		STR 	24H 			//0EC1 	10A4
+		RET 					//0EC2 	1008
+		LDR 	52H, 0H 			//0EC3 	1852
+		STR 	6H 			//0EC4 	1086
+		LDR 	53H, 0H 			//0EC5 	1853
+		STR 	7H 			//0EC6 	1087
+		LDWI 	30H 			//0EC7 	0030
+		STR 	1H 			//0EC8 	1081
+		INCR 	52H, 1H 		//0EC9 	1AD2
+		BTSC 	3H, 2H 			//0ECA 	2903
+		INCR 	53H, 1H 		//0ECB 	1AD3
+		MOVLB 	1H 			//0ECC 	1021
+		RETW 	FFH 			//0ECD 	04FF
+		MOVLB 	0H 			//0ECE 	1020
+		LDR 	52H, 0H 			//0ECF 	1852
+		STR 	6H 			//0ED0 	1086
+		LDR 	53H, 0H 			//0ED1 	1853
+		STR 	7H 			//0ED2 	1087
+		RET 					//0ED3 	1008
+		LDR 	23H, 0H 			//0ED4 	1823
+		MOVLB 	1H 			//0ED5 	1021
+		STR 	27H 			//0ED6 	10A7
+		MOVLB 	0H 			//0ED7 	1020
+		LDR 	22H, 0H 			//0ED8 	1822
+		MOVLB 	1H 			//0ED9 	1021
+		STR 	26H 			//0EDA 	10A6
+		MOVLB 	0H 			//0EDB 	1020
+		LDR 	21H, 0H 			//0EDC 	1821
+		MOVLB 	1H 			//0EDD 	1021
+		STR 	25H 			//0EDE 	10A5
+		MOVLB 	0H 			//0EDF 	1020
+		LDR 	20H, 0H 			//0EE0 	1820
+		MOVLB 	1H 			//0EE1 	1021
+		STR 	24H 			//0EE2 	10A4
+		ADDWI 	30H 			//0EE3 	0E30
+		MOVLB 	0H 			//0EE4 	1020
+		STR 	5BH 			//0EE5 	10DB
+		LDR 	52H, 0H 			//0EE6 	1852
+		STR 	6H 			//0EE7 	1086
+		LDR 	53H, 0H 			//0EE8 	1853
+		STR 	7H 			//0EE9 	1087
+		LDR 	5BH, 0H 			//0EEA 	185B
+		RET 					//0EEB 	1008
+		STR 	1H 			//0EEC 	1081
+		INCR 	52H, 1H 		//0EED 	1AD2
+		BTSC 	3H, 2H 			//0EEE 	2903
+		INCR 	53H, 1H 		//0EEF 	1AD3
+		LDWI 	FFH 			//0EF0 	00FF
+		MOVLB 	1H 			//0EF1 	1021
+		ADDWR 	30H, 1H 		//0EF2 	17B0
+		RET 					//0EF3 	1008
+		MOVLB 	0H 			//0EF4 	1020
+		LDR 	55H, 0H 			//0EF5 	1855
+		STR 	5CH 			//0EF6 	10DC
+		LDR 	54H, 0H 			//0EF7 	1854
+		STR 	5BH 			//0EF8 	10DB
+		INCR 	54H, 1H 		//0EF9 	1AD4
+		BTSC 	3H, 2H 			//0EFA 	2903
+		INCR 	55H, 1H 		//0EFB 	1AD5
+		STR 	4H 			//0EFC 	1084
+		LDR 	5CH, 0H 			//0EFD 	185C
+		STR 	5H 			//0EFE 	1085
+		LDR 	0H, 0H 			//0EFF 	1800
+		MOVLB 	1H 			//0F00 	1021
+		STR 	37H 			//0F01 	10B7
+		RET 					//0F02 	1008
+		MOVIW 	2H[0] 			//0F03 	0F02
+		STR 	72H 			//0F04 	10F2
+		MOVIW 	3H[0] 			//0F05 	0F03
+		STR 	73H 			//0F06 	10F3
+		MOVLB 	1H 			//0F07 	1021
+		LDR 	2BH, 0H 			//0F08 	182B
+		STR 	77H 			//0F09 	10F7
+		LDR 	2AH, 0H 			//0F0A 	182A
+		STR 	76H 			//0F0B 	10F6
+		LDR 	29H, 0H 			//0F0C 	1829
+		STR 	75H 			//0F0D 	10F5
+		LDR 	28H, 0H 			//0F0E 	1828
+		STR 	74H 			//0F0F 	10F4
+		RET 					//0F10 	1008
+		LDR 	40H, 0H 			//0F11 	1840
+		MOVLB 	1H 			//0F12 	1021
+		STR 	2BH 			//0F13 	10AB
+		MOVLB 	0H 			//0F14 	1020
+		LDR 	3FH, 0H 			//0F15 	183F
+		MOVLB 	1H 			//0F16 	1021
+		STR 	2AH 			//0F17 	10AA
+		MOVLB 	0H 			//0F18 	1020
+		LDR 	3EH, 0H 			//0F19 	183E
+		MOVLB 	1H 			//0F1A 	1021
+		STR 	29H 			//0F1B 	10A9
+		MOVLB 	0H 			//0F1C 	1020
+		LDR 	3DH, 0H 			//0F1D 	183D
+		RET 					//0F1E 	1008
+		XORWI 	80H 			//0F1F 	0A80
+		MOVLB 	0H 			//0F20 	1020
+		STR 	5BH 			//0F21 	10DB
+		LDWI 	80H 			//0F22 	0080
+		SUBWR 	5BH, 0H 		//0F23 	125B
+		RET 					//0F24 	1008
+		LDR 	35H, 0H 			//0F25 	1835
+		MOVLB 	1H 			//0F26 	1021
+		STR 	24H 			//0F27 	10A4
+		MOVLB 	0H 			//0F28 	1020
+		LDR 	36H, 0H 			//0F29 	1836
+		MOVLB 	1H 			//0F2A 	1021
+		STR 	25H 			//0F2B 	10A5
+		MOVLB 	0H 			//0F2C 	1020
+		LDR 	37H, 0H 			//0F2D 	1837
+		MOVLB 	1H 			//0F2E 	1021
+		STR 	26H 			//0F2F 	10A6
+		LDR 	32H, 0H 			//0F30 	1832
+		RET 					//0F31 	1008
+		LDR 	54H, 0H 			//0F32 	1854
+		STR 	4H 			//0F33 	1084
+		LDR 	55H, 0H 			//0F34 	1855
+		STR 	5H 			//0F35 	1085
+		LDR 	0H, 0H 			//0F36 	1800
+		RET 					//0F37 	1008
+		LDR 	32H, 0H 			//0F38 	1832
+		MOVLB 	0H 			//0F39 	1020
+		STR 	3DH 			//0F3A 	10BD
+		MOVLB 	1H 			//0F3B 	1021
+		LDR 	33H, 0H 			//0F3C 	1833
+		MOVLB 	0H 			//0F3D 	1020
+		STR 	3EH 			//0F3E 	10BE
+		MOVLB 	1H 			//0F3F 	1021
+		LDR 	34H, 0H 			//0F40 	1834
+		MOVLB 	0H 			//0F41 	1020
+		STR 	3FH 			//0F42 	10BF
+		RET 					//0F43 	1008
+		MOVLB 	0H 			//0F44 	1020
+		STR 	5BH 			//0F45 	10DB
+		CLRF 	5CH 			//0F46 	11DC
+		BTSC 	5BH, 7H 		//0F47 	2BDB
+		DECR 	5CH, 1H 		//0F48 	13DC
+		MOVLB 	1H 			//0F49 	1021
+		RET 					//0F4A 	1008
+		MOVLB 	0H 			//0F4B 	1020
+		STR 	26H 			//0F4C 	10A6
+		MOVLB 	1H 			//0F4D 	1021
+		LDR 	33H, 0H 			//0F4E 	1833
+		MOVLB 	0H 			//0F4F 	1020
+		STR 	27H 			//0F50 	10A7
+		MOVLB 	1H 			//0F51 	1021
+		LDR 	34H, 0H 			//0F52 	1834
+		MOVLB 	0H 			//0F53 	1020
+		STR 	28H 			//0F54 	10A8
+		RET 					//0F55 	1008
+		LDR 	37H, 0H 			//0F56 	1837
+		MOVLB 	0H 			//0F57 	1020
+		STR 	5BH 			//0F58 	10DB
+		CLRF 	5CH 			//0F59 	11DC
+		BTSC 	5BH, 7H 		//0F5A 	2BDB
+		DECR 	5CH, 1H 		//0F5B 	13DC
+		LDR 	5CH, 0H 			//0F5C 	185C
+		XORWI 	80H 			//0F5D 	0A80
+		STR 	5DH 			//0F5E 	10DD
+		MOVLB 	1H 			//0F5F 	1021
+		RET 					//0F60 	1008
+		STR 	5DH 			//0F61 	10DD
+		MOVIW 	1H[0] 			//0F62 	0F01
+		STR 	5EH 			//0F63 	10DE
+		MOVIW 	2H[0] 			//0F64 	0F02
+		STR 	5FH 			//0F65 	10DF
+		MOVIW 	3H[0] 			//0F66 	0F03
+		STR 	60H 			//0F67 	10E0
+		MOVLB 	1H 			//0F68 	1021
+		SUBWR 	2BH, 0H 		//0F69 	122B
+		RET 					//0F6A 	1008
+		LDR 	24H, 0H 			//0F6B 	1824
+		STR 	70H 			//0F6C 	10F0
+		LDR 	25H, 0H 			//0F6D 	1825
+		STR 	71H 			//0F6E 	10F1
+		LDR 	26H, 0H 			//0F6F 	1826
+		STR 	72H 			//0F70 	10F2
+		RET 					//0F71 	1008
+		STR 	6H 			//0F72 	1086
+		CLRF 	7H 			//0F73 	1187
+		MOVIW 	0H[1] 			//0F74 	0F40
+		MOVLB 	0H 			//0F75 	1020
+		STR 	5BH 			//0F76 	10DB
+		MOVIW 	1H[1] 			//0F77 	0F41
+		STR 	5CH 			//0F78 	10DC
+		RET 					//0F79 	1008
+		LDR 	3DH, 0H 			//0F7A 	183D
+		STR 	41H 			//0F7B 	10C1
+		LDR 	3EH, 0H 			//0F7C 	183E
+		STR 	42H 			//0F7D 	10C2
+		LDR 	3FH, 0H 			//0F7E 	183F
+		STR 	43H 			//0F7F 	10C3
+		RET 					//0F80 	1008
+		MOVLB 	0H 			//0F81 	1020
+		LDR 	5DH, 0H 			//0F82 	185D
+		MOVLB 	1H 			//0F83 	1021
+		SUBWR 	28H, 0H 		//0F84 	1228
+		RET 					//0F85 	1008
+		MOVLB 	0H 			//0F86 	1020
+		LDR 	5EH, 0H 			//0F87 	185E
+		MOVLB 	1H 			//0F88 	1021
+		SUBWR 	29H, 0H 		//0F89 	1229
+		RET 					//0F8A 	1008
+		MOVLB 	0H 			//0F8B 	1020
+		LDR 	5FH, 0H 			//0F8C 	185F
+		MOVLB 	1H 			//0F8D 	1021
+		SUBWR 	2AH, 0H 		//0F8E 	122A
+		RET 					//0F8F 	1008
+		LDR 	70H, 0H 			//0F90 	1870
+		STR 	76H 			//0F91 	10F6
+		LDR 	71H, 0H 			//0F92 	1871
+		STR 	77H 			//0F93 	10F7
+		LDR 	72H, 0H 			//0F94 	1872
+		STR 	78H 			//0F95 	10F8
+		BCR 	3H, 0H 			//0F96 	2003
+		RLR 	77H, 0H 			//0F97 	1D77
+		RLR 	78H, 0H 			//0F98 	1D78
+		MOVLB 	0H 			//0F99 	1020
+		STR 	25H 			//0F9A 	10A5
+		LDR 	25H, 0H 			//0F9B 	1825
+		BTSS 	3H, 2H 			//0F9C 	2D03
+		LJUMP 	7A3H 			//0F9D 	3FA3
+		CLRF 	70H 			//0F9E 	11F0
+		CLRF 	71H 			//0F9F 	11F1
+		CLRF 	72H 			//0FA0 	11F2
+		CLRF 	73H 			//0FA1 	11F3
+		RET 					//0FA2 	1008
+		LDR 	73H, 0H 			//0FA3 	1873
+		STR 	76H 			//0FA4 	10F6
+		LDR 	74H, 0H 			//0FA5 	1874
+		STR 	77H 			//0FA6 	10F7
+		LDR 	75H, 0H 			//0FA7 	1875
+		STR 	78H 			//0FA8 	10F8
+		BCR 	3H, 0H 			//0FA9 	2003
+		RLR 	77H, 0H 			//0FAA 	1D77
+		RLR 	78H, 0H 			//0FAB 	1D78
+		STR 	24H 			//0FAC 	10A4
+		LDR 	24H, 0H 			//0FAD 	1824
+		BTSC 	3H, 2H 			//0FAE 	2903
+		LJUMP 	79EH 			//0FAF 	3F9E
+		LDWI 	7FH 			//0FB0 	007F
+		BSR 	71H, 7H 			//0FB1 	27F1
+		CLRF 	72H 			//0FB2 	11F2
+		BSR 	74H, 7H 			//0FB3 	27F4
+		CLRF 	75H 			//0FB4 	11F5
+		CLRF 	20H 			//0FB5 	11A0
+		CLRF 	21H 			//0FB6 	11A1
+		CLRF 	22H 			//0FB7 	11A2
+		CLRF 	23H 			//0FB8 	11A3
+		SUBWR 	25H, 1H 		//0FB9 	12A5
+		LDWI 	98H 			//0FBA 	0098
+		ADDWR 	24H, 0H 		//0FBB 	1724
+		STR 	76H 			//0FBC 	10F6
+		SUBWR 	25H, 1H 		//0FBD 	12A5
+		LDWI 	18H 			//0FBE 	0018
+		STR 	24H 			//0FBF 	10A4
+		LSLF 	20H, 1H 		//0FC0 	05A0
+		RLR 	21H, 1H 			//0FC1 	1DA1
+		RLR 	22H, 1H 			//0FC2 	1DA2
+		RLR 	23H, 1H 			//0FC3 	1DA3
+		LDR 	75H, 0H 			//0FC4 	1875
+		SUBWR 	72H, 0H 		//0FC5 	1272
+		BTSS 	3H, 2H 			//0FC6 	2D03
+		LJUMP 	7CEH 			//0FC7 	3FCE
+		LDR 	74H, 0H 			//0FC8 	1874
+		SUBWR 	71H, 0H 		//0FC9 	1271
+		BTSS 	3H, 2H 			//0FCA 	2D03
+		LJUMP 	7CEH 			//0FCB 	3FCE
+		LDR 	73H, 0H 			//0FCC 	1873
+		SUBWR 	70H, 0H 		//0FCD 	1270
+		BTSS 	3H, 0H 			//0FCE 	2C03
+		LJUMP 	7D7H 			//0FCF 	3FD7
+		LDR 	73H, 0H 			//0FD0 	1873
+		SUBWR 	70H, 1H 		//0FD1 	12F0
+		LDR 	74H, 0H 			//0FD2 	1874
+		SUBWFB 	71H, 1H 		//0FD3 	0BF1
+		LDR 	75H, 0H 			//0FD4 	1875
+		SUBWFB 	72H, 1H 		//0FD5 	0BF2
+		BSR 	20H, 0H 			//0FD6 	2420
+		LSLF 	70H, 1H 		//0FD7 	05F0
+		RLR 	71H, 1H 			//0FD8 	1DF1
+		RLR 	72H, 1H 			//0FD9 	1DF2
+		DECRSZ 	24H, 1H 		//0FDA 	1BA4
+		LJUMP 	7C0H 			//0FDB 	3FC0
+		BTSS 	25H, 7H 		//0FDC 	2FA5
+		LJUMP 	7EAH 			//0FDD 	3FEA
+		LDR 	25H, 0H 			//0FDE 	1825
+		XORWI 	80H 			//0FDF 	0A80
+		ADDWI 	97H 			//0FE0 	0E97
+		BTSS 	3H, 0H 			//0FE1 	2C03
+		LJUMP 	79EH 			//0FE2 	3F9E
+		LSRF 	23H, 1H 		//0FE3 	06A3
+		RRR 	22H, 1H 			//0FE4 	1CA2
+		RRR 	21H, 1H 			//0FE5 	1CA1
+		RRR 	20H, 1H 			//0FE6 	1CA0
+		INCRSZ 	25H, 1H 		//0FE7 	1FA5
+		LJUMP 	7E3H 			//0FE8 	3FE3
+		LJUMP 	7F7H 			//0FE9 	3FF7
+		LDWI 	18H 			//0FEA 	0018
+		SUBWR 	25H, 0H 		//0FEB 	1225
+		BTSC 	3H, 0H 			//0FEC 	2803
+		LJUMP 	79EH 			//0FED 	3F9E
+		LDR 	25H, 0H 			//0FEE 	1825
+		BTSC 	3H, 2H 			//0FEF 	2903
+		LJUMP 	7F7H 			//0FF0 	3FF7
+		LSLF 	20H, 1H 		//0FF1 	05A0
+		RLR 	21H, 1H 			//0FF2 	1DA1
+		RLR 	22H, 1H 			//0FF3 	1DA2
+		RLR 	23H, 1H 			//0FF4 	1DA3
+		DECR 	25H, 1H 		//0FF5 	13A5
+		LJUMP 	7EEH 			//0FF6 	3FEE
+		LDR 	23H, 0H 			//0FF7 	1823
+		STR 	73H 			//0FF8 	10F3
+		LDR 	22H, 0H 			//0FF9 	1822
+		STR 	72H 			//0FFA 	10F2
+		LDR 	21H, 0H 			//0FFB 	1821
+		STR 	71H 			//0FFC 	10F1
+		LDR 	20H, 0H 			//0FFD 	1820
+		STR 	70H 			//0FFE 	10F0
+		RET 					//0FFF 	1008
+		RETW 	0H 			//1000 	0400
+		RETW 	0H 			//1001 	0400
+		RETW 	0H 			//1002 	0400
+		RETW 	0H 			//1003 	0400
+		RETW 	80H 			//1004 	0480
+		RETW 	3FH 			//1005 	043F
+		RETW 	F0H 			//1006 	04F0
+		RETW 	FFH 			//1007 	04FF
+		RETW 	BEH 			//1008 	04BE
+		RETW 	E2H 			//1009 	04E2
+		RETW 	A9H 			//100A 	04A9
+		RETW 	3EH 			//100B 	043E
+		RETW 	83H 			//100C 	0483
+		RETW 	76H 			//100D 	0476
+		RETW 	BEH 			//100E 	04BE
+		RETW 	AEH 			//100F 	04AE
+		RETW 	2BH 			//1010 	042B
+		RETW 	3EH 			//1011 	043E
+		RETW 	3CH 			//1012 	043C
+		RETW 	C3H 			//1013 	04C3
+		RETW 	BDH 			//1014 	04BD
+		RETW 	D2H 			//1015 	04D2
+		RETW 	13H 			//1016 	0413
+		RETW 	3DH 			//1017 	043D
+		RETW 	78H 			//1018 	0478
+		RETW 	D3H 			//1019 	04D3
+		RETW 	BBH 			//101A 	04BB
+		RETW 	41H 			//101B 	0441
+		RETW 	44H 			//101C 	0444
+		RETW 	43H 			//101D 	0443
+		RETW 	3AH 			//101E 	043A
+		RETW 	25H 			//101F 	0425
+		RETW 	64H 			//1020 	0464
+		RETW 	2CH 			//1021 	042C
+		RETW 	56H 			//1022 	0456
+		RETW 	4FH 			//1023 	044F
+		RETW 	55H 			//1024 	0455
+		RETW 	54H 			//1025 	0454
+		RETW 	3AH 			//1026 	043A
+		RETW 	25H 			//1027 	0425
+		RETW 	30H 			//1028 	0430
+		RETW 	2EH 			//1029 	042E
+		RETW 	32H 			//102A 	0432
+		RETW 	66H 			//102B 	0466
+		RETW 	2CH 			//102C 	042C
+		RETW 	52H 			//102D 	0452
+		RETW 	54H 			//102E 	0454
+		RETW 	3AH 			//102F 	043A
+		RETW 	25H 			//1030 	0425
+		RETW 	30H 			//1031 	0430
+		RETW 	2EH 			//1032 	042E
+		RETW 	32H 			//1033 	0432
+		RETW 	66H 			//1034 	0466
+		RETW 	2CH 			//1035 	042C
+		RETW 	54H 			//1036 	0454
+		RETW 	78H 			//1037 	0478
+		RETW 	3AH 			//1038 	043A
+		RETW 	25H 			//1039 	0425
+		RETW 	30H 			//103A 	0430
+		RETW 	2EH 			//103B 	042E
+		RETW 	32H 			//103C 	0432
+		RETW 	66H 			//103D 	0466
+		RETW 	DH 			//103E 	040D
+		RETW 	AH 			//103F 	040A
+		RETW 	0H 			//1040 	0400
+		RETW 	1H 			//1041 	0401
+		RETW 	0H 			//1042 	0400
+		RETW 	0H 			//1043 	0400
+		RETW 	0H 			//1044 	0400
+		RETW 	AH 			//1045 	040A
+		RETW 	0H 			//1046 	0400
+		RETW 	0H 			//1047 	0400
+		RETW 	0H 			//1048 	0400
+		RETW 	64H 			//1049 	0464
+		RETW 	0H 			//104A 	0400
+		RETW 	0H 			//104B 	0400
+		RETW 	0H 			//104C 	0400
+		RETW 	E8H 			//104D 	04E8
+		RETW 	3H 			//104E 	0403
+		RETW 	0H 			//104F 	0400
+		RETW 	0H 			//1050 	0400
+		RETW 	10H 			//1051 	0410
+		RETW 	27H 			//1052 	0427
+		RETW 	0H 			//1053 	0400
+		RETW 	0H 			//1054 	0400
+		RETW 	A0H 			//1055 	04A0
+		RETW 	86H 			//1056 	0486
+		RETW 	1H 			//1057 	0401
+		RETW 	0H 			//1058 	0400
+		RETW 	40H 			//1059 	0440
+		RETW 	42H 			//105A 	0442
+		RETW 	FH 			//105B 	040F
+		RETW 	0H 			//105C 	0400
+		RETW 	80H 			//105D 	0480
+		RETW 	96H 			//105E 	0496
+		RETW 	98H 			//105F 	0498
+		RETW 	0H 			//1060 	0400
+		RETW 	0H 			//1061 	0400
+		RETW 	E1H 			//1062 	04E1
+		RETW 	F5H 			//1063 	04F5
+		RETW 	5H 			//1064 	0405
+		RETW 	0H 			//1065 	0400
+		RETW 	CAH 			//1066 	04CA
+		RETW 	9AH 			//1067 	049A
+		RETW 	3BH 			//1068 	043B
+		RETW 	0H 			//1069 	0400
+		RETW 	80H 			//106A 	0480
+		RETW 	3FH 			//106B 	043F
+		RETW 	0H 			//106C 	0400
+		RETW 	20H 			//106D 	0420
+		RETW 	41H 			//106E 	0441
+		RETW 	0H 			//106F 	0400
+		RETW 	C8H 			//1070 	04C8
+		RETW 	42H 			//1071 	0442
+		RETW 	0H 			//1072 	0400
+		RETW 	7AH 			//1073 	047A
+		RETW 	44H 			//1074 	0444
+		RETW 	40H 			//1075 	0440
+		RETW 	1CH 			//1076 	041C
+		RETW 	46H 			//1077 	0446
+		RETW 	50H 			//1078 	0450
+		RETW 	C3H 			//1079 	04C3
+		RETW 	47H 			//107A 	0447
+		RETW 	24H 			//107B 	0424
+		RETW 	74H 			//107C 	0474
+		RETW 	49H 			//107D 	0449
+		RETW 	97H 			//107E 	0497
+		RETW 	18H 			//107F 	0418
+		RETW 	4BH 			//1080 	044B
+		RETW 	BCH 			//1081 	04BC
+		RETW 	BEH 			//1082 	04BE
+		RETW 	4CH 			//1083 	044C
+		RETW 	6BH 			//1084 	046B
+		RETW 	6EH 			//1085 	046E
+		RETW 	4EH 			//1086 	044E
+		RETW 	3H 			//1087 	0403
+		RETW 	15H 			//1088 	0415
+		RETW 	50H 			//1089 	0450
+		RETW 	79H 			//108A 	0479
+		RETW 	ADH 			//108B 	04AD
+		RETW 	60H 			//108C 	0460
+		RETW 	F3H 			//108D 	04F3
+		RETW 	49H 			//108E 	0449
+		RETW 	71H 			//108F 	0471
+		RETW 	0H 			//1090 	0400
+		RETW 	80H 			//1091 	0480
+		RETW 	3FH 			//1092 	043F
+		RETW 	CDH 			//1093 	04CD
+		RETW 	CCH 			//1094 	04CC
+		RETW 	3DH 			//1095 	043D
+		RETW 	D7H 			//1096 	04D7
+		RETW 	23H 			//1097 	0423
+		RETW 	3CH 			//1098 	043C
+		RETW 	12H 			//1099 	0412
+		RETW 	83H 			//109A 	0483
+		RETW 	3AH 			//109B 	043A
+		RETW 	B7H 			//109C 	04B7
+		RETW 	D1H 			//109D 	04D1
+		RETW 	38H 			//109E 	0438
+		RETW 	C6H 			//109F 	04C6
+		RETW 	27H 			//10A0 	0427
+		RETW 	37H 			//10A1 	0437
+		RETW 	38H 			//10A2 	0438
+		RETW 	86H 			//10A3 	0486
+		RETW 	35H 			//10A4 	0435
+		RETW 	C0H 			//10A5 	04C0
+		RETW 	D6H 			//10A6 	04D6
+		RETW 	33H 			//10A7 	0433
+		RETW 	CCH 			//10A8 	04CC
+		RETW 	2BH 			//10A9 	042B
+		RETW 	32H 			//10AA 	0432
+		RETW 	70H 			//10AB 	0470
+		RETW 	89H 			//10AC 	0489
+		RETW 	30H 			//10AD 	0430
+		RETW 	E7H 			//10AE 	04E7
+		RETW 	DBH 			//10AF 	04DB
+		RETW 	2EH 			//10B0 	042E
+		RETW 	E5H 			//10B1 	04E5
+		RETW 	3CH 			//10B2 	043C
+		RETW 	1EH 			//10B3 	041E
+		RETW 	42H 			//10B4 	0442
+		RETW 	A2H 			//10B5 	04A2
+		RETW 	DH 			//10B6 	040D
+		RETW 	41H 			//10B7 	0441
+		RETW 	44H 			//10B8 	0444
+		RETW 	43H 			//10B9 	0443
+		RETW 	3AH 			//10BA 	043A
+		RETW 	25H 			//10BB 	0425
+		RETW 	64H 			//10BC 	0464
+		RETW 	2CH 			//10BD 	042C
+		RETW 	56H 			//10BE 	0456
+		RETW 	4FH 			//10BF 	044F
+		RETW 	55H 			//10C0 	0455
+		RETW 	54H 			//10C1 	0454
+		RETW 	3AH 			//10C2 	043A
+		RETW 	25H 			//10C3 	0425
+		RETW 	30H 			//10C4 	0430
+		RETW 	2EH 			//10C5 	042E
+		RETW 	32H 			//10C6 	0432
+		RETW 	66H 			//10C7 	0466
+		RETW 	DH 			//10C8 	040D
+		RETW 	AH 			//10C9 	040A
+		ORG		10CAH
+		RETW 	0H 			//10CA 	0400
+			END

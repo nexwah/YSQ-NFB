@@ -1,0 +1,2945 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Tue Nov 16 11:58:00 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT62F08X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	_ad3nop_text,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	clrtext,global,class=CODE,delta=2
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	intentry,global,class=CODE,delta=2
+    10                           	psect	text8,local,class=CODE,merge=1,delta=2
+    11                           	psect	swtext1,local,class=CONST,delta=2
+    12                           	psect	pa_nodes0,global,class=CODE,delta=2
+    13                           	dabs	1,0x620,48
+    14                           	dabs	1,0x5A0,80
+    15                           	dabs	1,0x56B,5
+    16                           	dabs	1,0x24,1,_CRC_H
+    17                           	dabs	1,0x23,1,_CRC_L
+    18                           	dabs	1,0x103,0,_uart_rxnef
+    19                           	dabs	1,0x20,1
+    20                           	dabs	1,0x102,0,_iap_ok_flag
+    21                           	dabs	1,0x20,1
+    22                           	dabs	1,0x101,0,_iap_err_flag
+    23                           	dabs	1,0x20,1
+    24                           	dabs	1,0x100,0,_read_flag
+    25                           	dabs	1,0x20,1
+    26                           	dabs	1,0x71,1,_BSR_TMP
+    27                           	dabs	1,0x70,1,_W_TMP
+    28                           	dabs	1,0x23,2,_CRC_16
+    29                           	dabs	1,0x22,1,_iap_recdata
+    30                           	dabs	1,0x21,1,_count
+    31                           	dabs	1,0x20,1,_flag
+    32                           	dabs	1,0x236B,0,_iap_databuf
+    33                           	dabs	1,0x7E,2
+    34  0000                     
+    35                           ; Version 1.45
+    36                           ; Generated 16/11/2017 
+    37                           ; 
+    38                           ; SFR Addresses
+    39  0000                     	;_iap_databuf
+    40  0003                     _ad3nop_absaddr	set	3
+    41  0003                     _ad3nop_absaddr	set	3
+    42                           
+    43                           	psect	_ad3nop_text
+    44  0003                     __p_ad3nop_text:	
+    45  0003                     _ad3nop:	
+    46  0003  3400               	retlw	0
+    47  0004                     __end_of_ad3nop:		;_read_flag
+    48  0008                     _BSREG	set	8
+    49  00E1                     _RXNE	set	225
+    50  005F                     _GIE	set	95
+    51  005E                     _PEIE	set	94
+    52  009A                     _PCKEN	set	154
+    53  0099                     _OSCCON	set	153
+    54  008D                     _TRISB	set	141
+    55  011D                     _AFP2	set	285
+    56  0195                     _EECON1	set	405
+    57  0194                     _EEDATH	set	404
+    58  0193                     _EEDATL	set	403
+    59  0192                     _EEADRH	set	402
+    60  0191                     _EEADRL	set	401
+    61  0CC0                     _DRDEN	set	3264
+    62  0CAF                     _EEPGD	set	3247
+    63  0CAE                     _CFGS	set	3246
+    64  0CA8                     _RD	set	3240
+    65  0494                     _URDLL	set	1172
+    66  0492                     _URLSR	set	1170
+    67  0491                     _URMCR	set	1169
+    68  048F                     _URLCR	set	1167
+    69  048C                     _URDATAL	set	1164
+    70  24E0                     _TCF	set	9440
+    71  2493                     _FEF	set	9363
+    72  2490                     _RXNEF	set	9360
+    73  2470                     _URRXNE	set	9328
+    74                           
+    75                           	psect	cinit
+    76  0021                     start_initialization:	
+    77                           ; #config settings
+    78                           
+    79  0021                     __initialization:		;BIGRAM
+    80                           
+    81                           ; Clear objects allocated to BIGRAM
+    82  0021  306B               	movlw	107
+    83  0022  0084               	movwf	4
+    84  0023  3023               	movlw	35
+    85  0024  0085               	movwf	5
+    86  0025  3085               	movlw	133
+    87  0026  00FE               	movwf	126
+    88  0027  3000               	movlw	0
+    89  0028  01FF               	clrf	127
+    90  0029  3182  22FF  3180   	fcall	clear_ram0
+    91  002C                     end_of_initialization:	
+    92                           ;End of C runtime variable initialization code
+    93                           
+    94  002C                     __end_of__initialization:	
+    95  002C  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+    96  002D  0020               	movlb	0
+    97  002E  282F               	ljmp	_main	;jump to C main() function
+    98  002F                     __pmaintext:	
+    99                           ; 1 bytes @ 0x11
+   100 ;;
+   101 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   102 ;;
+   103 ;; *************** function _main *****************
+   104 ;; Defined at:
+   105 ;;		line 346 in file "IAP_FW.C"
+   106 ;; Parameters:    Size  Location     Type
+   107 ;;		None
+   108 ;; Auto vars:     Size  Location     Type
+   109 ;;		None
+   110 ;; Return value:  Size  Location     Type
+   111 ;;                  1    wreg      void 
+   112 ;; Registers used:
+   113 ;;		wreg, status,2, status,0, pclath, cstack
+   114 ;; Tracked objects:
+   115 ;;		On entry : B1F/0
+   116 ;;		On exit  : 0/0
+   117 ;;		Unchanged: 0/0
+   118 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   119 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   120 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   121 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   122 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   123 ;;Total ram usage:        0 bytes
+   124 ;; Hardware stack levels required when called:    8
+   125 ;; This function calls:
+   126 ;;		_Power_On_App_Check
+   127 ;;		_iap_usart_init
+   128 ;; This function is called by:
+   129 ;;		Startup code after reset
+   130 ;; This function uses a non-reentrant model
+   131 ;;
+   132                           
+   133                           
+   134                           ;psect for function _main
+   135  002F                     _main:	
+   136                           
+   137                           ;IAP_FW.C: 348: iap_usart_init();
+   138                           
+   139                           ;incstack = 0
+   140                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   141  002F  2038  3180         	fcall	_iap_usart_init
+   142                           
+   143                           ;IAP_FW.C: 349: Power_On_App_Check();
+   144  0031  204B               	fcall	_Power_On_App_Check
+   145                           
+   146                           ;IAP_FW.C: 351: GIE=1;
+   147  0032  178B               	bsf	11,7	;volatile
+   148                           
+   149                           ;IAP_FW.C: 352: PEIE=1;
+   150  0033  170B               	bsf	11,6	;volatile
+   151                           
+   152                           ;IAP_FW.C: 354: if(read_flag !=1)
+   153  0034  1C20               	btfss	32,0
+   154  0035  2C00               	goto	1024	;# 
+   155  0036                     l2496:	
+   156                           ;IAP_FW.C: 357: }
+   157                           ;IAP_FW.C: 358: while(1)
+   158                           
+   159  0036  0064               	clrwdt	;# 
+   160  0037  2836               	goto	l2496
+   161  0038                     __end_of_main:	
+   162  0038                     __ptext1:	
+   163 ;; *************** function _iap_usart_init *****************
+   164 ;; Defined at:
+   165 ;;		line 4 in file "USART_DRV.C"
+   166 ;; Parameters:    Size  Location     Type
+   167 ;;		None
+   168 ;; Auto vars:     Size  Location     Type
+   169 ;;		None
+   170 ;; Return value:  Size  Location     Type
+   171 ;;                  1    wreg      void 
+   172 ;; Registers used:
+   173 ;;		wreg
+   174 ;; Tracked objects:
+   175 ;;		On entry : B1F/0
+   176 ;;		On exit  : B1F/9
+   177 ;;		Unchanged: B00/0
+   178 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   179 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   180 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   181 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   182 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   183 ;;Total ram usage:        0 bytes
+   184 ;; Hardware stack levels used:    1
+   185 ;; Hardware stack levels required when called:    5
+   186 ;; This function calls:
+   187 ;;		Nothing
+   188 ;; This function is called by:
+   189 ;;		_main
+   190 ;; This function uses a non-reentrant model
+   191 ;;
+   192                           
+   193                           
+   194                           ;psect for function _iap_usart_init
+   195  0038                     _iap_usart_init:	
+   196                           
+   197                           ;USART_DRV.C: 7: PCKEN = (0X1<<5 );
+   198                           
+   199                           ;incstack = 0
+   200                           ; Regs used in _iap_usart_init: [wreg]
+   201  0038  3020               	movlw	32
+   202  0039  0021               	movlb	1	; select bank1
+   203  003A  009A               	movwf	26	;volatile
+   204                           
+   205                           ;USART_DRV.C: 8: OSCCON = 0B01110001;
+   206  003B  3071               	movlw	113
+   207  003C  0099               	movwf	25	;volatile
+   208                           
+   209                           ;USART_DRV.C: 10: AFP2 = 0B00000011;
+   210  003D  3003               	movlw	3
+   211  003E  0022               	movlb	2	; select bank2
+   212  003F  009D               	movwf	29	;volatile
+   213                           
+   214                           ;USART_DRV.C: 12: TRISB &= ~(0X1<<6 );
+   215  0040  0021               	movlb	1	; select bank1
+   216  0041  130D               	bcf	13,6	;volatile
+   217                           
+   218                           ;USART_DRV.C: 16: URDLL=9;
+   219  0042  3009               	movlw	9
+   220  0043  0029               	movlb	9	; select bank9
+   221  0044  0094               	movwf	20	;volatile
+   222                           
+   223                           ;USART_DRV.C: 19: URLCR=(0x1 );
+   224  0045  3001               	movlw	1
+   225  0046  008F               	movwf	15	;volatile
+   226                           
+   227                           ;USART_DRV.C: 21: URMCR=(0X1<<4 )|(0x1<<3 );
+   228  0047  3018               	movlw	24
+   229  0048  0091               	movwf	17	;volatile
+   230                           
+   231                           ;USART_DRV.C: 23: URRXNE |= (0X1<<0 );
+   232  0049  140E               	bsf	14,0	;volatile
+   233  004A  0008               	return
+   234  004B                     __end_of_iap_usart_init:	
+   235  004B                     __ptext2:	
+   236 ;; *************** function _Power_On_App_Check *****************
+   237 ;; Defined at:
+   238 ;;		line 89 in file "IAP_FW.C"
+   239 ;; Parameters:    Size  Location     Type
+   240 ;;		None
+   241 ;; Auto vars:     Size  Location     Type
+   242 ;;  CRC_Eeprom      2   15[BANK0 ] unsigned int 
+   243 ;; Return value:  Size  Location     Type
+   244 ;;                  1    wreg      void 
+   245 ;; Registers used:
+   246 ;;		wreg, status,2, status,0, pclath, cstack
+   247 ;; Tracked objects:
+   248 ;;		On entry : B1F/9
+   249 ;;		On exit  : 1F/0
+   250 ;;		Unchanged: 0/0
+   251 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   252 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   253 ;;      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   254 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   255 ;;      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   256 ;;Total ram usage:        2 bytes
+   257 ;; Hardware stack levels used:    1
+   258 ;; Hardware stack levels required when called:    7
+   259 ;; This function calls:
+   260 ;;		_All_Page_Read_CRC
+   261 ;;		_EEPROMread
+   262 ;; This function is called by:
+   263 ;;		_main
+   264 ;; This function uses a non-reentrant model
+   265 ;;
+   266                           
+   267                           
+   268                           ;psect for function _Power_On_App_Check
+   269  004B                     _Power_On_App_Check:	
+   270                           
+   271                           ;IAP_FW.C: 91: unsigned int CRC_Eeprom;
+   272                           ;IAP_FW.C: 93: count=0;
+   273                           
+   274                           ;incstack = 0
+   275                           ; Regs used in _Power_On_App_Check: [wreg+status,2+status,0+pclath+cstack]
+   276  004B  0020               	movlb	0	; select bank0
+   277  004C  3000               	movlw	0
+   278  004D  01A1               	clrf	33
+   279                           
+   280                           ;IAP_FW.C: 94: flag=0;
+   281  004E  01A0               	clrf	32
+   282                           
+   283                           ;IAP_FW.C: 96: CRC_Eeprom=EEPROMread(0);
+   284  004F  2067  3180         	fcall	_EEPROMread
+   285  0051  00B4               	movwf	Power_On_App_Check@CRC_Eeprom
+   286  0052  01B5               	clrf	Power_On_App_Check@CRC_Eeprom+1
+   287                           
+   288                           ;IAP_FW.C: 97: CRC_Eeprom= CRC_Eeprom << 8;
+   289  0053  00B5               	movwf	Power_On_App_Check@CRC_Eeprom+1
+   290  0054  3001               	movlw	1
+   291  0055  01B4               	clrf	Power_On_App_Check@CRC_Eeprom
+   292                           
+   293                           ;IAP_FW.C: 98: CRC_Eeprom= CRC_Eeprom + EEPROMread(1);
+   294  0056  2067  3180         	fcall	_EEPROMread
+   295  0058  07B4               	addwf	Power_On_App_Check@CRC_Eeprom,f
+   296  0059  1803               	skipnc
+   297  005A  0AB5               	incf	Power_On_App_Check@CRC_Eeprom+1,f
+   298                           
+   299                           ;IAP_FW.C: 100: All_Page_Read_CRC();
+   300  005B  207D  3180         	fcall	_All_Page_Read_CRC
+   301                           
+   302                           ;IAP_FW.C: 101: read_flag=1;
+   303  005D  1420               	bsf	32,0
+   304                           
+   305                           ;IAP_FW.C: 102: if(CRC_Eeprom == CRC_16)
+   306  005E  0824               	movf	36,w
+   307  005F  0635               	xorwf	Power_On_App_Check@CRC_Eeprom+1,w
+   308  0060  1D03               	skipz
+   309  0061  2864               	goto	u755
+   310  0062  0823               	movf	35,w
+   311  0063  0634               	xorwf	Power_On_App_Check@CRC_Eeprom,w
+   312  0064                     u755:	
+   313  0064  1903               	btfsc	3,2
+   314                           
+   315                           ;IAP_FW.C: 103: {
+   316                           ;IAP_FW.C: 104: read_flag=0;
+   317  0065  1020               	bcf	32,0
+   318  0066  0008               	return
+   319  0067                     __end_of_Power_On_App_Check:	
+   320  0067                     __ptext3:	
+   321 ;; *************** function _EEPROMread *****************
+   322 ;; Defined at:
+   323 ;;		line 48 in file "MEM_DRV.C"
+   324 ;; Parameters:    Size  Location     Type
+   325 ;;  EEAddr          1    wreg     unsigned char 
+   326 ;; Auto vars:     Size  Location     Type
+   327 ;;  EEAddr          1    7[BANK0 ] unsigned char 
+   328 ;;  ReEEPROMread    1    8[BANK0 ] unsigned char 
+   329 ;; Return value:  Size  Location     Type
+   330 ;;                  1    wreg      unsigned char 
+   331 ;; Registers used:
+   332 ;;		wreg
+   333 ;; Tracked objects:
+   334 ;;		On entry : 1F/0
+   335 ;;		On exit  : 1F/0
+   336 ;;		Unchanged: 0/0
+   337 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   338 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   339 ;;      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   340 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   341 ;;      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   342 ;;Total ram usage:        2 bytes
+   343 ;; Hardware stack levels used:    1
+   344 ;; Hardware stack levels required when called:    5
+   345 ;; This function calls:
+   346 ;;		Nothing
+   347 ;; This function is called by:
+   348 ;;		_Power_On_App_Check
+   349 ;; This function uses a non-reentrant model
+   350 ;;
+   351                           
+   352                           
+   353                           ;psect for function _EEPROMread
+   354  0067                     _EEPROMread:	
+   355                           
+   356                           ;incstack = 0
+   357                           ; Regs used in _EEPROMread: [wreg]
+   358                           ;EEPROMread@EEAddr stored from wreg
+   359  0067  00AC               	movwf	EEPROMread@EEAddr
+   360                           
+   361                           ;MEM_DRV.C: 50: unsigned char ReEEPROMread;
+   362                           ;MEM_DRV.C: 52: DRDEN=1;
+   363  0068  0023               	movlb	3	; select bank3
+   364  0069  1418               	bsf	24,0	;volatile
+   365                           
+   366                           ;MEM_DRV.C: 53: __nop();
+   367  006A  0000               	nop
+   368                           
+   369                           ;MEM_DRV.C: 54: __nop();
+   370  006B  0000               	nop
+   371                           
+   372                           ;MEM_DRV.C: 55: EEADRL = EEAddr;
+   373  006C  0020               	movlb	0	; select bank0
+   374  006D  082C               	movf	EEPROMread@EEAddr,w
+   375  006E  0023               	movlb	3	; select bank3
+   376  006F  0091               	movwf	17	;volatile
+   377                           
+   378                           ;MEM_DRV.C: 56: CFGS=0;
+   379  0070  1315               	bcf	21,6	;volatile
+   380                           
+   381                           ;MEM_DRV.C: 57: EEPGD=0;
+   382  0071  1395               	bcf	21,7	;volatile
+   383                           
+   384                           ;MEM_DRV.C: 58: RD = 1;
+   385  0072  1415               	bsf	21,0	;volatile
+   386                           
+   387                           ;MEM_DRV.C: 59: __nop();
+   388  0073  0000               	nop
+   389                           
+   390                           ;MEM_DRV.C: 60: ReEEPROMread = EEDATL;
+   391  0074  0023               	movlb	3	; select bank3
+   392  0075  0813               	movf	19,w	;volatile
+   393  0076  0020               	movlb	0	; select bank0
+   394  0077  00AD               	movwf	EEPROMread@ReEEPROMread
+   395                           
+   396                           ;MEM_DRV.C: 61: DRDEN=0;
+   397  0078  0023               	movlb	3	; select bank3
+   398  0079  1018               	bcf	24,0	;volatile
+   399                           
+   400                           ;MEM_DRV.C: 62: return ReEEPROMread;
+   401  007A  0020               	movlb	0	; select bank0
+   402  007B  082D               	movf	EEPROMread@ReEEPROMread,w
+   403  007C  0008               	return
+   404  007D                     __end_of_EEPROMread:	
+   405  007D                     __ptext4:	
+   406 ;; *************** function _All_Page_Read_CRC *****************
+   407 ;; Defined at:
+   408 ;;		line 60 in file "IAP_FW.C"
+   409 ;; Parameters:    Size  Location     Type
+   410 ;;		None
+   411 ;; Auto vars:     Size  Location     Type
+   412 ;;  iap_addr        2   13[BANK0 ] unsigned int 
+   413 ;; Return value:  Size  Location     Type
+   414 ;;                  1    wreg      void 
+   415 ;; Registers used:
+   416 ;;		wreg, status,2, status,0, pclath, cstack
+   417 ;; Tracked objects:
+   418 ;;		On entry : 1F/0
+   419 ;;		On exit  : 1F/0
+   420 ;;		Unchanged: 0/0
+   421 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   422 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   423 ;;      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   424 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   425 ;;      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   426 ;;Total ram usage:        2 bytes
+   427 ;; Hardware stack levels used:    1
+   428 ;; Hardware stack levels required when called:    6
+   429 ;; This function calls:
+   430 ;;		_CRC16_CCITT
+   431 ;;		_iap_mem_rd
+   432 ;; This function is called by:
+   433 ;;		_Power_On_App_Check
+   434 ;; This function uses a non-reentrant model
+   435 ;;
+   436                           
+   437                           
+   438                           ;psect for function _All_Page_Read_CRC
+   439  007D                     _All_Page_Read_CRC:	
+   440                           
+   441                           ;IAP_FW.C: 62: unsigned int iap_addr;
+   442                           ;IAP_FW.C: 63: CRC_16 = 0;
+   443                           
+   444                           ;incstack = 0
+   445                           ; Regs used in _All_Page_Read_CRC: [wreg+status,2+status,0+pclath+cstack]
+   446                           
+   447                           ;IAP_FW.C: 64: EECON1 = (0x1<<7 )|(0X1<<2 );
+   448  007D  2115  3180         	fcall	PL12	;call to abstracted procedure
+   449                           
+   450                           ;IAP_FW.C: 65: for(iap_addr=0X400;iap_addr<0x2000;iap_addr++)
+   451  007F  0020               	movlb	0	; select bank0
+   452  0080  3004               	movlw	4
+   453  0081  01B2               	clrf	All_Page_Read_CRC@iap_addr
+   454  0082  00B3               	movwf	All_Page_Read_CRC@iap_addr+1
+   455  0083                     l8159:	
+   456                           
+   457                           ;IAP_FW.C: 66: {
+   458                           ;IAP_FW.C: 67: EEADRH = iap_addr>>8;
+   459  0083  0833               	movf	All_Page_Read_CRC@iap_addr+1,w
+   460  0084  0023               	movlb	3	; select bank3
+   461  0085  0092               	movwf	18	;volatile
+   462                           
+   463                           ;IAP_FW.C: 68: EEADRL = iap_addr>>0;
+   464  0086  0020               	movlb	0	; select bank0
+   465  0087  0832               	movf	All_Page_Read_CRC@iap_addr,w
+   466  0088  0023               	movlb	3	; select bank3
+   467  0089  0091               	movwf	17	;volatile
+   468                           
+   469                           ;IAP_FW.C: 69: iap_mem_rd();
+   470  008A  20BD  3180         	fcall	_iap_mem_rd
+   471                           
+   472                           ;IAP_FW.C: 70: CRC16_CCITT(EEDATL);
+   473  008C  0813               	movf	19,w	;volatile
+   474  008D  209E  3180         	fcall	_CRC16_CCITT
+   475                           
+   476                           ;IAP_FW.C: 71: CRC16_CCITT(EEDATH);
+   477  008F  0023               	movlb	3	; select bank3
+   478  0090  0814               	movf	20,w	;volatile
+   479  0091  209E  3180         	fcall	_CRC16_CCITT
+   480  0093  0AB2               	incf	All_Page_Read_CRC@iap_addr,f
+   481  0094  1903               	skipnz
+   482  0095  0AB3               	incf	All_Page_Read_CRC@iap_addr+1,f
+   483  0096  3020               	movlw	32
+   484  0097  0233               	subwf	All_Page_Read_CRC@iap_addr+1,w
+   485  0098  3000               	movlw	0
+   486  0099  1903               	skipnz
+   487  009A  0232               	subwf	All_Page_Read_CRC@iap_addr,w
+   488  009B  1803               	btfsc	3,0
+   489  009C  0008               	return
+   490  009D  2883               	goto	l8159
+   491  009E                     __end_of_All_Page_Read_CRC:	
+   492  009E                     __ptext6:	
+   493 ;; *************** function _CRC16_CCITT *****************
+   494 ;; Defined at:
+   495 ;;		line 44 in file "IAP_FW.C"
+   496 ;; Parameters:    Size  Location     Type
+   497 ;;  data            1    wreg     unsigned char 
+   498 ;; Auto vars:     Size  Location     Type
+   499 ;;  data            1   11[BANK0 ] unsigned char 
+   500 ;;  i               1   12[BANK0 ] unsigned char 
+   501 ;; Return value:  Size  Location     Type
+   502 ;;                  1    wreg      void 
+   503 ;; Registers used:
+   504 ;;		wreg, status,2, status,0
+   505 ;; Tracked objects:
+   506 ;;		On entry : 1F/3
+   507 ;;		On exit  : 1F/0
+   508 ;;		Unchanged: 0/0
+   509 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   510 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   511 ;;      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   512 ;;      Temps:          0       4       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   513 ;;      Totals:         0       6       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   514 ;;Total ram usage:        6 bytes
+   515 ;; Hardware stack levels used:    1
+   516 ;; Hardware stack levels required when called:    5
+   517 ;; This function calls:
+   518 ;;		Nothing
+   519 ;; This function is called by:
+   520 ;;		_All_Page_Read_CRC
+   521 ;; This function uses a non-reentrant model
+   522 ;;
+   523                           
+   524                           
+   525                           ;psect for function _CRC16_CCITT
+   526  009E                     _CRC16_CCITT:	
+   527                           
+   528                           ;incstack = 0
+   529                           ; Regs used in _CRC16_CCITT: [wreg+status,2+status,0]
+   530                           ;CRC16_CCITT@data stored from wreg
+   531  009E  0020               	movlb	0	; select bank0
+   532  009F  00B0               	movwf	CRC16_CCITT@data
+   533                           
+   534                           ;IAP_FW.C: 47: unsigned char i;
+   535                           ;IAP_FW.C: 49: CRC_16 ^= data;
+   536  00A0  06A3               	xorwf	35,f
+   537                           
+   538                           ;IAP_FW.C: 51: for(i = 0;i < 8;i++)
+   539  00A1  01B1               	clrf	CRC16_CCITT@i
+   540  00A2                     l2399:	
+   541                           
+   542                           ;IAP_FW.C: 52: {
+   543                           ;IAP_FW.C: 53: if(CRC_16 & 0x01)
+   544  00A2  1C23               	btfss	35,0
+   545  00A3  28B5               	goto	l8111
+   546                           
+   547                           ;IAP_FW.C: 54: CRC_16 = (CRC_16 >> 1) ^ 0x8408;
+   548  00A4  0824               	movf	36,w
+   549  00A5  00AD               	movwf	??_CRC16_CCITT+1
+   550  00A6  0823               	movf	35,w
+   551  00A7  00AC               	movwf	??_CRC16_CCITT
+   552  00A8  3008               	movlw	8
+   553  00A9  36AD               	lsrf	??_CRC16_CCITT+1,f
+   554  00AA  0CAC               	rrf	??_CRC16_CCITT,f
+   555  00AB  062C               	xorwf	??_CRC16_CCITT,w
+   556  00AC  00AE               	movwf	??_CRC16_CCITT+2
+   557  00AD  3084               	movlw	132
+   558  00AE  062D               	xorwf	??_CRC16_CCITT+1,w
+   559  00AF  00AF               	movwf	??_CRC16_CCITT+3
+   560  00B0  082E               	movf	??_CRC16_CCITT+2,w
+   561  00B1  00A3               	movwf	35
+   562  00B2  082F               	movf	??_CRC16_CCITT+3,w
+   563  00B3  00A4               	movwf	36
+   564  00B4  28B7               	goto	l2402
+   565  00B5                     l8111:	
+   566                           
+   567                           ;IAP_FW.C: 55: else
+   568                           ;IAP_FW.C: 56: CRC_16 = CRC_16 >> 1;
+   569  00B5  36A4               	lsrf	36,f
+   570  00B6  0CA3               	rrf	35,f
+   571  00B7                     l2402:	
+   572  00B7  3008               	movlw	8
+   573  00B8  0AB1               	incf	CRC16_CCITT@i,f
+   574  00B9  0231               	subwf	CRC16_CCITT@i,w
+   575  00BA  1803               	btfsc	3,0
+   576  00BB  0008               	return
+   577  00BC  28A2               	goto	l2399
+   578  00BD                     __end_of_CRC16_CCITT:	
+   579  00BD                     __ptext5:	
+   580 ;; *************** function _iap_mem_rd *****************
+   581 ;; Defined at:
+   582 ;;		line 34 in file "MEM_DRV.C"
+   583 ;; Parameters:    Size  Location     Type
+   584 ;;		None
+   585 ;; Auto vars:     Size  Location     Type
+   586 ;;		None
+   587 ;; Return value:  Size  Location     Type
+   588 ;;                  1    wreg      void 
+   589 ;; Registers used:
+   590 ;;		None
+   591 ;; Tracked objects:
+   592 ;;		On entry : 1F/3
+   593 ;;		On exit  : 1F/3
+   594 ;;		Unchanged: 0/0
+   595 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   596 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   597 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   598 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   599 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   600 ;;Total ram usage:        0 bytes
+   601 ;; Hardware stack levels used:    1
+   602 ;; Hardware stack levels required when called:    5
+   603 ;; This function calls:
+   604 ;;		Nothing
+   605 ;; This function is called by:
+   606 ;;		_All_Page_Read_CRC
+   607 ;; This function uses a non-reentrant model
+   608 ;;
+   609                           
+   610                           
+   611                           ;psect for function _iap_mem_rd
+   612  00BD                     _iap_mem_rd:	
+   613                           
+   614                           ;MEM_DRV.C: 36: EECON1 |=(0x1<<0 );
+   615                           
+   616                           ;incstack = 0
+   617                           ; Regs used in _iap_mem_rd: []
+   618  00BD  1415               	bsf	21,0	;volatile
+   619  00BE  0000               	nop	;# 
+   620  00BF                     l4871:	
+   621                           ;MEM_DRV.C: 38: while(EECON1 & (0x1<<0 ));
+   622                           
+   623  00BF  0023               	movlb	3	; select bank3
+   624  00C0  1C15               	btfss	21,0	;volatile
+   625  00C1  0008               	return
+   626  00C2  28BF               	goto	l4871
+   627  00C3                     __end_of_iap_mem_rd:	
+   628  00C3                     __ptext15:	
+   629 ;; *************** function _Eeprom_Write_Crc *****************
+   630 ;; Defined at:
+   631 ;;		line 74 in file "IAP_FW.C"
+   632 ;; Parameters:    Size  Location     Type
+   633 ;;		None
+   634 ;; Auto vars:     Size  Location     Type
+   635 ;;		None
+   636 ;; Return value:  Size  Location     Type
+   637 ;;                  1    wreg      void 
+   638 ;; Registers used:
+   639 ;;		wreg, status,2, status,0, pclath, cstack
+   640 ;; Tracked objects:
+   641 ;;		On entry : 1F/0
+   642 ;;		On exit  : 1F/3
+   643 ;;		Unchanged: 0/0
+   644 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   645 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   646 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   647 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   648 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   649 ;;Total ram usage:        0 bytes
+   650 ;; Hardware stack levels used:    1
+   651 ;; Hardware stack levels required when called:    2
+   652 ;; This function calls:
+   653 ;;		_iap_mem_prog
+   654 ;;		i1_All_Page_Read_CRC
+   655 ;; This function is called by:
+   656 ;;		_user_isr
+   657 ;; This function uses a non-reentrant model
+   658 ;;
+   659                           
+   660                           
+   661                           ;psect for function _Eeprom_Write_Crc
+   662  00C3                     _Eeprom_Write_Crc:	
+   663                           
+   664                           ;IAP_FW.C: 76: All_Page_Read_CRC();
+   665                           
+   666                           ;incstack = 0
+   667                           ; Regs used in _Eeprom_Write_Crc: [wreg+status,2+status,0+pclath+cstack]
+   668  00C3  20D8               	fcall	i1_All_Page_Read_CRC
+   669                           
+   670                           ;IAP_FW.C: 78: EECON1 &=~(0x1<<7 );
+   671  00C4  0023               	movlb	3	; select bank3
+   672  00C5  1395               	bcf	21,7	;volatile
+   673                           
+   674                           ;IAP_FW.C: 79: EECON1 =(0X1<<2 );
+   675  00C6  3004               	movlw	4
+   676  00C7  0095               	movwf	21	;volatile
+   677                           
+   678                           ;IAP_FW.C: 81: EEADRL=0;
+   679  00C8  0191               	clrf	17	;volatile
+   680                           
+   681                           ;IAP_FW.C: 82: EEDATL=CRC_H;
+   682  00C9  0020               	movlb	0	; select bank0
+   683  00CA  0824               	movf	36,w
+   684  00CB  0023               	movlb	3	; select bank3
+   685  00CC  0093               	movwf	19	;volatile
+   686                           
+   687                           ;IAP_FW.C: 83: iap_mem_prog();
+   688  00CD  3182  2253  3180   	fcall	_iap_mem_prog
+   689                           
+   690                           ;IAP_FW.C: 84: EEADRL=1;
+   691  00D0  3001               	movlw	1
+   692  00D1  0091               	movwf	17	;volatile
+   693                           
+   694                           ;IAP_FW.C: 85: EEDATL=CRC_L;
+   695  00D2  0020               	movlb	0	; select bank0
+   696  00D3  0823               	movf	35,w
+   697  00D4  0023               	movlb	3	; select bank3
+   698  00D5  0093               	movwf	19	;volatile
+   699                           
+   700                           ;IAP_FW.C: 86: iap_mem_prog();
+   701  00D6  3182  2A53         	ljmp	i1l8117
+   702  00D8                     __end_of_Eeprom_Write_Crc:	
+   703  00D8                     __ptext16:	
+   704 ;; *************** function i1_All_Page_Read_CRC *****************
+   705 ;; Defined at:
+   706 ;;		line 60 in file "IAP_FW.C"
+   707 ;; Parameters:    Size  Location     Type
+   708 ;;		None
+   709 ;; Auto vars:     Size  Location     Type
+   710 ;;  All_Page_Rea    2    6[COMMON] unsigned int 
+   711 ;; Return value:  Size  Location     Type
+   712 ;;                  1    wreg      void 
+   713 ;; Registers used:
+   714 ;;		wreg, status,2, status,0, pclath, cstack
+   715 ;; Tracked objects:
+   716 ;;		On entry : 1F/0
+   717 ;;		On exit  : 1F/0
+   718 ;;		Unchanged: 0/0
+   719 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   720 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   721 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   722 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   723 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   724 ;;Total ram usage:        2 bytes
+   725 ;; Hardware stack levels used:    1
+   726 ;; Hardware stack levels required when called:    1
+   727 ;; This function calls:
+   728 ;;		i1_CRC16_CCITT
+   729 ;;		i1_iap_mem_rd
+   730 ;; This function is called by:
+   731 ;;		_Eeprom_Write_Crc
+   732 ;; This function uses a non-reentrant model
+   733 ;;
+   734                           
+   735                           
+   736                           ;psect for function i1_All_Page_Read_CRC
+   737  00D8                     i1_All_Page_Read_CRC:	
+   738                           
+   739                           ;IAP_FW.C: 62: unsigned int iap_addr;
+   740                           ;IAP_FW.C: 63: CRC_16 = 0;
+   741                           
+   742                           ;incstack = 0
+   743                           ; Regs used in i1_All_Page_Read_CRC: [wreg+status,2+status,0+pclath+cstack]
+   744                           
+   745                           ;IAP_FW.C: 64: EECON1 = (0x1<<7 )|(0X1<<2 );
+   746  00D8  2115               	fcall	PL12	;call to abstracted procedure
+   747                           
+   748                           ;IAP_FW.C: 65: for(iap_addr=0X400;iap_addr<0x2000;iap_addr++)
+   749  00D9  3004               	movlw	4
+   750  00DA  01F8               	clrf	i1All_Page_Read_CRC@iap_addr
+   751  00DB  00F9               	movwf	i1All_Page_Read_CRC@iap_addr+1
+   752  00DC                     i1l8141:	
+   753                           
+   754                           ;IAP_FW.C: 66: {
+   755                           ;IAP_FW.C: 67: EEADRH = iap_addr>>8;
+   756  00DC  0879               	movf	i1All_Page_Read_CRC@iap_addr+1,w
+   757  00DD  0023               	movlb	3	; select bank3
+   758  00DE  0092               	movwf	18	;volatile
+   759                           
+   760                           ;IAP_FW.C: 68: EEADRL = iap_addr>>0;
+   761  00DF  0878               	movf	i1All_Page_Read_CRC@iap_addr,w
+   762  00E0  0091               	movwf	17	;volatile
+   763                           
+   764                           ;IAP_FW.C: 69: iap_mem_rd();
+   765  00E1  3182  2286  3180   	fcall	i1_iap_mem_rd
+   766                           
+   767                           ;IAP_FW.C: 70: CRC16_CCITT(EEDATL);
+   768  00E4  0813               	movf	19,w	;volatile
+   769  00E5  20F6  3180         	fcall	i1_CRC16_CCITT
+   770                           
+   771                           ;IAP_FW.C: 71: CRC16_CCITT(EEDATH);
+   772  00E7  0023               	movlb	3	; select bank3
+   773  00E8  0814               	movf	20,w	;volatile
+   774  00E9  20F6  3180         	fcall	i1_CRC16_CCITT
+   775  00EB  0AF8               	incf	i1All_Page_Read_CRC@iap_addr,f
+   776  00EC  1903               	skipnz
+   777  00ED  0AF9               	incf	i1All_Page_Read_CRC@iap_addr+1,f
+   778  00EE  3020               	movlw	32
+   779  00EF  0279               	subwf	i1All_Page_Read_CRC@iap_addr+1,w
+   780  00F0  3000               	movlw	0
+   781  00F1  1903               	skipnz
+   782  00F2  0278               	subwf	i1All_Page_Read_CRC@iap_addr,w
+   783  00F3  1803               	btfsc	3,0
+   784  00F4  0008               	return
+   785  00F5  28DC               	goto	i1l8141
+   786  00F6                     __end_ofi1_All_Page_Read_CRC:	
+   787  00F6                     __ptext18:	
+   788 ;; *************** function i1_CRC16_CCITT *****************
+   789 ;; Defined at:
+   790 ;;		line 44 in file "IAP_FW.C"
+   791 ;; Parameters:    Size  Location     Type
+   792 ;;  data            1    wreg     unsigned char 
+   793 ;; Auto vars:     Size  Location     Type
+   794 ;;  data            1    4[COMMON] unsigned char 
+   795 ;;  CRC16_CCITT     1    5[COMMON] unsigned char 
+   796 ;; Return value:  Size  Location     Type
+   797 ;;                  1    wreg      void 
+   798 ;; Registers used:
+   799 ;;		wreg, status,2, status,0
+   800 ;; Tracked objects:
+   801 ;;		On entry : 1C/0
+   802 ;;		On exit  : 1F/0
+   803 ;;		Unchanged: 0/0
+   804 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   805 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   806 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   807 ;;      Temps:          4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   808 ;;      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   809 ;;Total ram usage:        6 bytes
+   810 ;; Hardware stack levels used:    1
+   811 ;; This function calls:
+   812 ;;		Nothing
+   813 ;; This function is called by:
+   814 ;;		_user_isr
+   815 ;;		i1_All_Page_Read_CRC
+   816 ;; This function uses a non-reentrant model
+   817 ;;
+   818                           
+   819                           
+   820                           ;psect for function i1_CRC16_CCITT
+   821  00F6                     i1_CRC16_CCITT:	
+   822                           
+   823                           ;incstack = 0
+   824                           ; Regs used in i1_CRC16_CCITT: [wreg+status,2+status,0]
+   825                           ;i1CRC16_CCITT@data stored from wreg
+   826  00F6  00F6               	movwf	i1CRC16_CCITT@data
+   827                           
+   828                           ;IAP_FW.C: 47: unsigned char i;
+   829                           ;IAP_FW.C: 49: CRC_16 ^= data;
+   830  00F7  0020               	movlb	0	; select bank0
+   831  00F8  06A3               	xorwf	35,f
+   832                           
+   833                           ;IAP_FW.C: 51: for(i = 0;i < 8;i++)
+   834  00F9  01F7               	clrf	i1CRC16_CCITT@i
+   835  00FA                     i1l2399:	
+   836                           
+   837                           ;IAP_FW.C: 52: {
+   838                           ;IAP_FW.C: 53: if(CRC_16 & 0x01)
+   839  00FA  1C23               	btfss	35,0
+   840  00FB  290D               	goto	i1l8095
+   841                           
+   842                           ;IAP_FW.C: 54: CRC_16 = (CRC_16 >> 1) ^ 0x8408;
+   843  00FC  0824               	movf	36,w
+   844  00FD  00F3               	movwf	??i1_CRC16_CCITT+1
+   845  00FE  0823               	movf	35,w
+   846  00FF  00F2               	movwf	??i1_CRC16_CCITT
+   847  0100  3008               	movlw	8
+   848  0101  36F3               	lsrf	??i1_CRC16_CCITT+1,f
+   849  0102  0CF2               	rrf	??i1_CRC16_CCITT,f
+   850  0103  0672               	xorwf	??i1_CRC16_CCITT,w
+   851  0104  00F4               	movwf	??i1_CRC16_CCITT+2
+   852  0105  3084               	movlw	132
+   853  0106  0673               	xorwf	??i1_CRC16_CCITT+1,w
+   854  0107  00F5               	movwf	??i1_CRC16_CCITT+3
+   855  0108  0874               	movf	??i1_CRC16_CCITT+2,w
+   856  0109  00A3               	movwf	35
+   857  010A  0875               	movf	??i1_CRC16_CCITT+3,w
+   858  010B  00A4               	movwf	36
+   859  010C  290F               	goto	i1l2402
+   860  010D                     i1l8095:	
+   861                           
+   862                           ;IAP_FW.C: 55: else
+   863                           ;IAP_FW.C: 56: CRC_16 = CRC_16 >> 1;
+   864  010D  36A4               	lsrf	36,f
+   865  010E  0CA3               	rrf	35,f
+   866  010F                     i1l2402:	
+   867  010F  3008               	movlw	8
+   868  0110  0AF7               	incf	i1CRC16_CCITT@i,f
+   869  0111  0277               	subwf	i1CRC16_CCITT@i,w
+   870  0112  1803               	btfsc	3,0
+   871  0113  0008               	return
+   872  0114  28FA               	goto	i1l2399
+   873  0115                     __end_ofi1_CRC16_CCITT:	
+   874  0115                     PL12:	
+   875  0115  3084               	movlw	132
+   876  0116  01A3               	clrf	35
+   877  0117  01A4               	clrf	36
+   878  0118  0023               	movlb	3	; select bank3
+   879  0119  0095               	movwf	21	;volatile
+   880  011A  0008               	return
+   881  011B                     __end_ofPL12:	
+   882                           
+   883                           	psect	clrtext
+   884  02FF                     clear_ram0:	
+   885                           ;	Called with FSR0 containing the base address, and
+   886                           ;	btemp/btemp+1 has the size to clear
+   887                           
+   888  02FF  0064               	clrwdt	;clear the watchdog before getting into this loop
+   889  0300                     clrloop0:	
+   890  0300  3001               	movlw	1
+   891  0301  0180               	clrf	0	;clear RAM location pointed to by FSR
+   892  0302  3101               	addfsr 0,1
+   893  0303  02FE               	subwf	126,f
+   894  0304  3000               	movlw	0
+   895  0305  3BFF               	subwfb	127,f
+   896  0306  087F               	movf	127,w
+   897  0307  047E               	iorwf	126,w
+   898  0308  1903               	btfsc	3,2
+   899  0309  3400               	retlw	0	;all done for this memory range, return
+   900  030A  2B00               	goto	clrloop0	;have we reached the end yet?
+   901                           
+   902                           	psect	cstackCOMMON
+   903  0072                     __pcstackCOMMON:	
+   904  0072                     ?_iap_mem_rd:	
+   905  0072                     ?_iap_mem_prog:	
+   906                           ; 1 bytes @ 0x0
+   907                           
+   908  0072                     ??_iap_mem_prog:	
+   909                           ; 1 bytes @ 0x0
+   910                           
+   911  0072                     ?_EEPROMread:	
+   912                           ; 1 bytes @ 0x0
+   913                           
+   914  0072                     ?_user_isr:	
+   915                           ; 1 bytes @ 0x0
+   916                           
+   917  0072                     ?_iap_usart_send:	
+   918                           ; 1 bytes @ 0x0
+   919                           
+   920  0072                     ??_iap_usart_send:	
+   921                           ; 1 bytes @ 0x0
+   922                           
+   923  0072                     ?_iap_usart_rec:	
+   924                           ; 1 bytes @ 0x0
+   925                           
+   926  0072                     ?_iap_mem_erase:	
+   927                           ; 1 bytes @ 0x0
+   928                           
+   929  0072                     ??_iap_mem_erase:	
+   930                           ; 1 bytes @ 0x0
+   931                           
+   932  0072                     ?_iap_wait_tx_idle:	
+   933                           ; 1 bytes @ 0x0
+   934                           
+   935  0072                     ??_iap_wait_tx_idle:	
+   936                           ; 1 bytes @ 0x0
+   937                           
+   938  0072                     ?_iap_usart_init:	
+   939                           ; 1 bytes @ 0x0
+   940                           
+   941  0072                     ?_CRC16_CCITT:	
+   942                           ; 1 bytes @ 0x0
+   943                           
+   944  0072                     ?_All_Page_Read_CRC:	
+   945                           ; 1 bytes @ 0x0
+   946                           
+   947  0072                     ?_Eeprom_Write_Crc:	
+   948                           ; 1 bytes @ 0x0
+   949                           
+   950  0072                     ?_Power_On_App_Check:	
+   951                           ; 1 bytes @ 0x0
+   952                           
+   953  0072                     ?_data_check_erase_or_not:	
+   954                           ; 1 bytes @ 0x0
+   955                           
+   956  0072                     ?_ISR:	
+   957                           ; 1 bytes @ 0x0
+   958                           
+   959  0072                     ?_main:	
+   960                           ; 1 bytes @ 0x0
+   961                           
+   962  0072                     ?_Unlock_Flash:	
+   963                           ; 1 bytes @ 0x0
+   964                           
+   965  0072                     ??_Unlock_Flash:	
+   966                           ; 1 bytes @ 0x0
+   967                           
+   968  0072                     ?_DelayUs:	
+   969                           ; 1 bytes @ 0x0
+   970                           
+   971  0072                     ??_DelayUs:	
+   972                           ; 1 bytes @ 0x0
+   973                           
+   974  0072                     ?i1_CRC16_CCITT:	
+   975                           ; 1 bytes @ 0x0
+   976                           
+   977  0072                     ??i1_CRC16_CCITT:	
+   978                           ; 1 bytes @ 0x0
+   979                           
+   980  0072                     ?i1_All_Page_Read_CRC:	
+   981                           ; 1 bytes @ 0x0
+   982                           
+   983  0072                     ?i1_iap_mem_rd:	
+   984                           ; 1 bytes @ 0x0
+   985                           
+   986  0072                     ??i1_iap_mem_rd:	
+   987                           ; 1 bytes @ 0x0
+   988                           
+   989  0072                     DelayUs@a:	
+   990                           ; 1 bytes @ 0x0
+   991                           
+   992  0072                     iap_usart_send@data:	
+   993                           ; 1 bytes @ 0x0
+   994                           
+   995  0072                     data_check_erase_or_not@addr:	
+   996                           ; 1 bytes @ 0x0
+   997                           
+   998                           
+   999                           ; 2 bytes @ 0x0
+  1000  0072                     	ds	1
+  1001  0073                     ??_iap_usart_rec:	
+  1002  0073                     iap_usart_rec@a:	
+  1003                           ; 1 bytes @ 0x1
+  1004                           
+  1005                           
+  1006                           ; 2 bytes @ 0x1
+  1007  0073                     	ds	1
+  1008  0074                     data_check_erase_or_not@mode:	
+  1009                           
+  1010                           ; 1 bytes @ 0x2
+  1011  0074                     	ds	1
+  1012  0075                     ??_data_check_erase_or_not:	
+  1013                           
+  1014                           ; 1 bytes @ 0x3
+  1015  0075                     	ds	1
+  1016  0076                     i1CRC16_CCITT@data:	
+  1017                           
+  1018                           ; 1 bytes @ 0x4
+  1019  0076                     	ds	1
+  1020  0077                     i1CRC16_CCITT@i:	
+  1021                           
+  1022                           ; 1 bytes @ 0x5
+  1023  0077                     	ds	1
+  1024  0078                     ??i1_All_Page_Read_CRC:	
+  1025  0078                     i1All_Page_Read_CRC@iap_addr:	
+  1026                           ; 1 bytes @ 0x6
+  1027                           
+  1028                           
+  1029                           ; 2 bytes @ 0x6
+  1030  0078                     	ds	1
+  1031  0079                     data_check_erase_or_not@j:	
+  1032                           
+  1033                           ; 1 bytes @ 0x7
+  1034  0079                     	ds	1
+  1035  007A                     ??_Eeprom_Write_Crc:	
+  1036  007A                     data_check_erase_or_not@k:	
+  1037                           ; 1 bytes @ 0x8
+  1038                           
+  1039                           
+  1040                           ; 1 bytes @ 0x8
+  1041  007A                     	ds	1
+  1042  007B                     data_check_erase_or_not@i:	
+  1043                           
+  1044                           ; 1 bytes @ 0x9
+  1045  007B                     	ds	1
+  1046  007C                     ??_ISR:	
+  1047                           
+  1048                           	psect	cstackBANK0
+  1049  0025                     __pcstackBANK0:	
+  1050                           ; 1 bytes @ 0xA
+  1051                           
+  1052  0025                     ??_user_isr:	
+  1053                           
+  1054                           ; 1 bytes @ 0x0
+  1055  0025                     	ds	4
+  1056  0029                     user_isr@iap_addr:	
+  1057                           
+  1058                           ; 2 bytes @ 0x4
+  1059  0029                     	ds	2
+  1060  002B                     user_isr@i:	
+  1061                           
+  1062                           ; 1 bytes @ 0x6
+  1063  002B                     	ds	1
+  1064  002C                     ??_iap_mem_rd:	
+  1065  002C                     ??_EEPROMread:	
+  1066                           ; 1 bytes @ 0x7
+  1067                           
+  1068  002C                     ??_iap_usart_init:	
+  1069                           ; 1 bytes @ 0x7
+  1070                           
+  1071  002C                     ??_CRC16_CCITT:	
+  1072                           ; 1 bytes @ 0x7
+  1073                           
+  1074  002C                     EEPROMread@EEAddr:	
+  1075                           ; 1 bytes @ 0x7
+  1076                           
+  1077                           
+  1078                           ; 1 bytes @ 0x7
+  1079  002C                     	ds	1
+  1080  002D                     EEPROMread@ReEEPROMread:	
+  1081                           
+  1082                           ; 1 bytes @ 0x8
+  1083  002D                     	ds	3
+  1084  0030                     CRC16_CCITT@data:	
+  1085                           
+  1086                           ; 1 bytes @ 0xB
+  1087  0030                     	ds	1
+  1088  0031                     CRC16_CCITT@i:	
+  1089                           
+  1090                           ; 1 bytes @ 0xC
+  1091  0031                     	ds	1
+  1092  0032                     ??_All_Page_Read_CRC:	
+  1093  0032                     All_Page_Read_CRC@iap_addr:	
+  1094                           ; 1 bytes @ 0xD
+  1095                           
+  1096                           
+  1097                           ; 2 bytes @ 0xD
+  1098  0032                     	ds	2
+  1099  0034                     ??_Power_On_App_Check:	
+  1100  0034                     Power_On_App_Check@CRC_Eeprom:	
+  1101                           ; 1 bytes @ 0xF
+  1102                           
+  1103                           
+  1104                           ; 2 bytes @ 0xF
+  1105  0034                     	ds	2
+  1106  0036                     ??_main:	
+  1107                           
+  1108                           	psect	intentry
+  1109  0004                     __pintentry:	
+  1110 ;; *************** function _ISR *****************
+  1111 ;; Defined at:
+  1112 ;;		line 140 in file "IAP_FW.C"
+  1113 ;; Parameters:    Size  Location     Type
+  1114 ;;		None
+  1115 ;; Auto vars:     Size  Location     Type
+  1116 ;;		None
+  1117 ;; Return value:  Size  Location     Type
+  1118 ;;                  1    wreg      void 
+  1119 ;; Registers used:
+  1120 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1121 ;; Tracked objects:
+  1122 ;;		On entry : 0/0
+  1123 ;;		On exit  : 0/0
+  1124 ;;		Unchanged: 0/0
+  1125 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  1126 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1127 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1128 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1129 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1130 ;;Total ram usage:        0 bytes
+  1131 ;; Hardware stack levels used:    1
+  1132 ;; Hardware stack levels required when called:    4
+  1133 ;; This function calls:
+  1134 ;;		_user_isr
+  1135 ;; This function is called by:
+  1136 ;;		Interrupt level 1
+  1137 ;; This function uses a non-reentrant model
+  1138 ;;
+  1139                           
+  1140  0004                     _ISR:	
+  1141                           
+  1142                           ;incstack = 0
+  1143  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+  1144                           
+  1145                           ; Regs used in _ISR: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1146  0005  3180               	pagesel	$
+  1147  0006  0000               	nop	; ;# 
+  1148  0007  0000               	nop	; ;# 
+  1149  0008  0000               	nop	; ;# 
+  1150  0009  0000               	nop	; ;# 
+  1151  000A  0000               	nop	; ;# 
+  1152  000B  0000               	nop	; ;# 
+  1153  000C  0000               	nop	; ;# 
+  1154  000D  0000               	nop	; ;# 
+  1155  000E  0000               	nop	; ;# 
+  1156  000F  0000               	nop	; ;# 
+  1157  0010  0000               	nop	; ;# 
+  1158  0011  0000               	nop	; ;# 
+  1159  0012  0000               	nop	; ;# 
+  1160  0013  0000               	nop	; ;# 
+  1161  0014  0000               	nop	; ;# 
+  1162  0015  0000               	nop	; ;# 
+  1163  0016  0000               	nop	; ;# 
+  1164  0017  0000               	nop	; ;# 
+  1165  0018  0000               	nop	; ;# 
+  1166  0019  0000               	nop	; ;# 
+  1167  001A  0000               	nop	; ;# 
+  1168                           
+  1169                           ;IAP_FW.C: 165: user_isr();
+  1170  001B  3181  211B         	fcall	_user_isr
+  1171  001D  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+  1172  001E  0009               	retfie
+  1173  001F                     __end_of_ISR:	
+  1174                           
+  1175                           	psect	text8
+  1176  011B                     __ptext8:	
+  1177 ;; *************** function _user_isr *****************
+  1178 ;; Defined at:
+  1179 ;;		line 167 in file "IAP_FW.C"
+  1180 ;; Parameters:    Size  Location     Type
+  1181 ;;		None
+  1182 ;; Auto vars:     Size  Location     Type
+  1183 ;;  iap_addr        2    4[BANK0 ] unsigned int 
+  1184 ;;  i               1    6[BANK0 ] unsigned char 
+  1185 ;; Return value:  Size  Location     Type
+  1186 ;;                  1    wreg      void 
+  1187 ;; Registers used:
+  1188 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1189 ;; Tracked objects:
+  1190 ;;		On entry : 0/0
+  1191 ;;		On exit  : 0/0
+  1192 ;;		Unchanged: 0/0
+  1193 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  1194 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1195 ;;      Locals:         0       3       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1196 ;;      Temps:          0       4       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1197 ;;      Totals:         0       7       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1198 ;;Total ram usage:        7 bytes
+  1199 ;; Hardware stack levels used:    1
+  1200 ;; Hardware stack levels required when called:    3
+  1201 ;; This function calls:
+  1202 ;;		_Eeprom_Write_Crc
+  1203 ;;		_data_check_erase_or_not
+  1204 ;;		_iap_mem_erase
+  1205 ;;		_iap_mem_prog
+  1206 ;;		_iap_usart_rec
+  1207 ;;		_iap_usart_send
+  1208 ;;		_iap_wait_tx_idle
+  1209 ;;		i1_CRC16_CCITT
+  1210 ;; This function is called by:
+  1211 ;;		_ISR
+  1212 ;; This function uses a non-reentrant model
+  1213 ;;
+  1214                           
+  1215                           
+  1216                           ;psect for function _user_isr
+  1217  011B                     _user_isr:	
+  1218                           
+  1219                           ;IAP_FW.C: 170: if(URRXNE && RXNEF)
+  1220                           
+  1221                           ;incstack = 0
+  1222                           ; Regs used in _user_isr: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1223  011B  0029               	movlb	9	; select bank9
+  1224  011C  180E               	btfsc	14,0	;volatile
+  1225  011D  1C12               	btfss	18,0	;volatile
+  1226  011E  2A18               	goto	i1l2436
+  1227                           
+  1228                           ;IAP_FW.C: 171: {
+  1229                           ;IAP_FW.C: 172: if(FEF==1)
+  1230  011F  1992               	btfsc	18,3	;volatile
+  1231                           
+  1232                           ;IAP_FW.C: 173: {FEF=0;}
+  1233  0120  1192               	bcf	18,3	;volatile
+  1234                           
+  1235                           ;IAP_FW.C: 174: iap_recdata = URDATAL;
+  1236  0121  080C               	movf	12,w	;volatile
+  1237  0122  0020               	movlb	0	; select bank0
+  1238  0123  00A2               	movwf	34
+  1239                           
+  1240                           ;IAP_FW.C: 175: count++;
+  1241  0124  0AA1               	incf	33,f
+  1242                           
+  1243                           ;IAP_FW.C: 176: switch(count)
+  1244  0125  293E               	goto	i1l8347
+  1245  0126                     i1l8313:	
+  1246                           
+  1247                           ;IAP_FW.C: 179: if(iap_recdata!= 0x46)
+  1248  0126  3046               	movlw	70
+  1249  0127                     L1:	
+  1250  0127  0622               	xorwf	34,w
+  1251  0128  1903               	btfsc	3,2
+  1252  0129  294B               	goto	i1l2441
+  1253  012A                     i1l8315:	
+  1254                           
+  1255                           ;IAP_FW.C: 180: {iap_err_flag=1;}
+  1256  012A  14A0               	bsf	32,1
+  1257  012B  294B               	goto	i1l2441
+  1258  012C                     i1l8317:	
+  1259                           
+  1260                           ;IAP_FW.C: 183: if(iap_recdata != 0x4D)
+  1261  012C  304D               	movlw	77
+  1262  012D  2927               	goto	L1
+  1263  012E                     i1l8321:	
+  1264                           
+  1265                           ;IAP_FW.C: 187: if(iap_recdata != 0x44)
+  1266  012E  3044               	movlw	68
+  1267  012F  2927               	goto	L1
+  1268  0130                     i1l8325:	
+  1269                           
+  1270                           ;IAP_FW.C: 191: if(iap_recdata != 0x49)
+  1271  0130  3049               	movlw	73
+  1272  0131  2927               	goto	L1
+  1273  0132                     i1l8329:	
+  1274                           
+  1275                           ;IAP_FW.C: 195: if(iap_recdata != 0x41)
+  1276  0132  3041               	movlw	65
+  1277  0133  2927               	goto	L1
+  1278  0134                     i1l8333:	
+  1279                           
+  1280                           ;IAP_FW.C: 199: if(iap_recdata != 0x50)
+  1281  0134  3050               	movlw	80
+  1282  0135  2927               	goto	L1
+  1283  0136                     i1l8337:	
+  1284                           
+  1285                           ;IAP_FW.C: 203: if(iap_recdata != 0x55)
+  1286  0136  3055               	movlw	85
+  1287  0137  2927               	goto	L1
+  1288  0138                     i1l8341:	
+  1289                           
+  1290                           ;IAP_FW.C: 207: if(iap_recdata != 0xaa)
+  1291  0138  30AA               	movlw	170
+  1292  0139  0622               	xorwf	34,w
+  1293  013A  1D03               	btfss	3,2
+  1294  013B  292A               	goto	i1l8315
+  1295                           
+  1296                           ;IAP_FW.C: 209: else
+  1297                           ;IAP_FW.C: 210: {iap_ok_flag=1;}
+  1298  013C  1520               	bsf	32,2
+  1299  013D  294B               	goto	i1l2441
+  1300  013E                     i1l8347:	
+  1301  013E  0821               	movf	33,w
+  1302                           
+  1303                           ; Switch size 1, requested type "space"
+  1304                           ; Number of cases is 8, Range of values is 1 to 8
+  1305                           ; switch strategies available:
+  1306                           ; Name         Instructions Cycles
+  1307                           ; direct_byte           25     9 (fixed)
+  1308                           ; simple_byte           25    13 (average)
+  1309                           ; jumptable            263     9 (fixed)
+  1310                           ;	Chosen strategy is direct_byte
+  1311  013F  3EFF               	addlw	-1
+  1312  0140  1C03               	skipc
+  1313  0141  292A               	goto	i1l8315
+  1314  0142  0084               	movwf	4
+  1315  0143  3008               	movlw	8
+  1316  0144  0204               	subwf	4,w
+  1317  0145  1803               	skipnc
+  1318  0146  292A               	goto	i1l8315
+  1319  0147  3182               	movlp	high i1S8529
+  1320  0148  3504               	lslf	4,w
+  1321  0149  3EEF               	addlw	low i1S8529
+  1322  014A  0082               	movwf	2
+  1323  014B                     i1l2441:	
+  1324                           
+  1325                           ;IAP_FW.C: 216: if(iap_ok_flag==1)
+  1326  014B  1D20               	btfss	32,2
+  1327  014C  2A0F               	goto	i1l2458
+  1328                           
+  1329                           ;IAP_FW.C: 217: {
+  1330                           ;IAP_FW.C: 218: count=0;
+  1331  014D  01A1               	clrf	33
+  1332                           
+  1333                           ;IAP_FW.C: 219: iap_ok_flag =0;
+  1334  014E  1120               	bcf	32,2
+  1335                           
+  1336                           ;IAP_FW.C: 220: unsigned char i ;
+  1337                           ;IAP_FW.C: 221: unsigned int iap_addr;
+  1338                           ;IAP_FW.C: 222: RXNE &= ~(0X1<<0 );
+  1339  014F  109C               	bcf	28,1	;volatile
+  1340                           
+  1341                           ;IAP_FW.C: 223: EECON1 = (0x1<<7 )|(0X1<<2 );
+  1342  0150  3084               	movlw	132
+  1343  0151  0023               	movlb	3	; select bank3
+  1344  0152  0095               	movwf	21	;volatile
+  1345                           
+  1346                           ;IAP_FW.C: 224: iap_usart_send(0xaa);
+  1347  0153  30AA               	movlw	170
+  1348  0154                     L2:	
+  1349  0154  224C  3181         	fcall	_iap_usart_send
+  1350                           
+  1351                           ;IAP_FW.C: 230: switch(iap_databuf[0])
+  1352  0156  29FB               	goto	i1l8359
+  1353  0157                     i1l2461:	
+  1354                           ;IAP_FW.C: 231: {
+  1355                           ;IAP_FW.C: 232: case 0X05:
+  1356                           
+  1357                           
+  1358                           ;IAP_FW.C: 233: for(i=1;i<133;i++)
+  1359  0157  0020               	movlb	0	; select bank0
+  1360  0158  01AB               	clrf	user_isr@i
+  1361  0159  0AAB               	incf	user_isr@i,f
+  1362  015A                     i1l8365:	
+  1363                           
+  1364                           ;IAP_FW.C: 234: {
+  1365                           ;IAP_FW.C: 235: iap_databuf[i]=iap_usart_rec();
+  1366  015A  225A  3181         	fcall	_iap_usart_rec
+  1367  015C  0020               	movlb	0	; select bank0
+  1368  015D  00A5               	movwf	??_user_isr
+  1369  015E  082B               	movf	user_isr@i,w
+  1370  015F  3E6B               	addlw	107
+  1371  0160  00A6               	movwf	??_user_isr+1
+  1372  0161  3023               	movlw	35
+  1373  0162  01A7               	clrf	??_user_isr+2
+  1374  0163  3DA7               	addwfc	??_user_isr+2,f
+  1375  0164  0826               	movf	??_user_isr+1,w
+  1376  0165  0086               	movwf	6
+  1377  0166  0827               	movf	??_user_isr+2,w
+  1378  0167  0087               	movwf	7
+  1379  0168  0825               	movf	??_user_isr,w
+  1380  0169  0081               	movwf	1
+  1381  016A  3085               	movlw	133
+  1382  016B  0AAB               	incf	user_isr@i,f
+  1383  016C  022B               	subwf	user_isr@i,w
+  1384  016D  1C03               	skipc
+  1385  016E  295A               	goto	i1l8365
+  1386                           
+  1387                           ;IAP_FW.C: 236: }
+  1388                           ;IAP_FW.C: 237: CRC_16 = 0;
+  1389  016F  01A3               	clrf	35
+  1390  0170  01A4               	clrf	36
+  1391                           
+  1392                           ;IAP_FW.C: 238: for(i=0;i<131;i++)
+  1393  0171  01AB               	clrf	user_isr@i
+  1394  0172                     i1l8377:	
+  1395                           
+  1396                           ;IAP_FW.C: 239: {
+  1397                           ;IAP_FW.C: 240: CRC16_CCITT(iap_databuf[i]);
+  1398  0172  082B               	movf	user_isr@i,w
+  1399  0173  3E6B               	addlw	107
+  1400  0174  0086               	movwf	6
+  1401  0175  3023               	movlw	35
+  1402  0176  0187               	clrf	7
+  1403  0177  3D87               	addwfc	7,f
+  1404  0178  0801               	movf	1,w
+  1405  0179  3180  20F6  3181   	fcall	i1_CRC16_CCITT
+  1406  017C  3083               	movlw	131
+  1407  017D  0AAB               	incf	user_isr@i,f
+  1408  017E  022B               	subwf	user_isr@i,w
+  1409  017F  1C03               	skipc
+  1410  0180  2972               	goto	i1l8377
+  1411                           
+  1412                           ;IAP_FW.C: 241: }
+  1413                           ;IAP_FW.C: 242: if((CRC_H !=iap_databuf[131]) || (CRC_L !=iap_databuf[132]))
+  1414  0181  30EE               	movlw	238
+  1415  0182  0086               	movwf	6
+  1416  0183  3023               	movlw	35
+  1417  0184  0087               	movwf	7
+  1418  0185  0801               	movf	1,w
+  1419  0186  0624               	xorwf	36,w
+  1420  0187  1D03               	skipz
+  1421  0188  29EC               	goto	i1l8455
+  1422  0189  30EF               	movlw	239
+  1423  018A  0086               	movwf	6
+  1424  018B  0801               	movf	1,w
+  1425  018C  0623               	xorwf	35,w
+  1426  018D  1D03               	btfss	3,2
+  1427  018E  29EC               	goto	i1l8455
+  1428                           
+  1429                           ;IAP_FW.C: 246: }
+  1430                           ;IAP_FW.C: 247: iap_addr = iap_databuf[1];
+  1431                           
+  1432                           ;IAP_FW.C: 245: break;
+  1433                           
+  1434                           ;IAP_FW.C: 243: {
+  1435                           ;IAP_FW.C: 244: iap_usart_send(0x44);
+  1436  018F  306B               	movlw	107
+  1437  0190  0086               	movwf	6
+  1438                           
+  1439                           ;IAP_FW.C: 248: iap_addr = ((iap_addr<<8)+iap_databuf[2]);
+  1440  0191  22B3  3181         	fcall	PL4	;call to abstracted procedure
+  1441                           
+  1442                           ;IAP_FW.C: 249: if(iap_addr < 0X400)
+  1443  0193  3004               	movlw	4
+  1444  0194  022A               	subwf	user_isr@iap_addr+1,w
+  1445  0195  3000               	movlw	0
+  1446  0196  1903               	skipnz
+  1447  0197  0229               	subwf	user_isr@iap_addr,w
+  1448  0198  1C03               	btfss	3,0
+  1449  0199  29EC               	goto	i1l8455
+  1450                           
+  1451                           ;IAP_FW.C: 253: }
+  1452                           ;IAP_FW.C: 254: if(data_check_erase_or_not(iap_addr,1))
+  1453                           
+  1454                           ;IAP_FW.C: 252: break;
+  1455                           
+  1456                           ;IAP_FW.C: 250: {
+  1457                           ;IAP_FW.C: 251: iap_usart_send(0x44);
+  1458  019A  082A               	movf	user_isr@iap_addr+1,w
+  1459  019B  22DA  3181         	fcall	PL10	;call to abstracted procedure
+  1460  019D  221A  3181         	fcall	_data_check_erase_or_not
+  1461  019F  3A00               	xorlw	0
+  1462  01A0  1D03               	btfss	3,2
+  1463  01A1  29DF               	goto	L3
+  1464                           
+  1465                           ;IAP_FW.C: 262: else
+  1466                           ;IAP_FW.C: 263: {
+  1467                           ;IAP_FW.C: 264: if(data_check_erase_or_not(iap_addr,0))
+  1468                           
+  1469                           ;IAP_FW.C: 261: }
+  1470                           
+  1471                           ;IAP_FW.C: 259: }
+  1472                           ;IAP_FW.C: 260: iap_usart_send(0X00);
+  1473                           
+  1474                           ;IAP_FW.C: 257: {
+  1475                           ;IAP_FW.C: 258: Eeprom_Write_Crc();
+  1476                           
+  1477                           ;IAP_FW.C: 255: {
+  1478                           ;IAP_FW.C: 256: if(iap_addr == (0x2000-0x40))
+  1479  01A2  0020               	movlb	0	; select bank0
+  1480  01A3  082A               	movf	user_isr@iap_addr+1,w
+  1481  01A4  00F3               	movwf	data_check_erase_or_not@addr+1
+  1482  01A5  0829               	movf	user_isr@iap_addr,w
+  1483  01A6  00F2               	movwf	data_check_erase_or_not@addr
+  1484  01A7  01F4               	clrf	data_check_erase_or_not@mode
+  1485  01A8  221A  3181         	fcall	_data_check_erase_or_not
+  1486  01AA  3A00               	xorlw	0
+  1487  01AB  1903               	skipnz
+  1488  01AC  29BB               	goto	i1l8423
+  1489                           
+  1490                           ;IAP_FW.C: 265: {
+  1491                           ;IAP_FW.C: 266: for(i=0;i<128;i=i+2)
+  1492  01AD  0020               	movlb	0	; select bank0
+  1493  01AE  01AB               	clrf	user_isr@i
+  1494  01AF                     i1l8409:	
+  1495                           
+  1496                           ;IAP_FW.C: 267: {
+  1497                           ;IAP_FW.C: 268: EEADRH = iap_addr>>8;
+  1498  01AF  082A               	movf	user_isr@iap_addr+1,w
+  1499  01B0  0023               	movlb	3	; select bank3
+  1500  01B1  0092               	movwf	18	;volatile
+  1501                           
+  1502                           ;IAP_FW.C: 269: EEADRL = iap_addr>>0;
+  1503                           
+  1504                           ;IAP_FW.C: 270: EEDATH = iap_databuf[i+3];
+  1505                           
+  1506                           ;IAP_FW.C: 271: EEDATL = iap_databuf[i+4];
+  1507  01B2  228C  3181         	fcall	PL2	;call to abstracted procedure
+  1508                           
+  1509                           ;IAP_FW.C: 272: iap_mem_prog();
+  1510  01B4  2253  3181         	fcall	_iap_mem_prog
+  1511                           
+  1512                           ;IAP_FW.C: 273: iap_addr++;
+  1513  01B6  22D1  3181         	fcall	PL8	;call to abstracted procedure
+  1514  01B8  1803               	btfsc	3,0
+  1515  01B9  29D2               	goto	i1l8447
+  1516  01BA  29AF               	goto	i1l8409
+  1517  01BB                     i1l8423:	
+  1518                           
+  1519                           ;IAP_FW.C: 276: else
+  1520                           ;IAP_FW.C: 277: {
+  1521                           ;IAP_FW.C: 278: EEADRH = iap_addr>>8;
+  1522  01BB  0020               	movlb	0	; select bank0
+  1523  01BC  082A               	movf	user_isr@iap_addr+1,w
+  1524  01BD  0023               	movlb	3	; select bank3
+  1525  01BE  0092               	movwf	18	;volatile
+  1526                           
+  1527                           ;IAP_FW.C: 279: EEADRL = iap_addr>>0;
+  1528  01BF  0020               	movlb	0	; select bank0
+  1529  01C0  0829               	movf	user_isr@iap_addr,w
+  1530  01C1  0023               	movlb	3	; select bank3
+  1531  01C2  0091               	movwf	17	;volatile
+  1532                           
+  1533                           ;IAP_FW.C: 280: iap_mem_erase();
+  1534  01C3  22E0  3181         	fcall	_iap_mem_erase
+  1535                           
+  1536                           ;IAP_FW.C: 281: for(i=0;i<128;i=i+2)
+  1537  01C5  0020               	movlb	0	; select bank0
+  1538  01C6  01AB               	clrf	user_isr@i
+  1539  01C7                     i1l8433:	
+  1540                           
+  1541                           ;IAP_FW.C: 282: {
+  1542                           ;IAP_FW.C: 283: EEADRH = iap_addr>>8;
+  1543  01C7  082A               	movf	user_isr@iap_addr+1,w
+  1544  01C8  0023               	movlb	3	; select bank3
+  1545  01C9  0092               	movwf	18	;volatile
+  1546                           
+  1547                           ;IAP_FW.C: 284: EEADRL = iap_addr>>0;
+  1548                           
+  1549                           ;IAP_FW.C: 285: EEDATH = iap_databuf[i+3];
+  1550                           
+  1551                           ;IAP_FW.C: 286: EEDATL = iap_databuf[i+4];
+  1552  01CA  228C  3181         	fcall	PL2	;call to abstracted procedure
+  1553                           
+  1554                           ;IAP_FW.C: 287: iap_mem_prog();
+  1555  01CC  2253  3181         	fcall	_iap_mem_prog
+  1556                           
+  1557                           ;IAP_FW.C: 288: iap_addr++;
+  1558  01CE  22D1  3181         	fcall	PL8	;call to abstracted procedure
+  1559  01D0  1C03               	skipc
+  1560  01D1  29C7               	goto	i1l8433
+  1561  01D2                     i1l8447:	
+  1562                           
+  1563                           ;IAP_FW.C: 289: }
+  1564                           ;IAP_FW.C: 290: }
+  1565                           ;IAP_FW.C: 291: iap_addr = iap_databuf[1];
+  1566  01D2  306B               	movlw	107
+  1567  01D3  0086               	movwf	6
+  1568  01D4  3023               	movlw	35
+  1569  01D5  0087               	movwf	7
+  1570                           
+  1571                           ;IAP_FW.C: 292: iap_addr = ((iap_addr<<8)+iap_databuf[2]);
+  1572  01D6  22B3  3181         	fcall	PL4	;call to abstracted procedure
+  1573                           
+  1574                           ;IAP_FW.C: 293: if(data_check_erase_or_not(iap_addr,1))
+  1575  01D8  22DA  3181         	fcall	PL10	;call to abstracted procedure
+  1576  01DA  221A  3181         	fcall	_data_check_erase_or_not
+  1577  01DC  3A00               	xorlw	0
+  1578  01DD  1903               	skipnz
+  1579  01DE  29EC               	goto	i1l8455
+  1580  01DF                     L3:	
+  1581                           
+  1582                           ;IAP_FW.C: 294: {
+  1583                           ;IAP_FW.C: 295: if(iap_addr == (0x2000-0x40))
+  1584  01DF  30C0               	movlw	192
+  1585  01E0  0020               	movlb	0	; select bank0
+  1586  01E1  0629               	xorwf	user_isr@iap_addr,w
+  1587  01E2  301F               	movlw	31
+  1588  01E3  1903               	skipnz
+  1589  01E4  062A               	xorwf	user_isr@iap_addr+1,w
+  1590  01E5  1D03               	btfss	3,2
+  1591  01E6  29EA               	goto	i1l2481
+  1592                           
+  1593                           ;IAP_FW.C: 296: {
+  1594                           ;IAP_FW.C: 297: Eeprom_Write_Crc();
+  1595  01E7  3180  20C3  3181   	fcall	_Eeprom_Write_Crc
+  1596  01EA                     i1l2481:	
+  1597                           
+  1598                           ;IAP_FW.C: 298: }
+  1599                           ;IAP_FW.C: 299: iap_usart_send(0X00);
+  1600  01EA  3000               	movlw	0
+  1601  01EB  2954               	goto	L2
+  1602  01EC                     i1l8455:	
+  1603                           ;IAP_FW.C: 300: }
+  1604                           
+  1605                           
+  1606                           ;IAP_FW.C: 301: else
+  1607                           ;IAP_FW.C: 302: {
+  1608                           ;IAP_FW.C: 303: iap_usart_send(0x44);
+  1609  01EC  3044               	movlw	68
+  1610  01ED  2954               	goto	L2
+  1611  01EE                     i1l8457:	
+  1612                           
+  1613                           ;IAP_FW.C: 308: iap_usart_send(0X00);
+  1614  01EE  3000               	movlw	0
+  1615  01EF  224C  3181         	fcall	_iap_usart_send
+  1616                           
+  1617                           ;IAP_FW.C: 309: iap_wait_tx_idle();
+  1618  01F1  2275  3181         	fcall	_iap_wait_tx_idle
+  1619  01F3  0001               	reset	;# 
+  1620                           
+  1621                           ;IAP_FW.C: 311: break;
+  1622  01F4  29FB               	goto	i1l8359
+  1623  01F5                     i1l8459:	
+  1624                           
+  1625                           ;IAP_FW.C: 314: iap_usart_send(0x44);
+  1626  01F5  3044               	movlw	68
+  1627  01F6  224C  3181         	fcall	_iap_usart_send
+  1628                           
+  1629                           ;IAP_FW.C: 316: iap_wait_tx_idle();
+  1630  01F8  2275  3181         	fcall	_iap_wait_tx_idle
+  1631  01FA  0001               	reset	;# 
+  1632  01FB                     i1l8359:	
+  1633                           ;IAP_FW.C: 318: break;
+  1634                           
+  1635                           
+  1636                           ;IAP_FW.C: 226: {
+  1637                           ;IAP_FW.C: 228: iap_databuf[0]=iap_usart_rec();
+  1638  01FB  306B               	movlw	107
+  1639  01FC  0086               	movwf	6
+  1640  01FD  3023               	movlw	35
+  1641  01FE  0087               	movwf	7
+  1642  01FF  225A  3181         	fcall	_iap_usart_rec
+  1643  0201  3FC0               	movwi [0]fsr1
+  1644  0202  0064               	clrwdt	;# 
+  1645  0203  306B               	movlw	107
+  1646  0204  0086               	movwf	6
+  1647  0205  3023               	movlw	35
+  1648  0206  0087               	movwf	7
+  1649  0207  0801               	movf	1,w
+  1650                           
+  1651                           ; Switch size 1, requested type "space"
+  1652                           ; Number of cases is 2, Range of values is 5 to 6
+  1653                           ; switch strategies available:
+  1654                           ; Name         Instructions Cycles
+  1655                           ; simple_byte            7     4 (average)
+  1656                           ; direct_byte           13     9 (fixed)
+  1657                           ; jumptable            263     9 (fixed)
+  1658                           ;	Chosen strategy is simple_byte
+  1659  0208  3A05               	xorlw	5	; case 5
+  1660  0209  1903               	skipnz
+  1661  020A  2957               	goto	i1l2461
+  1662  020B  3A03               	xorlw	3	; case 6
+  1663  020C  1903               	skipnz
+  1664  020D  29EE               	goto	i1l8457
+  1665  020E  29F5               	goto	i1l8459
+  1666  020F                     i1l2458:	
+  1667                           
+  1668                           ;IAP_FW.C: 320: }
+  1669                           ;IAP_FW.C: 321: }
+  1670                           ;IAP_FW.C: 323: if(iap_err_flag==1)
+  1671  020F  1CA0               	btfss	32,1
+  1672  0210  0008               	return
+  1673                           
+  1674                           ;IAP_FW.C: 324: {
+  1675                           ;IAP_FW.C: 325: count=0;
+  1676  0211  01A1               	clrf	33
+  1677                           
+  1678                           ;IAP_FW.C: 326: iap_err_flag=0;
+  1679  0212  10A0               	bcf	32,1
+  1680                           
+  1681                           ;IAP_FW.C: 327: if(read_flag !=1)
+  1682  0213  1820               	btfsc	32,0
+  1683  0214  0008               	return
+  1684                           
+  1685                           ;IAP_FW.C: 328: {
+  1686                           ;IAP_FW.C: 329: uart_rxnef=1;
+  1687  0215  15A0               	bsf	32,3
+  1688  0216  2C04               	goto	1028	;# 
+  1689  0217  0008               	return
+  1690  0218                     i1l2436:	
+  1691  0218  2C04               	goto	1028	;# 
+  1692  0219  0008               	return
+  1693  021A                     __end_of_user_isr:	
+  1694  021A                     __ptext14:	
+  1695 ;; *************** function _data_check_erase_or_not *****************
+  1696 ;; Defined at:
+  1697 ;;		line 107 in file "IAP_FW.C"
+  1698 ;; Parameters:    Size  Location     Type
+  1699 ;;  addr            2    0[COMMON] unsigned int 
+  1700 ;;  mode            1    2[COMMON] unsigned char 
+  1701 ;; Auto vars:     Size  Location     Type
+  1702 ;;  i               1    9[COMMON] unsigned char 
+  1703 ;;  k               1    8[COMMON] unsigned char 
+  1704 ;;  j               1    7[COMMON] unsigned char 
+  1705 ;; Return value:  Size  Location     Type
+  1706 ;;                  1    wreg      unsigned char 
+  1707 ;; Registers used:
+  1708 ;;		wreg, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1709 ;; Tracked objects:
+  1710 ;;		On entry : 1F/0
+  1711 ;;		On exit  : 1F/3
+  1712 ;;		Unchanged: 0/0
+  1713 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  1714 ;;      Params:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1715 ;;      Locals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1716 ;;      Temps:          4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1717 ;;      Totals:        10       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1718 ;;Total ram usage:       10 bytes
+  1719 ;; Hardware stack levels used:    1
+  1720 ;; Hardware stack levels required when called:    1
+  1721 ;; This function calls:
+  1722 ;;		i1_iap_mem_rd
+  1723 ;; This function is called by:
+  1724 ;;		_user_isr
+  1725 ;; This function uses a non-reentrant model
+  1726 ;;
+  1727                           
+  1728                           
+  1729                           ;psect for function _data_check_erase_or_not
+  1730  021A                     _data_check_erase_or_not:	
+  1731                           
+  1732                           ;IAP_FW.C: 109: unsigned char i ,j,k;
+  1733                           ;IAP_FW.C: 110: for(i=0;i<64;i++)
+  1734                           
+  1735                           ;incstack = 0
+  1736                           ; Regs used in _data_check_erase_or_not: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+csta
+      +                          ck]
+  1737  021A  01FB               	clrf	data_check_erase_or_not@i
+  1738  021B                     i1l8207:	
+  1739                           
+  1740                           ;IAP_FW.C: 111: {
+  1741                           ;IAP_FW.C: 112: EEADRH = addr>>8;
+  1742  021B  0873               	movf	data_check_erase_or_not@addr+1,w
+  1743  021C  0023               	movlb	3	; select bank3
+  1744  021D  0092               	movwf	18	;volatile
+  1745                           
+  1746                           ;IAP_FW.C: 113: EEADRL = addr>>0;
+  1747  021E  0872               	movf	data_check_erase_or_not@addr,w
+  1748  021F  0091               	movwf	17	;volatile
+  1749                           
+  1750                           ;IAP_FW.C: 114: j = iap_databuf[i*2+3];
+  1751  0220  087B               	movf	data_check_erase_or_not@i,w
+  1752  0221  00F5               	movwf	??_data_check_erase_or_not
+  1753  0222  306E               	movlw	110
+  1754  0223  22C3  3181         	fcall	PL6	;call to abstracted procedure
+  1755  0225  00F9               	movwf	data_check_erase_or_not@j
+  1756                           
+  1757                           ;IAP_FW.C: 115: k = iap_databuf[i*2+4];
+  1758  0226  087B               	movf	data_check_erase_or_not@i,w
+  1759  0227  00F5               	movwf	??_data_check_erase_or_not
+  1760  0228  306F               	movlw	111
+  1761  0229  22C3  3181         	fcall	PL6	;call to abstracted procedure
+  1762  022B  00FA               	movwf	data_check_erase_or_not@k
+  1763                           
+  1764                           ;IAP_FW.C: 116: iap_mem_rd();
+  1765  022C  2286  3181         	fcall	i1_iap_mem_rd
+  1766                           
+  1767                           ;IAP_FW.C: 117: if(mode == 0)
+  1768  022E  0874               	movf	data_check_erase_or_not@mode,w
+  1769  022F  1D03               	btfss	3,2
+  1770  0230  2A3B               	goto	i1l8225
+  1771                           
+  1772                           ;IAP_FW.C: 118: {
+  1773                           ;IAP_FW.C: 119: if(((EEDATH & j) != j) || ((EEDATL & k) != k))
+  1774  0231  0879               	movf	data_check_erase_or_not@j,w
+  1775  0232  0514               	andwf	20,w	;volatile
+  1776  0233  00F5               	movwf	??_data_check_erase_or_not
+  1777  0234  0679               	xorwf	data_check_erase_or_not@j,w
+  1778  0235  1D03               	skipz
+  1779  0236  3400               	retlw	0
+  1780  0237  087A               	movf	data_check_erase_or_not@k,w
+  1781  0238  0513               	andwf	19,w	;volatile
+  1782  0239  00F5               	movwf	??_data_check_erase_or_not
+  1783  023A  2A40               	goto	L4
+  1784  023B                     i1l8225:	
+  1785                           
+  1786                           ;IAP_FW.C: 124: else
+  1787                           ;IAP_FW.C: 125: {
+  1788                           ;IAP_FW.C: 126: if((EEDATH != j) || (EEDATL != k))
+  1789  023B  0814               	movf	20,w	;volatile
+  1790  023C  0679               	xorwf	data_check_erase_or_not@j,w
+  1791  023D  1D03               	skipz
+  1792  023E  3400               	retlw	0
+  1793  023F  0813               	movf	19,w	;volatile
+  1794  0240                     L4:	
+  1795  0240  067A               	xorwf	data_check_erase_or_not@k,w
+  1796  0241  1D03               	btfss	3,2
+  1797                           
+  1798                           ;IAP_FW.C: 120: {
+  1799                           ;IAP_FW.C: 121: return 0;
+  1800  0242  3400               	retlw	0
+  1801                           
+  1802                           ;IAP_FW.C: 129: }
+  1803                           ;IAP_FW.C: 130: }
+  1804                           ;IAP_FW.C: 131: addr++;
+  1805  0243  0AF2               	incf	data_check_erase_or_not@addr,f
+  1806  0244  1903               	skipnz
+  1807  0245  0AF3               	incf	data_check_erase_or_not@addr+1,f
+  1808  0246  3040               	movlw	64
+  1809  0247  0AFB               	incf	data_check_erase_or_not@i,f
+  1810  0248  027B               	subwf	data_check_erase_or_not@i,w
+  1811  0249  1803               	btfsc	3,0
+  1812                           
+  1813                           ;IAP_FW.C: 132: }
+  1814                           ;IAP_FW.C: 133: return 1;
+  1815  024A  3401               	retlw	1
+  1816  024B  2A1B               	goto	i1l8207
+  1817  024C                     __end_of_data_check_erase_or_not:	
+  1818  024C                     __ptext10:	
+  1819 ;; *************** function _iap_usart_send *****************
+  1820 ;; Defined at:
+  1821 ;;		line 43 in file "USART_DRV.C"
+  1822 ;; Parameters:    Size  Location     Type
+  1823 ;;  data            1    wreg     unsigned char 
+  1824 ;; Auto vars:     Size  Location     Type
+  1825 ;;  data            1    0[COMMON] unsigned char 
+  1826 ;; Return value:  Size  Location     Type
+  1827 ;;                  1    wreg      void 
+  1828 ;; Registers used:
+  1829 ;;		wreg
+  1830 ;; Tracked objects:
+  1831 ;;		On entry : 0/3
+  1832 ;;		On exit  : 1F/9
+  1833 ;;		Unchanged: 0/0
+  1834 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  1835 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1836 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1837 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1838 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1839 ;;Total ram usage:        1 bytes
+  1840 ;; Hardware stack levels used:    1
+  1841 ;; This function calls:
+  1842 ;;		Nothing
+  1843 ;; This function is called by:
+  1844 ;;		_user_isr
+  1845 ;; This function uses a non-reentrant model
+  1846 ;;
+  1847                           
+  1848                           
+  1849                           ;psect for function _iap_usart_send
+  1850  024C                     _iap_usart_send:	
+  1851                           
+  1852                           ;incstack = 0
+  1853                           ; Regs used in _iap_usart_send: [wreg]
+  1854                           ;iap_usart_send@data stored from wreg
+  1855  024C  00F2               	movwf	iap_usart_send@data
+  1856  024D                     i1l7242:	
+  1857                           ;USART_DRV.C: 45: while(!(URLSR & (0x1<<5 )));
+  1858                           
+  1859  024D  0029               	movlb	9	; select bank9
+  1860  024E  1E92               	btfss	18,5	;volatile
+  1861  024F  2A4D               	goto	i1l7242
+  1862                           
+  1863                           ;USART_DRV.C: 46: URDATAL = data;
+  1864  0250  0872               	movf	iap_usart_send@data,w
+  1865  0251  008C               	movwf	12	;volatile
+  1866  0252  0008               	return
+  1867  0253                     __end_of_iap_usart_send:	
+  1868  0253                     __ptext19:	
+  1869 ;; *************** function _iap_mem_prog *****************
+  1870 ;; Defined at:
+  1871 ;;		line 27 in file "MEM_DRV.C"
+  1872 ;; Parameters:    Size  Location     Type
+  1873 ;;		None
+  1874 ;; Auto vars:     Size  Location     Type
+  1875 ;;		None
+  1876 ;; Return value:  Size  Location     Type
+  1877 ;;                  1    wreg      void 
+  1878 ;; Registers used:
+  1879 ;;		status,2, status,0, pclath, cstack
+  1880 ;; Tracked objects:
+  1881 ;;		On entry : 1F/3
+  1882 ;;		On exit  : 1F/3
+  1883 ;;		Unchanged: 0/0
+  1884 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  1885 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1886 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1887 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1888 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1889 ;;Total ram usage:        0 bytes
+  1890 ;; Hardware stack levels used:    1
+  1891 ;; Hardware stack levels required when called:    1
+  1892 ;; This function calls:
+  1893 ;;		_Unlock_Flash
+  1894 ;; This function is called by:
+  1895 ;;		_Eeprom_Write_Crc
+  1896 ;;		_user_isr
+  1897 ;; This function uses a non-reentrant model
+  1898 ;;
+  1899                           
+  1900                           
+  1901                           ;psect for function _iap_mem_prog
+  1902  0253                     _iap_mem_prog:	
+  1903  0253                     i1l8117:	
+  1904                           ;incstack = 0
+  1905                           ; Regs used in _iap_mem_prog: [status,2+status,0+pclath+cstack]
+  1906                           
+  1907                           
+  1908                           ;MEM_DRV.C: 29: EECON1 &=~(0x1<<4 );
+  1909  0253  1215               	bcf	21,4	;volatile
+  1910                           
+  1911                           ;MEM_DRV.C: 30: Unlock_Flash();
+  1912  0254  227C  3181         	fcall	_Unlock_Flash
+  1913  0256                     i1l4865:	
+  1914                           ;MEM_DRV.C: 31: while(EECON1 & (0x1<<1 ));
+  1915                           
+  1916  0256  0023               	movlb	3	; select bank3
+  1917  0257  1C95               	btfss	21,1	;volatile
+  1918  0258  0008               	return
+  1919  0259  2A56               	goto	i1l4865
+  1920  025A                     __end_of_iap_mem_prog:	
+  1921  025A                     __ptext11:	
+  1922 ;; *************** function _iap_usart_rec *****************
+  1923 ;; Defined at:
+  1924 ;;		line 49 in file "USART_DRV.C"
+  1925 ;; Parameters:    Size  Location     Type
+  1926 ;;		None
+  1927 ;; Auto vars:     Size  Location     Type
+  1928 ;;  a               2    1[COMMON] unsigned int 
+  1929 ;; Return value:  Size  Location     Type
+  1930 ;;                  1    wreg      unsigned char 
+  1931 ;; Registers used:
+  1932 ;;		wreg, status,2, status,0, pclath, cstack
+  1933 ;; Tracked objects:
+  1934 ;;		On entry : 0/9
+  1935 ;;		On exit  : 1F/9
+  1936 ;;		Unchanged: 0/0
+  1937 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  1938 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1939 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1940 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1941 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  1942 ;;Total ram usage:        2 bytes
+  1943 ;; Hardware stack levels used:    1
+  1944 ;; Hardware stack levels required when called:    1
+  1945 ;; This function calls:
+  1946 ;;		_DelayUs
+  1947 ;; This function is called by:
+  1948 ;;		_user_isr
+  1949 ;; This function uses a non-reentrant model
+  1950 ;;
+  1951                           
+  1952                           
+  1953                           ;psect for function _iap_usart_rec
+  1954  025A                     _iap_usart_rec:	
+  1955                           
+  1956                           ;USART_DRV.C: 51: unsigned int a;
+  1957                           ;USART_DRV.C: 52: for(a=0;a<47200;a++)
+  1958                           
+  1959                           ;incstack = 0
+  1960                           ; Regs used in _iap_usart_rec: [wreg+status,2+status,0+pclath+cstack]
+  1961  025A  01F3               	clrf	iap_usart_rec@a
+  1962  025B  01F4               	clrf	iap_usart_rec@a+1
+  1963  025C                     i1l8251:	
+  1964                           
+  1965                           ;USART_DRV.C: 53: {
+  1966                           ;USART_DRV.C: 54: DelayUs();
+  1967  025C  22E7  3181         	fcall	_DelayUs
+  1968                           
+  1969                           ;USART_DRV.C: 55: if(((0x1 << 0 ) & URLSR))
+  1970  025E  0029               	movlb	9	; select bank9
+  1971  025F  1C12               	btfss	18,0	;volatile
+  1972  0260  2A6A               	goto	i1l8269
+  1973                           
+  1974                           ;USART_DRV.C: 56: {
+  1975                           ;USART_DRV.C: 57: if((URLSR & (0x1<<2 )) || (URLSR & (0x1<<3 )))
+  1976  0261  1912               	btfsc	18,2	;volatile
+  1977  0262  2A65               	goto	i1l8259
+  1978  0263  1D92               	btfss	18,3	;volatile
+  1979  0264  2A68               	goto	i1l8265
+  1980  0265                     i1l8259:	
+  1981                           
+  1982                           ;USART_DRV.C: 58: {
+  1983                           ;USART_DRV.C: 59: URLSR = ~((0x1<<2 )|(0x1<<3 ));
+  1984  0265  30F3               	movlw	243
+  1985  0266  0092               	movwf	18	;volatile
+  1986                           
+  1987                           ;USART_DRV.C: 60: return 0xff;
+  1988  0267  34FF               	retlw	255
+  1989  0268                     i1l8265:	
+  1990                           
+  1991                           ;USART_DRV.C: 62: else
+  1992                           ;USART_DRV.C: 63: {
+  1993                           ;USART_DRV.C: 64: return URDATAL;
+  1994  0268  080C               	movf	12,w	;volatile
+  1995  0269  0008               	return
+  1996  026A                     i1l8269:	
+  1997  026A  0AF3               	incf	iap_usart_rec@a,f
+  1998  026B  1903               	skipnz
+  1999  026C  0AF4               	incf	iap_usart_rec@a+1,f
+  2000  026D  30B8               	movlw	184
+  2001  026E  0274               	subwf	iap_usart_rec@a+1,w
+  2002  026F  3060               	movlw	96
+  2003  0270  1903               	skipnz
+  2004  0271  0273               	subwf	iap_usart_rec@a,w
+  2005  0272  1803               	btfsc	3,0
+  2006                           
+  2007                           ;USART_DRV.C: 65: }
+  2008                           ;USART_DRV.C: 66: }
+  2009                           ;USART_DRV.C: 67: }
+  2010                           ;USART_DRV.C: 68: return 0xff;
+  2011  0273  34FF               	retlw	255
+  2012  0274  2A5C               	goto	i1l8251
+  2013  0275                     __end_of_iap_usart_rec:	
+  2014  0275                     __ptext9:	
+  2015 ;; *************** function _iap_wait_tx_idle *****************
+  2016 ;; Defined at:
+  2017 ;;		line 74 in file "USART_DRV.C"
+  2018 ;; Parameters:    Size  Location     Type
+  2019 ;;		None
+  2020 ;; Auto vars:     Size  Location     Type
+  2021 ;;		None
+  2022 ;; Return value:  Size  Location     Type
+  2023 ;;                  1    wreg      void 
+  2024 ;; Registers used:
+  2025 ;;		wreg, status,2
+  2026 ;; Tracked objects:
+  2027 ;;		On entry : 1F/9
+  2028 ;;		On exit  : 1F/9
+  2029 ;;		Unchanged: 0/0
+  2030 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  2031 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2032 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2033 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2034 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2035 ;;Total ram usage:        0 bytes
+  2036 ;; Hardware stack levels used:    1
+  2037 ;; This function calls:
+  2038 ;;		Nothing
+  2039 ;; This function is called by:
+  2040 ;;		_user_isr
+  2041 ;; This function uses a non-reentrant model
+  2042 ;;
+  2043                           
+  2044                           
+  2045                           ;psect for function _iap_wait_tx_idle
+  2046  0275                     _iap_wait_tx_idle:	
+  2047  0275                     i1l8283:	
+  2048                           ;USART_DRV.C: 76: while(!(TCF & (0x1<<0 )));
+  2049                           
+  2050                           ;incstack = 0
+  2051                           ; Regs used in _iap_wait_tx_idle: [wreg+status,2]
+  2052                           
+  2053  0275  3000               	movlw	0
+  2054  0276  181C               	btfsc	28,0	;volatile
+  2055  0277  3001               	movlw	1
+  2056  0278  3901               	andlw	1
+  2057  0279  1D03               	btfss	3,2
+  2058  027A  0008               	return
+  2059  027B  2A75               	goto	i1l8283
+  2060  027C                     __end_of_iap_wait_tx_idle:	
+  2061  027C                     __ptext20:	
+  2062 ;; *************** function _Unlock_Flash *****************
+  2063 ;; Defined at:
+  2064 ;;		line 4 in file "MEM_DRV.C"
+  2065 ;; Parameters:    Size  Location     Type
+  2066 ;;		None
+  2067 ;; Auto vars:     Size  Location     Type
+  2068 ;;		None
+  2069 ;; Return value:  Size  Location     Type
+  2070 ;;                  1    wreg      void 
+  2071 ;; Registers used:
+  2072 ;;		None
+  2073 ;; Tracked objects:
+  2074 ;;		On entry : 1F/3
+  2075 ;;		On exit  : 0/0
+  2076 ;;		Unchanged: 0/0
+  2077 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  2078 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2079 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2080 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2081 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2082 ;;Total ram usage:        0 bytes
+  2083 ;; Hardware stack levels used:    1
+  2084 ;; This function calls:
+  2085 ;;		Nothing
+  2086 ;; This function is called by:
+  2087 ;;		_iap_mem_erase
+  2088 ;;		_iap_mem_prog
+  2089 ;; This function uses a non-reentrant model
+  2090 ;;
+  2091                           
+  2092                           
+  2093                           ;psect for function _Unlock_Flash
+  2094  027C                     _Unlock_Flash:	
+  2095                           
+  2096                           ;incstack = 0
+  2097                           ; Regs used in _Unlock_Flash: []
+  2098  027C  3003               	movlw	3	;# 
+  2099  027D  0088               	movwf	8	;# 
+  2100  027E  3055               	movlw	85	;# 
+  2101  027F  0096               	movwf	22	;# 
+  2102  0280  30AA               	movlw	170	;# 
+  2103  0281  0096               	movwf	22	;# 
+  2104  0282  1495               	bsf	21,1	;# 
+  2105  0283  0000               	nop	;# 
+  2106  0284  0000               	nop	;# 
+  2107  0285  0008               	return
+  2108  0286                     __end_of_Unlock_Flash:	
+  2109  007E                     btemp	set	126	;btemp
+  2110  007E                     int$flags	set	126
+  2111  007E                     wtemp0	set	126
+  2112  0286                     __ptext17:	
+  2113 ;; *************** function i1_iap_mem_rd *****************
+  2114 ;; Defined at:
+  2115 ;;		line 34 in file "MEM_DRV.C"
+  2116 ;; Parameters:    Size  Location     Type
+  2117 ;;		None
+  2118 ;; Auto vars:     Size  Location     Type
+  2119 ;;		None
+  2120 ;; Return value:  Size  Location     Type
+  2121 ;;                  1    wreg      void 
+  2122 ;; Registers used:
+  2123 ;;		None
+  2124 ;; Tracked objects:
+  2125 ;;		On entry : 1F/3
+  2126 ;;		On exit  : 1F/3
+  2127 ;;		Unchanged: 0/0
+  2128 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  2129 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2130 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2131 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2132 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2133 ;;Total ram usage:        0 bytes
+  2134 ;; Hardware stack levels used:    1
+  2135 ;; This function calls:
+  2136 ;;		Nothing
+  2137 ;; This function is called by:
+  2138 ;;		_data_check_erase_or_not
+  2139 ;;		i1_All_Page_Read_CRC
+  2140 ;; This function uses a non-reentrant model
+  2141 ;;
+  2142                           
+  2143                           
+  2144                           ;psect for function i1_iap_mem_rd
+  2145  0286                     i1_iap_mem_rd:	
+  2146                           
+  2147                           ;MEM_DRV.C: 36: EECON1 |=(0x1<<0 );
+  2148                           
+  2149                           ;incstack = 0
+  2150                           ; Regs used in i1_iap_mem_rd: []
+  2151  0286  1415               	bsf	21,0	;volatile
+  2152  0287  0000               	nop	;# 
+  2153  0288                     i1l4871:	
+  2154                           ;MEM_DRV.C: 38: while(EECON1 & (0x1<<0 ));
+  2155                           
+  2156  0288  0023               	movlb	3	; select bank3
+  2157  0289  1C15               	btfss	21,0	;volatile
+  2158  028A  0008               	return
+  2159  028B  2A88               	goto	i1l4871
+  2160  028C                     __end_ofi1_iap_mem_rd:	
+  2161  028C                     PL2:	
+  2162  028C  0020               	movlb	0	; select bank0
+  2163  028D  0829               	movf	user_isr@iap_addr,w
+  2164  028E  0023               	movlb	3	; select bank3
+  2165  028F  0091               	movwf	17	;volatile
+  2166  0290  0020               	movlb	0	; select bank0
+  2167  0291  082B               	movf	user_isr@i,w
+  2168  0292  00A5               	movwf	??_user_isr
+  2169  0293  306E               	movlw	110
+  2170  0294  01A6               	clrf	??_user_isr+1
+  2171  0295  00A7               	movwf	??_user_isr+2
+  2172  0296  3023               	movlw	35
+  2173  0297  00A8               	movwf	??_user_isr+3
+  2174  0298  0825               	movf	??_user_isr,w
+  2175  0299  0727               	addwf	??_user_isr+2,w
+  2176  029A  0086               	movwf	6
+  2177  029B  0826               	movf	??_user_isr+1,w
+  2178  029C  3D28               	addwfc	??_user_isr+3,w
+  2179  029D  0087               	movwf	7
+  2180  029E  0801               	movf	1,w
+  2181  029F  0023               	movlb	3	; select bank3
+  2182  02A0  0094               	movwf	20	;volatile
+  2183  02A1  0020               	movlb	0	; select bank0
+  2184  02A2  082B               	movf	user_isr@i,w
+  2185  02A3  00A5               	movwf	??_user_isr
+  2186  02A4  306F               	movlw	111
+  2187  02A5  01A6               	clrf	??_user_isr+1
+  2188  02A6  00A7               	movwf	??_user_isr+2
+  2189  02A7  3023               	movlw	35
+  2190  02A8  00A8               	movwf	??_user_isr+3
+  2191  02A9  0825               	movf	??_user_isr,w
+  2192  02AA  0727               	addwf	??_user_isr+2,w
+  2193  02AB  0086               	movwf	6
+  2194  02AC  0826               	movf	??_user_isr+1,w
+  2195  02AD  3D28               	addwfc	??_user_isr+3,w
+  2196  02AE  0087               	movwf	7
+  2197  02AF  0801               	movf	1,w
+  2198  02B0  0023               	movlb	3	; select bank3
+  2199  02B1  0093               	movwf	19	;volatile
+  2200  02B2  0008               	return
+  2201  02B3                     __end_ofPL2:	
+  2202  02B3                     PL4:	
+  2203  02B3  3141               	addfsr 1,1
+  2204  02B4  0801               	movf	1,w
+  2205  02B5  00A9               	movwf	user_isr@iap_addr
+  2206  02B6  306B               	movlw	107
+  2207  02B7  01AA               	clrf	user_isr@iap_addr+1
+  2208  02B8  0086               	movwf	6
+  2209  02B9  3023               	movlw	35
+  2210  02BA  0087               	movwf	7
+  2211  02BB  3142               	addfsr 1,2
+  2212  02BC  0829               	movf	user_isr@iap_addr,w
+  2213  02BD  00A5               	movwf	??_user_isr
+  2214  02BE  0801               	movf	1,w
+  2215  02BF  00A9               	movwf	user_isr@iap_addr
+  2216  02C0  0825               	movf	??_user_isr,w
+  2217  02C1  00AA               	movwf	user_isr@iap_addr+1
+  2218  02C2  0008               	return
+  2219  02C3                     __end_ofPL4:	
+  2220  02C3                     PL6:	
+  2221  02C3  01F6               	clrf	??_data_check_erase_or_not+1
+  2222  02C4  35F5               	lslf	??_data_check_erase_or_not,f
+  2223  02C5  0DF6               	rlf	??_data_check_erase_or_not+1,f
+  2224  02C6  00F7               	movwf	??_data_check_erase_or_not+2
+  2225  02C7  3023               	movlw	35
+  2226  02C8  00F8               	movwf	??_data_check_erase_or_not+3
+  2227  02C9  0875               	movf	??_data_check_erase_or_not,w
+  2228  02CA  0777               	addwf	??_data_check_erase_or_not+2,w
+  2229  02CB  0086               	movwf	6
+  2230  02CC  0876               	movf	??_data_check_erase_or_not+1,w
+  2231  02CD  3D78               	addwfc	??_data_check_erase_or_not+3,w
+  2232  02CE  0087               	movwf	7
+  2233  02CF  0801               	movf	1,w
+  2234  02D0  0008               	return
+  2235  02D1                     __end_ofPL6:	
+  2236  02D1                     PL8:	
+  2237  02D1  0020               	movlb	0	; select bank0
+  2238  02D2  0AA9               	incf	user_isr@iap_addr,f
+  2239  02D3  1903               	skipnz
+  2240  02D4  0AAA               	incf	user_isr@iap_addr+1,f
+  2241  02D5  3080               	movlw	128
+  2242  02D6  0AAB               	incf	user_isr@i,f
+  2243  02D7  0AAB               	incf	user_isr@i,f
+  2244  02D8  022B               	subwf	user_isr@i,w
+  2245  02D9  0008               	return
+  2246  02DA                     __end_ofPL8:	
+  2247  02DA                     PL10:	
+  2248  02DA  00F3               	movwf	data_check_erase_or_not@addr+1
+  2249  02DB  0829               	movf	user_isr@iap_addr,w
+  2250  02DC  00F2               	movwf	data_check_erase_or_not@addr
+  2251  02DD  01F4               	clrf	data_check_erase_or_not@mode
+  2252  02DE  0AF4               	incf	data_check_erase_or_not@mode,f
+  2253  02DF  0008               	return
+  2254  02E0                     __end_ofPL10:	
+  2255  02E0                     __ptext13:	
+  2256 ;; *************** function _iap_mem_erase *****************
+  2257 ;; Defined at:
+  2258 ;;		line 19 in file "MEM_DRV.C"
+  2259 ;; Parameters:    Size  Location     Type
+  2260 ;;		None
+  2261 ;; Auto vars:     Size  Location     Type
+  2262 ;;		None
+  2263 ;; Return value:  Size  Location     Type
+  2264 ;;                  1    wreg      void 
+  2265 ;; Registers used:
+  2266 ;;		status,2, status,0, pclath, cstack
+  2267 ;; Tracked objects:
+  2268 ;;		On entry : 1F/3
+  2269 ;;		On exit  : 1F/3
+  2270 ;;		Unchanged: 0/0
+  2271 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  2272 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2273 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2274 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2275 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2276 ;;Total ram usage:        0 bytes
+  2277 ;; Hardware stack levels used:    1
+  2278 ;; Hardware stack levels required when called:    1
+  2279 ;; This function calls:
+  2280 ;;		_Unlock_Flash
+  2281 ;; This function is called by:
+  2282 ;;		_user_isr
+  2283 ;; This function uses a non-reentrant model
+  2284 ;;
+  2285                           
+  2286                           
+  2287                           ;psect for function _iap_mem_erase
+  2288  02E0                     _iap_mem_erase:	
+  2289                           
+  2290                           ;MEM_DRV.C: 21: EECON1 |=(0x1<<4 );
+  2291                           
+  2292                           ;incstack = 0
+  2293                           ; Regs used in _iap_mem_erase: [status,2+status,0+pclath+cstack]
+  2294  02E0  1615               	bsf	21,4	;volatile
+  2295                           
+  2296                           ;MEM_DRV.C: 22: Unlock_Flash();
+  2297  02E1  227C  3181         	fcall	_Unlock_Flash
+  2298  02E3                     i1l4859:	
+  2299                           ;MEM_DRV.C: 23: while(EECON1 & (0x1<<1 ));
+  2300                           
+  2301  02E3  0023               	movlb	3	; select bank3
+  2302  02E4  1C95               	btfss	21,1	;volatile
+  2303  02E5  0008               	return
+  2304  02E6  2AE3               	goto	i1l4859
+  2305  02E7                     __end_of_iap_mem_erase:	
+  2306  02E7                     __ptext12:	
+  2307 ;; *************** function _DelayUs *****************
+  2308 ;; Defined at:
+  2309 ;;		line 35 in file "USART_DRV.C"
+  2310 ;; Parameters:    Size  Location     Type
+  2311 ;;		None
+  2312 ;; Auto vars:     Size  Location     Type
+  2313 ;;  a               1    0[COMMON] unsigned char 
+  2314 ;; Return value:  Size  Location     Type
+  2315 ;;                  1    wreg      void 
+  2316 ;; Registers used:
+  2317 ;;		wreg, status,2, status,0
+  2318 ;; Tracked objects:
+  2319 ;;		On entry : 0/9
+  2320 ;;		On exit  : 0/0
+  2321 ;;		Unchanged: 0/0
+  2322 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+  2323 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2324 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2325 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2326 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+  2327 ;;Total ram usage:        1 bytes
+  2328 ;; Hardware stack levels used:    1
+  2329 ;; This function calls:
+  2330 ;;		Nothing
+  2331 ;; This function is called by:
+  2332 ;;		_iap_usart_rec
+  2333 ;; This function uses a non-reentrant model
+  2334 ;;
+  2335                           
+  2336                           
+  2337                           ;psect for function _DelayUs
+  2338  02E7                     _DelayUs:	
+  2339                           
+  2340                           ;USART_DRV.C: 37: unsigned char a;
+  2341                           ;USART_DRV.C: 38: for(a=0;a<10;a++)
+  2342                           
+  2343                           ;incstack = 0
+  2344                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+  2345  02E7  01F2               	clrf	DelayUs@a
+  2346  02E8                     i1l7237:	
+  2347                           
+  2348                           ;USART_DRV.C: 39: {
+  2349                           ;USART_DRV.C: 40: __nop();
+  2350  02E8  0000               	nop
+  2351  02E9  300A               	movlw	10
+  2352  02EA  0AF2               	incf	DelayUs@a,f
+  2353  02EB  0272               	subwf	DelayUs@a,w
+  2354  02EC  1803               	btfsc	3,0
+  2355  02ED  0008               	return
+  2356  02EE  2AE8               	goto	i1l7237
+  2357  02EF                     __end_of_DelayUs:	
+  2358                           
+  2359                           	psect	swtext1
+  2360  02EF                     __pswtext1:	
+  2361  02EF                     i1S8529:	
+  2362  02EF  3181  2926         	ljmp	i1l8313
+  2363  02F1  3181  292C         	ljmp	i1l8317
+  2364  02F3  3181  292E         	ljmp	i1l8321
+  2365  02F5  3181  2930         	ljmp	i1l8325
+  2366  02F7  3181  2932         	ljmp	i1l8329
+  2367  02F9  3181  2934         	ljmp	i1l8333
+  2368  02FB  3181  2936         	ljmp	i1l8337
+  2369  02FD  3181  2938         	ljmp	i1l8341
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           12     10      10
+    BANK0            75     17      17
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            80      0       0
+    BANK7            80      0       0
+    BANK8            80      0       0
+    BANK9            80      0       0
+    BANK10           75      0       0
+    BANK11            0      0       0
+    BANK12            0      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    _user_isr->_data_check_erase_or_not
+    _iap_usart_rec->_DelayUs
+    _Eeprom_Write_Crc->i1_All_Page_Read_CRC
+    i1_All_Page_Read_CRC->i1_CRC16_CCITT
+
+Critical Paths under _main in BANK0
+
+    _main->_Power_On_App_Check
+    _Power_On_App_Check->_All_Page_Read_CRC
+    _All_Page_Read_CRC->_CRC16_CCITT
+
+Critical Paths under _ISR in BANK0
+
+    _ISR->_user_isr
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _ISR in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _ISR in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _ISR in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _ISR in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _ISR in BANK12
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     230
+                 _Power_On_App_Check
+                     _iap_usart_init
+ ---------------------------------------------------------------------------------
+ (1) _iap_usart_init                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _Power_On_App_Check                                   2     2      0     230
+                                             15 BANK0      2     2      0
+                  _All_Page_Read_CRC
+                         _EEPROMread
+ ---------------------------------------------------------------------------------
+ (2) _EEPROMread                                           2     2      0      45
+                                              7 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _All_Page_Read_CRC                                    2     2      0     160
+                                             13 BANK0      2     2      0
+                        _CRC16_CCITT
+                         _iap_mem_rd
+ ---------------------------------------------------------------------------------
+ (3) _iap_mem_rd                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (3) _CRC16_CCITT                                          6     6      0      68
+                                              7 BANK0      6     6      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _ISR                                                  0     0      0    1523
+                           _user_isr
+ ---------------------------------------------------------------------------------
+ (5) _user_isr                                             7     7      0    1523
+                                              0 BANK0      7     7      0
+                   _Eeprom_Write_Crc
+            _data_check_erase_or_not
+                      _iap_mem_erase
+                       _iap_mem_prog
+                      _iap_usart_rec
+                     _iap_usart_send
+                   _iap_wait_tx_idle
+                      i1_CRC16_CCITT
+ ---------------------------------------------------------------------------------
+ (6) _iap_wait_tx_idle                                     0     0      0       0
+ ---------------------------------------------------------------------------------
+ (6) _iap_usart_send                                       1     1      0      22
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (6) _iap_usart_rec                                        2     2      0      92
+                                              1 COMMON     2     2      0
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (7) _DelayUs                                              1     1      0      46
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (6) _iap_mem_erase                                        0     0      0       0
+                       _Unlock_Flash
+ ---------------------------------------------------------------------------------
+ (6) _data_check_erase_or_not                             10     7      3     550
+                                              0 COMMON    10     7      3
+                       i1_iap_mem_rd
+ ---------------------------------------------------------------------------------
+ (6) _Eeprom_Write_Crc                                     0     0      0     158
+                       _iap_mem_prog
+                i1_All_Page_Read_CRC
+ ---------------------------------------------------------------------------------
+ (7) i1_All_Page_Read_CRC                                  2     2      0     158
+                                              6 COMMON     2     2      0
+                      i1_CRC16_CCITT
+                       i1_iap_mem_rd
+ ---------------------------------------------------------------------------------
+ (7) i1_iap_mem_rd                                         0     0      0       0
+ ---------------------------------------------------------------------------------
+ (6) i1_CRC16_CCITT                                        6     6      0      68
+                                              0 COMMON     6     6      0
+ ---------------------------------------------------------------------------------
+ (6) _iap_mem_prog                                         0     0      0       0
+                       _Unlock_Flash
+ ---------------------------------------------------------------------------------
+ (7) _Unlock_Flash                                         0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 7
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _Power_On_App_Check
+     _All_Page_Read_CRC
+       _CRC16_CCITT
+       _iap_mem_rd
+     _EEPROMread
+   _iap_usart_init
+
+ _ISR (ROOT)
+   _user_isr
+     _Eeprom_Write_Crc
+       _iap_mem_prog
+         _Unlock_Flash
+       i1_All_Page_Read_CRC
+         i1_CRC16_CCITT
+         i1_iap_mem_rd
+     _data_check_erase_or_not
+       i1_iap_mem_rd
+     _iap_mem_erase
+       _Unlock_Flash
+     _iap_mem_prog
+       _Unlock_Flash
+     _iap_usart_rec
+       _DelayUs
+     _iap_usart_send
+     _iap_wait_tx_idle
+     i1_CRC16_CCITT
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            C      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               C      A       A       2       83.3%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITBANK0            4B      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               4B     11      11       5       22.7%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BITBANK2            50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BANK2               50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BITBANK3            50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BANK3               50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITBANK4            50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BANK4               50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITBANK5            50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BANK5               50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITBANK6            50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BANK6               50      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITBANK7            50      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BANK7               50      0       0      19        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+ABS                  0      0       0      20        0.0%
+BITBANK8            50      0       0      21        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BANK8               50      0       0      22        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITBANK9            50      0       0      23        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BANK9               50      0       0      24        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITBANK10           50      0       0      25        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BANK10              4B      0       0      26        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITBANK11           50      0       0      27        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BANK11               0      0       0      28        0.0%
+BITBANK12           30      0       0      29        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BANK12               0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+DATA                 0      0       0      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Tue Nov 16 11:58:00 2021
+
+                               pc 0002                                PL2 028C                                PL4 02B3  
+                              PL6 02C3                                PL8 02D1          __end_of_Eeprom_Write_Crc 00D8  
+                              _RD 0CA8            __size_ofi1_CRC16_CCITT 001F         __end_of_All_Page_Read_CRC 009E  
+                             PL10 02DA                               PL12 0115                               _FEF 2493  
+                             _GIE 005F                _Power_On_App_Check 004B                               _TCF 24E0  
+                             _ISR 0004                    ??_iap_mem_prog 0072                               u755 0064  
+             ?_Power_On_App_Check 0072                              ?_ISR 0072                              l2402 00B7  
+                            l2399 00A2                              l2496 0036                              l8111 00B5  
+                 ??_iap_mem_erase 0072                              l4871 00BF                              _AFP2 011D  
+                            l8159 0083                              _CFGS 0CAE   __end_of_data_check_erase_or_not 024C  
+                            _PEIE 005E                              _RXNE 00E1                    _ad3nop_absaddr 0003  
+            __size_of_CRC16_CCITT 001F                              _flag 0020                              _main 002F  
+                            fsr0h 0005                              fsr1h 0007                              indf0 0000  
+                            fsr0l 0004                              indf1 0001                              fsr1l 0006  
+                            btemp 007E                              start 001F                   __end_of_DelayUs 02EF  
+             __size_of_EEPROMread 0016              ??_Power_On_App_Check 0034                             ??_ISR 007C  
+           __size_ofi1_iap_mem_rd 0006                             ?_main 0072                             _EEPGD 0CAF  
+                           _DRDEN 0CC0                             _BSREG 0008                             _CRC_H 0024  
+                           _CRC_L 0023      __size_ofi1_All_Page_Read_CRC 001E                             _PCKEN 009A  
+                           _URDLL 0494                             _TRISB 008D                             _RXNEF 2490  
+                           _URLCR 048F                             _URMCR 0491                             _URLSR 0492  
+                           _W_TMP 0070                 i1CRC16_CCITT@data 0076                             _count 0021  
+                 ??_iap_usart_rec 0073                     i1_CRC16_CCITT 00F6                             status 0003  
+                           wtemp0 007E                      i1_iap_mem_rd 0286                   __initialization 0021  
+                    __end_of_main 0038        __size_of_All_Page_Read_CRC 0021                            ??_main 0036  
+                _iap_wait_tx_idle 0275                            _EEADRH 0192                            _EEADRL 0191  
+                          i1S8529 02EF                            _EEDATH 0194                            _EEDATL 0193  
+                          _EECON1 0195                    ?i1_CRC16_CCITT 0072                            _CRC_16 0023  
+                          i1l2402 010F                            i1l2441 014B                            i1l2436 0218  
+                          i1l2461 0157                            i1l2481 01EA                            i1l2458 020F  
+                          i1l2399 00FA                            i1l7242 024D                            i1l8117 0253  
+                          i1l8141 00DC                            i1l7237 02E8                            i1l4871 0288  
+                          i1l8207 021B                            i1l4865 0256                            i1l8225 023B  
+                          i1l8321 012E                            i1l8313 0126                            i1l4859 02E3  
+                          i1l8251 025C                            i1l8315 012A                            i1l8341 0138  
+                          i1l8333 0134                            i1l8325 0130                            i1l8317 012C  
+                          i1l8095 010D                            i1l8423 01BB                            i1l8265 0268  
+                          i1l8433 01C7                            i1l8409 01AF                            i1l8337 0136  
+                          i1l8329 0132                            i1l8259 0265                            i1l8283 0275  
+                          i1l8347 013E                            i1l8269 026A                            i1l8365 015A  
+                          i1l8455 01EC                            i1l8447 01D2                            i1l8359 01FB  
+                          i1l8457 01EE                            i1l8377 0172                            i1l8459 01F5  
+                       ??_DelayUs 0072                            _OSCCON 0099                            _URRXNE 2470  
+            __end_of_iap_mem_prog 025A                            _ad3nop 0003                    iap_usart_rec@a 0073  
+                ??_iap_usart_init 002C                  ??_iap_usart_send 0072                      ??_EEPROMread 002C  
+                __end_of_user_isr 021A           __end_of__initialization 002C                    __pcstackCOMMON 0072  
+              __end_of_EEPROMread 007D                 ?_Eeprom_Write_Crc 0072                        __end_ofPL2 02B3  
+                      __end_ofPL4 02C3                        __end_ofPL6 02D1                        __end_ofPL8 02DA  
+              ??_Eeprom_Write_Crc 007A                   ??i1_CRC16_CCITT 0072               i1_All_Page_Read_CRC 00D8  
+                      __pmaintext 002F          ?_data_check_erase_or_not 0072                        __pintentry 0004  
+              iap_usart_send@data 0072              ?i1_All_Page_Read_CRC 0072                        _iap_mem_rd 00BD  
+                         _BSR_TMP 0071                           _URDATAL 048C                     ??_CRC16_CCITT 002C  
+           __size_of_iap_mem_prog 0007                           _DelayUs 02E7             __end_of_iap_mem_erase 02E7  
+        __end_of_iap_wait_tx_idle 027C       __size_of_Power_On_App_Check 001C                  EEPROMread@EEAddr 002C  
+                       ?_user_isr 0072                           __ptext1 0038                           __ptext2 004B  
+                         __ptext3 0067                           __ptext4 007D                           __ptext5 00BD  
+                         __ptext6 009E                           __ptext8 011B                           __ptext9 0275  
+           ??i1_All_Page_Read_CRC 0078          data_check_erase_or_not@i 007B          data_check_erase_or_not@j 0079  
+        data_check_erase_or_not@k 007A                      __size_of_ISR 001B                      _iap_err_flag 0101  
+                    _iap_mem_prog 0253                      CRC16_CCITT@i 0031                           clrloop0 0300  
+            end_of_initialization 002C                  user_isr@iap_addr 0029             __end_of_iap_usart_rec 0275  
+             __end_of_CRC16_CCITT 00BD                        ??_user_isr 0025                        _uart_rxnef 0103  
+                     ?_iap_mem_rd 0072                     ?_Unlock_Flash 0072                   CRC16_CCITT@data 0030  
+                  i1CRC16_CCITT@i 0077                    __end_of_ad3nop 0004                       __end_ofPL10 02E0  
+                     __end_ofPL12 011B               start_initialization 0021                    __p_ad3nop_text 0003  
+                     __end_of_ISR 001F                    ??_Unlock_Flash 0072                       _CRC16_CCITT 009E  
+       __size_of_Eeprom_Write_Crc 0015               __size_of_iap_mem_rd 0006                       __pbssBIGRAM 236B  
+    Power_On_App_Check@CRC_Eeprom 0034  __size_of_data_check_erase_or_not 0032                         ___latbits 0002  
+                   __pcstackBANK0 0025           __size_of_iap_usart_init 0013           __size_of_iap_usart_send 0007  
+           __end_ofi1_CRC16_CCITT 0115                          ?_DelayUs 0072                     ?i1_iap_mem_rd 0072  
+               ?_iap_wait_tx_idle 0072                ??_iap_wait_tx_idle 0072                         __pswtext1 02EF  
+               __size_of_user_isr 00FF                       _iap_databuf 236B                         _read_flag 0100  
+                     _iap_ok_flag 0102                       _iap_recdata 0022                    ??i1_iap_mem_rd 0072  
+                        DelayUs@a 0072                         clear_ram0 02FF        __end_of_Power_On_App_Check 0067  
+     __end_ofi1_All_Page_Read_CRC 00F6              __end_of_Unlock_Flash 0286                      ??_iap_mem_rd 002C  
+          __size_of_iap_mem_erase 0007                  _Eeprom_Write_Crc 00C3                  __size_of_DelayUs 0008  
+              __end_of_iap_mem_rd 00C3            __size_of_iap_usart_rec 001B           _data_check_erase_or_not 021A  
+                      _EEPROMread 0067                    _iap_usart_init 0038                    _iap_usart_send 024C  
+                        __ptext10 024C                          __ptext11 025A                          __ptext20 027C  
+                        __ptext12 02E7                          __ptext13 02E0                          __ptext14 021A  
+                        __ptext15 00C3                          __ptext16 00D8                          __ptext17 0286  
+                        __ptext18 00F6                          __ptext19 0253                      ?_CRC16_CCITT 0072  
+                   __size_of_main 0009                     _iap_mem_erase 02E0            EEPROMread@ReEEPROMread 002D  
+                        int$flags 007E         All_Page_Read_CRC@iap_addr 0032                          _user_isr 011B  
+            __end_ofi1_iap_mem_rd 028C            __end_of_iap_usart_init 004B            __end_of_iap_usart_send 0253  
+     data_check_erase_or_not@addr 0072       data_check_erase_or_not@mode 0074                          intlevel1 0000  
+                   _iap_usart_rec 025A                    ?_iap_mem_erase 0072                         user_isr@i 002B  
+           __size_of_Unlock_Flash 000A         ??_data_check_erase_or_not 0075                 _All_Page_Read_CRC 007D  
+       __size_of_iap_wait_tx_idle 0007                   ?_iap_usart_init 0072                     ?_iap_mem_prog 0072  
+                 ?_iap_usart_send 0072                       ?_EEPROMread 0072                ?_All_Page_Read_CRC 0072  
+                    _Unlock_Flash 027C       i1All_Page_Read_CRC@iap_addr 0078                    ?_iap_usart_rec 0072  
+             ??_All_Page_Read_CRC 0032  

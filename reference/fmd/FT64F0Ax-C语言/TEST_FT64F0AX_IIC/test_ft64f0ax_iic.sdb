@@ -1,0 +1,159 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT64F0AX ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.3_6C03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.3_6C03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"37 D:\FMD demo 11-11总修改\C\FT64F0Ax\TEST_FT64F0AX_IIC\TEST_FT64F0AX_IIC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"75
+[v _IIC_INITIAL IIC_INITIAL `(v  1 e 1 0 ]
+"97
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"111
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"145
+[v _IIC_Read IIC_Read `(uc  1 e 1 0 ]
+"163
+[v _IIC_Write IIC_Write `(v  1 e 1 0 ]
+"179
+[v _main main `(v  1 e 1 0 ]
+"99 D:\IDE3.0.3_6C03\data\include\FT64F0AX.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"125
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"170
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"215
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"408
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"435
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"462
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"622
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"653
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"972
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"977
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"982
+[v _PSRC2 PSRC2 `VEuc  1 e 1 @284 ]
+"1021
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1025
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1029
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1136
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1174
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1178
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1181
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1217
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1244
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1270
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1760
+[v _ODCON0 ODCON0 `VEuc  1 e 1 @543 ]
+"2306
+[v _I2CCR1 I2CCR1 `VEuc  1 e 1 @1036 ]
+"2326
+[v _I2CCR2 I2CCR2 `VEuc  1 e 1 @1037 ]
+"2347
+[v _I2CCR3 I2CCR3 `VEuc  1 e 1 @1038 ]
+"2349
+[v _ENABLE ENABLE `VEb  1 e 0 @8304 ]
+"2363
+[v _I2COARL I2COARL `VEuc  1 e 1 @1039 ]
+"2393
+[v _I2COARH I2COARH `VEuc  1 e 1 @1040 ]
+"2408
+[v _I2CFREQ I2CFREQ `VEuc  1 e 1 @1041 ]
+"2434
+[v _I2CDR I2CDR `VEuc  1 e 1 @1042 ]
+"2439
+[v _I2CCMD I2CCMD `VEuc  1 e 1 @1043 ]
+"2456
+[v _I2CCCRL I2CCCRL `VEuc  1 e 1 @1044 ]
+"2486
+[v _I2CCCRH I2CCCRH `VEuc  1 e 1 @1045 ]
+"2508
+[v _I2CITR I2CITR `VEuc  1 e 1 @1046 ]
+"2531
+[v _IICRXNE IICRXNE `VEb  1 e 0 @8382 ]
+"2532
+[v _IICTXE IICTXE `VEb  1 e 0 @8383 ]
+"30 D:\FMD demo 11-11总修改\C\FT64F0Ax\TEST_FT64F0AX_IIC\TEST_FT64F0AX_IIC.C
+[v _IICReadData IICReadData `VEuc  1 e 1 0 ]
+"179
+[v _main main `(v  1 e 1 0 ]
+{
+"192
+} 0
+"37
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"68
+} 0
+"163
+[v _IIC_Write IIC_Write `(v  1 e 1 0 ]
+{
+[v IIC_Write@address address `uc  1 a 1 wreg ]
+[v IIC_Write@address address `uc  1 a 1 wreg ]
+[v IIC_Write@data data `uc  1 p 1 0 ]
+[v IIC_Write@address address `uc  1 a 1 1 ]
+"172
+} 0
+"145
+[v _IIC_Read IIC_Read `(uc  1 e 1 0 ]
+{
+[v IIC_Read@address address `uc  1 a 1 wreg ]
+"147
+[v IIC_Read@iicdata iicdata `uc  1 a 1 1 ]
+"145
+[v IIC_Read@address address `uc  1 a 1 wreg ]
+[v IIC_Read@address address `uc  1 a 1 0 ]
+"156
+} 0
+"75
+[v _IIC_INITIAL IIC_INITIAL `(v  1 e 1 0 ]
+{
+"90
+} 0
+"111
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"113
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"111
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"114
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"121
+} 0
+"97
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"99
+[v DelayUs@a a `uc  1 a 1 1 ]
+"97
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"100
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"104
+} 0

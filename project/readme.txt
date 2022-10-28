@@ -1,0 +1,2 @@
+- The latest firmware version used is NFB-E2BAT2.
+- The latest GUI used id NFB-GUI-2.
